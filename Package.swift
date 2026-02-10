@@ -27,7 +27,7 @@ let package = Package(
         .package(path: "../swift-input-primitives"),
         .package(path: "../swift-machine-primitives"),
         .package(path: "../swift-index-primitives"),
-        .package(path: "../swift-range-primitives"),
+        .package(path: "../swift-vector-primitives"),
     ],
     targets: [
         .target(
@@ -37,7 +37,7 @@ let package = Package(
                 .product(name: "Binary Primitives", package: "swift-binary-primitives"),
                 .product(name: "Input Primitives", package: "swift-input-primitives"),
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
-                .product(name: "Range Primitives", package: "swift-range-primitives"),
+                .product(name: "Vector Primitives", package: "swift-vector-primitives"),
             ]
         ),
         .target(

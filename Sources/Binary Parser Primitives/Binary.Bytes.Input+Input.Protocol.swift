@@ -20,7 +20,7 @@ extension Binary.Bytes.Input: Input.`Protocol` {
     /// The range of valid checkpoints (start to end of input).
     @inlinable
     public var checkpointRange: ClosedRange<Checkpoint> {
-        .zero...Index<UInt8>(totalCount)
+        .zero...totalCount.map(Ordinal.init)
     }
 
     /// Sets the input position to a previously saved checkpoint.
@@ -30,7 +30,7 @@ extension Binary.Bytes.Input: Input.`Protocol` {
     ///   and is within valid bounds.
     @inlinable
     public mutating func setPosition(to checkpoint: Checkpoint) {
-        precondition(checkpoint <= Index<UInt8>(totalCount),
+        precondition(checkpoint <= totalCount.map(Ordinal.init),
                      "Invalid checkpoint: out of bounds")
         position = checkpoint
     }
