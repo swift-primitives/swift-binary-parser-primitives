@@ -33,7 +33,7 @@ extension Binary.Bytes.Input {
     ///
     /// ```swift
     /// struct MyParser: Binary.Bytes.Parser {
-    ///     typealias Output = UInt8
+    ///     typealias ParseOutput = UInt8
     ///     typealias Failure = Never
     ///
     ///     mutating func parse(_ input: inout Binary.Bytes.Input.View) -> UInt8 {

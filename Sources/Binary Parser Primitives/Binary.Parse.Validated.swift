@@ -61,7 +61,7 @@ extension Binary.Parse.Validated.Error: Sendable where T.RawValue: Sendable {}
 
 extension Binary.Parse.Validated: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
-    public typealias Output = T
+    public typealias ParseOutput = T
     public typealias Failure = Error
 
     @inlinable

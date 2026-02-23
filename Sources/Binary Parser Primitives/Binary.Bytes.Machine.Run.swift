@@ -187,12 +187,27 @@ extension Binary.Bytes.Machine {
                     else { input.advance(by: need); pendingHandle = arena.allocate(Value.make(())) }
 
                 case .peek:
-                    pendingHandle = arena.allocate(Value.make(input.first))
+                    if input.isEmpty {
+                        pendingHandle = arena.allocate(Value.make(UInt8?.none))
+                    } else {
+                        let cp = input.checkpoint
+                        let byte = try! input.advance()
+                        input.setPosition(to: cp)
+                        pendingHandle = arena.allocate(Value.make(UInt8?(byte)))
+                    }
 
                 case .byte(let expected):
                     if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) }
-                    else if input.first != expected { instructionError = .unexpectedByte(expected: expected, found: input.first!) }
-                    else { pendingHandle = arena.allocate(Value.make(try! input.advance())) }
+                    else {
+                        let cp = input.checkpoint
+                        let byte = try! input.advance()
+                        if byte != expected {
+                            input.setPosition(to: cp)
+                            instructionError = .unexpectedByte(expected: expected, found: byte)
+                        } else {
+                            pendingHandle = arena.allocate(Value.make(byte))
+                        }
+                    }
 
                 case .bytes(let expected):
                     let n = expected.count
@@ -226,25 +241,38 @@ extension Binary.Bytes.Machine {
                 case .satisfy(let predicate):
                     if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) }
                     else {
-                        let byte = input.first!
+                        let cp = input.checkpoint
+                        let byte = try! input.advance()
                         if predicate(byte) {
-                            _ = try! input.advance()
                             pendingHandle = arena.allocate(Value.make(byte))
                         } else {
+                            input.setPosition(to: cp)
                             instructionError = .predicateFailed(byte: byte)
                         }
                     }
 
                 case .takeWhile(let predicate):
                     var bytes: [UInt8] = []
-                    while let byte = input.first, predicate(byte) {
-                        bytes.append(try! input.advance())
+                    while !input.isEmpty {
+                        let cp = input.checkpoint
+                        let byte = try! input.advance()
+                        if predicate(byte) {
+                            bytes.append(byte)
+                        } else {
+                            input.setPosition(to: cp)
+                            break
+                        }
                     }
                     pendingHandle = arena.allocate(Value.make(bytes))
 
                 case .skipWhile(let predicate):
-                    while let byte = input.first, predicate(byte) {
-                        _ = try! input.advance()
+                    while !input.isEmpty {
+                        let cp = input.checkpoint
+                        let byte = try! input.advance()
+                        if !predicate(byte) {
+                            input.setPosition(to: cp)
+                            break
+                        }
                     }
                     pendingHandle = arena.allocate(Value.make(()))
 
@@ -386,7 +414,7 @@ extension Binary.Bytes.Machine {
                     var overflow = false
                     var done = false
                     while !done {
-                        guard input.first != nil else {
+                        guard !input.isEmpty else {
                             instructionError = .insufficientBytes(need: .one, have: .zero)
                             break
                         }
@@ -410,7 +438,7 @@ extension Binary.Bytes.Machine {
                     var overflow = false
                     var done = false
                     while !done {
-                        guard input.first != nil else {
+                        guard !input.isEmpty else {
                             instructionError = .insufficientBytes(need: .one, have: .zero)
                             break
                         }
