@@ -166,11 +166,24 @@ let package = Package(
             path: "Tests/Support"
         ),
         .testTarget(
-            name: "Binary Parser Primitives Tests",
-            dependencies: [
-                "Binary Parser Primitives",
-                "Binary Parser Primitives Test Support",
-            ]
+            name: "Binary Input Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
+        ),
+        .testTarget(
+            name: "Binary Input View Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
+        ),
+        .testTarget(
+            name: "Binary Coder Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
+        ),
+        .testTarget(
+            name: "Binary LEB128 Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
+        ),
+        .testTarget(
+            name: "Binary Integer Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
         ),
     ],
     swiftLanguageModes: [.v6]
