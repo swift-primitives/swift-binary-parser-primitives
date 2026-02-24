@@ -12,11 +12,9 @@ extension Binary.Bytes.Machine {
     /// This enables the interpreter to be inlined into `withBorrowed` without
     /// generic error type parameters that would prevent proper lifetime analysis.
     public struct Parser<Output> {
-        @usableFromInline
-        let program: Program
+        public let program: Program
 
-        @usableFromInline
-        let root: Node.ID
+        public let root: Node.ID
 
         @usableFromInline
         init(program: Program, root: Node.ID) {
@@ -51,7 +49,7 @@ extension Binary.Bytes.Machine {
         let root = build(&builder, ref)
 
         // Patch the hole to point to the actual root
-        builder.inner.nodes[holeID.rawValue] = .ref(root.node)
+        builder.inner[holeID] = .ref(root.node)
 
         return Parser(program: builder.build(), root: root.node)
     }

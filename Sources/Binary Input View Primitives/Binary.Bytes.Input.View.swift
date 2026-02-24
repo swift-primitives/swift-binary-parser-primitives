@@ -48,8 +48,7 @@ extension Binary.Bytes.Input {
         @usableFromInline
         let span: Span<UInt8>
 
-        @usableFromInline
-        var position: Int
+        public var position: Int
 
         /// Memberwise initializer with explicit lifetime annotation.
         @inlinable

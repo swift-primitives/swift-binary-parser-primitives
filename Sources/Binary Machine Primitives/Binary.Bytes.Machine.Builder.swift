@@ -8,7 +8,7 @@ extension Binary.Bytes.Machine {
     public typealias Mode = Machine_Primitives.Machine.Capture.Mode.Reference
 
     /// A builder context for constructing machine programs.
-    public struct Builder {
+    public struct Builder: ~Copyable {
         @usableFromInline
         var inner: Machine_Primitives.Machine.Builder<Instruction, Fault, Mode>
 
@@ -51,11 +51,11 @@ extension Binary.Bytes.Machine {
         /// ```
         @inlinable
         public mutating func embed<Output>(_ parser: Parser<Output>) -> Expression<Output> {
-            let offset = inner.nodes.count
-            for node in parser.program.nodes {
-                _ = inner.allocate(node)
+            let offset = inner.count
+            for node in parser.program.graph.nodes {
+                _ = inner.allocate(parser.program.graph[node])
             }
-            let adjustedRoot = Node.ID(__unchecked: (), parser.root.rawValue + offset)
+            let adjustedRoot = parser.root + offset
             return Expression(node: adjustedRoot)
         }
     }

@@ -17,6 +17,38 @@ let package = Package(
             targets: ["Binary Parser Primitives"]
         ),
         .library(
+            name: "Binary Input Primitives",
+            targets: ["Binary Input Primitives"]
+        ),
+        .library(
+            name: "Binary Input View Primitives",
+            targets: ["Binary Input View Primitives"]
+        ),
+        .library(
+            name: "Binary Machine Primitives",
+            targets: ["Binary Machine Primitives"]
+        ),
+        .library(
+            name: "Binary Borrowed Primitives",
+            targets: ["Binary Borrowed Primitives"]
+        ),
+        .library(
+            name: "Binary Parse Primitives",
+            targets: ["Binary Parse Primitives"]
+        ),
+        .library(
+            name: "Binary LEB128 Primitives",
+            targets: ["Binary LEB128 Primitives"]
+        ),
+        .library(
+            name: "Binary Coder Primitives",
+            targets: ["Binary Coder Primitives"]
+        ),
+        .library(
+            name: "Binary Integer Primitives",
+            targets: ["Binary Integer Primitives"]
+        ),
+        .library(
             name: "Binary Parser Primitives Test Support",
             targets: ["Binary Parser Primitives Test Support"]
         ),
@@ -30,16 +62,100 @@ let package = Package(
         .package(path: "../swift-vector-primitives"),
     ],
     targets: [
+        // MARK: - Input
+
+        .target(
+            name: "Binary Input Primitives",
+            dependencies: [
+                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+            ]
+        ),
+        .target(
+            name: "Binary Input View Primitives",
+            dependencies: [
+                "Binary Input Primitives",
+            ]
+        ),
+
+        // MARK: - Machine
+
+        .target(
+            name: "Binary Machine Primitives",
+            dependencies: [
+                "Binary Input Primitives",
+                "Binary Input View Primitives",
+                .product(name: "Machine Primitives", package: "swift-machine-primitives"),
+            ]
+        ),
+        .target(
+            name: "Binary Borrowed Primitives",
+            dependencies: [
+                "Binary Machine Primitives",
+                "Binary Input View Primitives",
+            ]
+        ),
+
+        // MARK: - Parse Access
+
+        .target(
+            name: "Binary Parse Primitives",
+            dependencies: [
+                "Binary Input Primitives",
+            ]
+        ),
+
+        // MARK: - LEB128
+
+        .target(
+            name: "Binary LEB128 Primitives",
+            dependencies: [
+                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+            ]
+        ),
+
+        // MARK: - Coder
+
+        .target(
+            name: "Binary Coder Primitives",
+            dependencies: [
+                "Binary Input Primitives",
+                "Binary Machine Primitives",
+            ]
+        ),
+
+        // MARK: - Integer Parsers
+
+        .target(
+            name: "Binary Integer Primitives",
+            dependencies: [
+                "Binary Coder Primitives",
+                "Binary Parse Primitives",
+                "Binary LEB128 Primitives",
+            ]
+        ),
+
+        // MARK: - Umbrella
+
         .target(
             name: "Binary Parser Primitives",
             dependencies: [
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                "Binary Input Primitives",
+                "Binary Input View Primitives",
+                "Binary Machine Primitives",
+                "Binary Borrowed Primitives",
+                "Binary Parse Primitives",
+                "Binary LEB128 Primitives",
+                "Binary Coder Primitives",
+                "Binary Integer Primitives",
                 .product(name: "Binary Primitives", package: "swift-binary-primitives"),
-                .product(name: "Input Primitives", package: "swift-input-primitives"),
-                .product(name: "Machine Primitives", package: "swift-machine-primitives"),
-                .product(name: "Vector Primitives", package: "swift-vector-primitives"),
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
             ]
         ),
+
+        // MARK: - Tests
+
         .target(
             name: "Binary Parser Primitives Test Support",
             dependencies: [
