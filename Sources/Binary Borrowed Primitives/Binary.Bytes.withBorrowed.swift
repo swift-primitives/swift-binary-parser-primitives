@@ -65,7 +65,7 @@ extension Binary.Bytes.WithBorrowed {
 
     /// Execute a machine parser, returning value and consumed count.
     @inlinable
-    public func prefix<Output: Sendable>(
+    public func prefix<Output>(
         _ bytes: [UInt8],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Serialization.Parsing.Prefix.Result<Output, Index<UInt8>.Count> {
@@ -121,7 +121,7 @@ extension Binary.Bytes.WithBorrowed {
 
     /// Execute a machine parser on contiguous storage, returning value and consumed count.
     @inlinable
-    public func prefix<C: Memory.Contiguous.`Protocol`, Output: Sendable>(
+    public func prefix<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Serialization.Parsing.Prefix.Result<Output, Index<UInt8>.Count> where C: ~Copyable, C.Element == UInt8 {
