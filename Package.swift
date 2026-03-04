@@ -61,6 +61,7 @@ let package = Package(
         .package(path: "../swift-index-primitives"),
         .package(path: "../swift-vector-primitives"),
         .package(path: "../swift-witness-primitives"),
+        .package(path: "../swift-coder-primitives"),
     ],
     targets: [
         // MARK: - Input
@@ -124,6 +125,7 @@ let package = Package(
                 "Binary Input Primitives",
                 "Binary Machine Primitives",
                 .product(name: "Witness Primitives", package: "swift-witness-primitives"),
+                .product(name: "Coder Primitives", package: "swift-coder-primitives"),
             ]
         ),
 
