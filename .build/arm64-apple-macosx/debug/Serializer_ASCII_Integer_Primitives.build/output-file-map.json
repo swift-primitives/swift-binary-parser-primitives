@@ -1,0 +1,33 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer ASCII Integer Primitives/Serializer.ASCII.Integer.Decimal.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.Decimal.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.Decimal.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.Decimal~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.Decimal.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.Decimal.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer ASCII Integer Primitives/Serializer.ASCII.Integer.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.Integer.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer ASCII Integer Primitives/Serializer.ASCII.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/Serializer.ASCII.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer ASCII Integer Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_ASCII_Integer_Primitives.build/exports.dia"
+  }
+}

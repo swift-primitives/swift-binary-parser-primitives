@@ -2,6 +2,13 @@
   "": {
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/master.swiftdeps"
   },
+  "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Take Primitives/Parser.Builder+Take.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Take Primitives/Parser.Optionally+Builder.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Optionally+Builder.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Optionally+Builder.swift.o",

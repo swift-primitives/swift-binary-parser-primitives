@@ -1,0 +1,33 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer Primitives Core/Serializable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer Primitives Core/Serializer.Builder.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Builder.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Builder.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Builder~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Builder.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Builder.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer Primitives Core/Serializer.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.Protocol.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-serializer-primitives/Sources/Serializer Primitives Core/Serializer.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Serializer_Primitives_Core.build/Serializer.dia"
+  }
+}

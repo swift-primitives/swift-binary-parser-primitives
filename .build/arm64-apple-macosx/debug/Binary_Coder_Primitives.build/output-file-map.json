@@ -2,6 +2,13 @@
   "": {
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/master.swiftdeps"
   },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Coder Primitives/Binary.Coder+Coder.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Coder Primitives/Binary.Coder.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder.swift.o",

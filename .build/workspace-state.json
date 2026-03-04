@@ -245,6 +245,20 @@
       {
         "basedOn" : null,
         "packageRef" : {
+          "identity" : "swift-coder-primitives",
+          "kind" : "fileSystem",
+          "location" : "/Users/coen/Developer/swift-primitives/swift-coder-primitives",
+          "name" : "swift-coder-primitives"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/coen/Developer/swift-primitives/swift-coder-primitives"
+        },
+        "subpath" : "swift-coder-primitives"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
           "identity" : "swift-collection-primitives",
           "kind" : "fileSystem",
           "location" : "/Users/coen/Developer/swift-primitives/swift-collection-primitives",
@@ -665,16 +679,16 @@
       {
         "basedOn" : null,
         "packageRef" : {
-          "identity" : "swift-serialization-primitives",
+          "identity" : "swift-serializer-primitives",
           "kind" : "fileSystem",
-          "location" : "/Users/coen/Developer/swift-primitives/swift-serialization-primitives",
-          "name" : "swift-serialization-primitives"
+          "location" : "/Users/coen/Developer/swift-primitives/swift-serializer-primitives",
+          "name" : "swift-serializer-primitives"
         },
         "state" : {
           "name" : "fileSystem",
-          "path" : "/Users/coen/Developer/swift-primitives/swift-serialization-primitives"
+          "path" : "/Users/coen/Developer/swift-primitives/swift-serializer-primitives"
         },
-        "subpath" : "swift-serialization-primitives"
+        "subpath" : "swift-serializer-primitives"
       },
       {
         "basedOn" : null,
