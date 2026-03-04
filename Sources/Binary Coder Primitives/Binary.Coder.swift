@@ -11,6 +11,8 @@
 //  This witness separates these concerns cleanly.
 //
 
+public import Witness_Primitives
+
 extension Binary {
     /// A witness for bidirectional binary coding with separate input/output types.
     ///
@@ -38,7 +40,7 @@ extension Binary {
     /// let value = try coder.decodeWhole(bytes)  // 0x1234
     /// let encoded = coder.encodeToArray(value)  // [0x34, 0x12]
     /// ```
-    public struct Coder<Output>: Sendable {
+    public struct Coder<Output>: Sendable, Witness.`Protocol` {
         /// Decodes a value from a read-only byte cursor.
         public var decode: @Sendable (inout Binary.Bytes.Input) throws(Binary.Bytes.Machine.Fault) -> Output
 
