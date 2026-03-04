@@ -9,10 +9,10 @@ extension Binary.Parse.Access {
     @inlinable
     public func whole<Bytes: Swift.Collection>(
         _ bytes: Bytes
-    ) throws(Parser.Error.Either<P.Failure, Binary.Parse.Error>) -> P.ParseOutput
+    ) throws(Parser.Error.Either<P.Failure, Binary.Parse.Error>) -> P.Output
     where Bytes.Element == UInt8 {
         var input = Binary.Bytes.Input(bytes)
-        let value: P.ParseOutput
+        let value: P.Output
         do {
             value = try parser.parse(&input)
         } catch {

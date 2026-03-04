@@ -37,7 +37,7 @@ extension Binary.LEB128 {
 
 extension Binary.LEB128.Signed: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
-    public typealias ParseOutput = T
+    public typealias Output = T
     public typealias Failure = Binary.LEB128.Error
 
     @inlinable

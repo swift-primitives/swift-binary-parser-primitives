@@ -34,11 +34,11 @@ extension Binary.Parse {
 
 extension Binary.Parse.Inline: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
-    public typealias ParseOutput = InlineArray<Count, Element>
+    public typealias Output = InlineArray<Count, Element>
     public typealias Failure = Parser.EndOfInput.Error
 
     @inlinable
-    public func parse(_ input: inout Input) throws(Failure) -> ParseOutput {
-        try ParseOutput(parsing: &input, endianness: endianness)
+    public func parse(_ input: inout Input) throws(Failure) -> Output {
+        try Output(parsing: &input, endianness: endianness)
     }
 }
