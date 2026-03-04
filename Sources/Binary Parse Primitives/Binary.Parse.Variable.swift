@@ -55,7 +55,7 @@ extension Binary.Parse {
 
 extension Binary.Parse.Variable: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
-    public typealias ParseOutput = T
+    public typealias Output = T
     public typealias Failure = Parser.EndOfInput.Error
 
     @inlinable

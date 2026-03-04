@@ -26,7 +26,7 @@ extension Binary.Bytes {
     /// ```swift
     /// struct MyParser: Parser.`Protocol` {
     ///     typealias Input = Binary.Bytes.Input
-    ///     typealias ParseOutput = UInt8
+    ///     typealias Output = UInt8
     ///     typealias Failure = Parser.Match.Error
     ///
     ///     func parse(_ input: inout Input) throws(Failure) -> UInt8 {
