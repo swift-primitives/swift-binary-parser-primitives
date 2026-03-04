@@ -1,0 +1,33 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Small Primitives/Array.Small Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Small Primitives/Array.Small ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Small Primitives/Array.Small.Indexed.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.Indexed.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.Indexed.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.Indexed~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.Indexed.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.Indexed.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Small Primitives/Array.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small.dia"
+  }
+}

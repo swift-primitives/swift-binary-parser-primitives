@@ -1,0 +1,3 @@
+module swift_binary_parser_primitivesPackageTests {
+    header "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/swift_binary_parser_primitivesPackageTests.build/include/swift-binary-parser-primitivesPackageTests-Swift.h"
+}

@@ -1,0 +1,19 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-graph-primitives/Sources/Graph Shortest Path Primitives/Graph.Sequential.Path.Shortest.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/Graph.Sequential.Path.Shortest.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/Graph.Sequential.Path.Shortest.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/Graph.Sequential.Path.Shortest~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/Graph.Sequential.Path.Shortest.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/Graph.Sequential.Path.Shortest.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-graph-primitives/Sources/Graph Shortest Path Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Graph_Shortest_Path_Primitives.build/exports.dia"
+  }
+}

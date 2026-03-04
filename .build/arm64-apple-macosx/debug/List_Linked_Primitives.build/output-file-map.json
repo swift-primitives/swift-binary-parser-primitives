@@ -1,0 +1,47 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/List.Linked Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/List.Linked ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/List.Linked.Bounded.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Bounded.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Bounded.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Bounded~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Bounded.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Bounded.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/List.Linked.Inline.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Inline.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Inline.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Inline~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Inline.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Inline.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/List.Linked.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/List.Linked.Small.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-list-primitives/Sources/List Linked Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/List_Linked_Primitives.build/exports.dia"
+  }
+}

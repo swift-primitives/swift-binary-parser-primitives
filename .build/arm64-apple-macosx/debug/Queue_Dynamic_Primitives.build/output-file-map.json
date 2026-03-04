@@ -1,0 +1,33 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Dynamic Primitives/Queue+Conveniences.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Conveniences.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Conveniences.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Conveniences~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Conveniences.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Conveniences.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Dynamic Primitives/Queue+Input.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Input.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Input.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Input.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Input.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue+Input.Protocol.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Dynamic Primitives/Queue.Dynamic Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Dynamic Primitives/Queue.Dynamic ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Dynamic_Primitives.build/Queue.Dynamic ~Copyable.dia"
+  }
+}

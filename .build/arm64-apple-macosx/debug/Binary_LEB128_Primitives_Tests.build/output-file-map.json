@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Tests/Binary LEB128 Primitives Tests/Binary.LEB128 Tests.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/Binary.LEB128 Tests.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/Binary.LEB128 Tests.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/Binary.LEB128 Tests~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/Binary.LEB128 Tests.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_LEB128_Primitives_Tests.build/Binary.LEB128 Tests.dia"
+  }
+}

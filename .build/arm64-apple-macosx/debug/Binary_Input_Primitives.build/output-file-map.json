@@ -1,0 +1,54 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input+Input.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+Input.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+Input.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+Input.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+Input.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+Input.Protocol.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input+init.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+init.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+init.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+init~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+init.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+init.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input+mutation.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+mutation.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+mutation.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+mutation~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+mutation.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+mutation.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input+properties.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+properties.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+properties.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+properties~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+properties.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+properties.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input+subscript.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+subscript.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+subscript.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+subscript~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+subscript.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input+subscript.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/Binary.Bytes.Input.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/Binary.Bytes.Input.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/Sources/Binary Input Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Input_Primitives.build/exports.dia"
+  }
+}

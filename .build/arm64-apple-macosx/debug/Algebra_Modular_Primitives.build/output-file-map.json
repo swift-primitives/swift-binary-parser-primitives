@@ -1,0 +1,145 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Add.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Add.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Add.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Add~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Add.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Add.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Advanced.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Advanced.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Advanced.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Advanced~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Advanced.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Advanced.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Negate.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Negate.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Negate.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Negate~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Negate.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Negate.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Predecessor.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Predecessor.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Predecessor.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Predecessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Predecessor.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Predecessor.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Reduce.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Reduce.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Reduce.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Reduce~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Reduce.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Reduce.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Subtract.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Subtract.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Subtract.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Subtract~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Subtract.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Subtract.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular+Successor.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Successor.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Successor.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Successor~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Successor.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular+Successor.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular.Modulus.Error.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.Error.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.Error.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.Error~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.Error.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.Error.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular.Modulus.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.Modulus.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Modular.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Modular.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Residual.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residual.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residual.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residual~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residual.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residual.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Residue.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residue.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residue.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residue~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residue.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Residue.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z+Arithmetic.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Arithmetic.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Arithmetic.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Arithmetic~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Arithmetic.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Arithmetic.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z+Field.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Field.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Field.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Field~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Field.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Field.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z+Primality.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Primality.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Primality.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Primality~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Primality.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Primality.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z+Ring.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Ring.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Ring.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Ring~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Ring.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Ring.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z+Semiring.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Semiring.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Semiring.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Semiring~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Semiring.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z+Semiring.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z.Error.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.Error.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.Error.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.Error~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.Error.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.Error.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/Algebra.Z.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/Algebra.Z.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-algebra-modular-primitives/Sources/Algebra Modular Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Modular_Primitives.build/exports.dia"
+  }
+}

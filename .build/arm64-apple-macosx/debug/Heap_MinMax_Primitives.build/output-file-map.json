@@ -1,0 +1,96 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Fixed Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Fixed ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Fixed.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Fixed.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Small Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Small ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Small.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Static Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Static ~Copyable.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static ~Copyable.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static ~Copyable.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static ~Copyable~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static ~Copyable.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static ~Copyable.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.Static.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/Heap.MinMax.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/Heap.MinMax.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap MinMax Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_MinMax_Primitives.build/exports.dia"
+  }
+}

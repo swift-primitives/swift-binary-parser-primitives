@@ -1,0 +1,110 @@
+{
+  "": {
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/master.swiftdeps"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Occupied.Static+Sequence.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.Static+Sequence.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.Static+Sequence.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.Static+Sequence.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.Static+Sequence.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.Static+Sequence.Protocol.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Occupied.View+Sequence.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.View+Sequence.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.View+Sequence.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.View+Sequence.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.View+Sequence.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Occupied.View+Sequence.Protocol.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+Bucket.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Bucket.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Bucket.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Bucket~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Bucket.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Bucket.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+ForEach.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ForEach.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ForEach.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ForEach~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ForEach.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ForEach.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+Insertion.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Insertion.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Insertion.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Insertion~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Insertion.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Insertion.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+Lookup.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Lookup.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Lookup.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Lookup~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Lookup.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Lookup.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+PositionUpdates.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+PositionUpdates.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+PositionUpdates.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+PositionUpdates~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+PositionUpdates.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+PositionUpdates.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+Properties.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Properties.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Properties.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Properties~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Properties.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Properties.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+Removal.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Removal.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Removal.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Removal~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Removal.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+Removal.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table+ensureUnique.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ensureUnique.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ensureUnique.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ensureUnique~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ensureUnique.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table+ensureUnique.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table.Static+Bucket.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Bucket.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Bucket.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Bucket~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Bucket.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Bucket.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table.Static+ForEach.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+ForEach.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+ForEach.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+ForEach~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+ForEach.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+ForEach.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table.Static+PositionUpdates.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+PositionUpdates.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+PositionUpdates.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+PositionUpdates~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+PositionUpdates.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+PositionUpdates.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/Hash.Table.Static+Removal.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Removal.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Removal.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Removal~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Removal.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/Hash.Table.Static+Removal.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Sources/Hash Table Primitives/exports.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/exports.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/exports.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/exports~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/exports.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives.build/exports.dia"
+  }
+}
