@@ -16,6 +16,20 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Index.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Index.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-stack-primitives/Sources/Stack Primitives Core/Stack.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-stack-primitives/Sources/Stack Primitives Core/Stack.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-stack-primitives/Sources/Stack Primitives Core/Stack.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.swift.o",

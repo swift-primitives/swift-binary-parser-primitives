@@ -156,6 +156,20 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.First.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.First.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Core/Sequence.FlatMap.Iterator.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Core/Sequence.FlatMap.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Core/Sequence.ForEach+Property.View.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.ForEach+Property.View.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.ForEach+Property.View.swift.o",
@@ -316,6 +330,13 @@
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+compactMap~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+compactMap.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+compactMap.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Core/Sequence.Protocol+flatMap.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Core/Sequence.Protocol.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol.d",

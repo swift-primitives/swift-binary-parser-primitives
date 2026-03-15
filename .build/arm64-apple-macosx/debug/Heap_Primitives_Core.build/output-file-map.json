@@ -51,12 +51,26 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.Error.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.Error.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap Primitives Core/Heap.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap Primitives Core/Heap.Static.Error.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error.swift.o",
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap Primitives Core/Heap.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-heap-primitives/Sources/Heap Primitives Core/Heap.Storage.Inline.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Storage.Inline.d",

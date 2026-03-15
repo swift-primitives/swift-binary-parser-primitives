@@ -2,6 +2,20 @@
   "": {
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/master.swiftdeps"
   },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.DoubleEnded.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.DoubleEnded.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.Error.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Error.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Error.swift.o",
@@ -15,6 +29,20 @@
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Index~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Index.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Index.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.Small.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-queue-primitives/Sources/Queue Primitives Core/Queue.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.d",

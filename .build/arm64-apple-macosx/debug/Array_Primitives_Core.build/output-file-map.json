@@ -2,6 +2,13 @@
   "": {
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/master.swiftdeps"
   },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Primitives Core/Array.Bounded.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Primitives Core/Array.Fixed Copyable.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Fixed Copyable.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Fixed Copyable.swift.o",
@@ -71,6 +78,13 @@
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.Error~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.Error.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.Error.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Primitives Core/Array.Static.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-array-primitives/Sources/Array Primitives Core/Array.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.d",
