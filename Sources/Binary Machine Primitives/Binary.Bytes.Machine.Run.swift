@@ -50,10 +50,7 @@ extension Binary.Bytes.Machine {
                 let value = arena.release(handle)
 
                 if frames.isEmpty {
-                    guard let result = value.take(Output.self) else {
-                        fatalError("Machine output type mismatch")
-                    }
-                    return result
+                    return value[as: Output.self]
                 }
 
                 let frame = frames.removeLast()
