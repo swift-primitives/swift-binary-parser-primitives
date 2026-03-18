@@ -215,10 +215,7 @@ extension Binary.Bytes {
                 let value = arena.release(handle)
 
                 if frames.isEmpty {
-                    guard let result = value.take(Output.self) else {
-                        fatalError("Machine output type mismatch")
-                    }
-                    return (value: result, count: Index<UInt8>.Count(consumed))
+                    return (value: value[as: Output.self], count: Index<UInt8>.Count(consumed))
                 }
 
                 let frame = frames.removeLast()
@@ -728,10 +725,7 @@ extension Binary.Bytes {
                 let value = arena.release(handle)
 
                 if frames.isEmpty {
-                    guard let result = value.take(Output.self) else {
-                        fatalError("Machine output type mismatch")
-                    }
-                    return (value: result, count: Index<UInt8>.Count(consumed))
+                    return (value: value[as: Output.self], count: Index<UInt8>.Count(consumed))
                 }
 
                 let frame = frames.removeLast()
