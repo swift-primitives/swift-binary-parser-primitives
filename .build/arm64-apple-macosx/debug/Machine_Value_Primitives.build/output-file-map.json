@@ -9,13 +9,6 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Arena.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Arena.dia"
   },
-  "/Users/coen/Developer/swift-primitives/swift-machine-primitives/Sources/Machine Value Primitives/Machine.Value.Box.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box.dia"
-  },
   "/Users/coen/Developer/swift-primitives/swift-machine-primitives/Sources/Machine Value Primitives/Machine.Value.Handle.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Handle.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Handle.swift.o",

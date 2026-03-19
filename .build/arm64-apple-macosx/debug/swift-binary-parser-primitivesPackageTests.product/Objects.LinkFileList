@@ -108,6 +108,7 @@
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Fixed_Primitives.build/Array.Fixed.Indexed ~Copyable.swift.o'
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Fixed_Primitives.build/Array.Fixed.Indexed.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Bounded.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Fixed Copyable.swift.o'
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Fixed ~Copyable.swift.o'
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Fixed.Error.swift.o
@@ -118,6 +119,7 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Small.Error.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Small.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.Error.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/Array.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Primitives_Core.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Small_Primitives.build/Array.Small Copyable.swift.o'
@@ -132,6 +134,7 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Array_Static_Primitives.build/Array.Static.Indexed.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Borrowed_Primitives.build/Binary.Bytes.withBorrowed.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Borrowed_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder+Coder.Protocol.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/Binary.Coder.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Binary_Coder_Primitives_Tests.build/Binary.Coder Tests.swift.o'
@@ -506,6 +509,9 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UnsafeMutablePointer+Cardinal.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Test_Support.build/Cardinal Primitives Test Support.swift.o'
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Coder_Primitives.build/Codable.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Coder_Primitives.build/Coder.Protocol.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Coder_Primitives.build/Coder.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Collection_Primitives.build/Collection.Access.Random+Swift.RandomAccessCollection.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Collection_Primitives.build/Collection.Access.Random.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Collection_Primitives.build/Collection.Bidirectional+Swift.BidirectionalCollection.swift.o
@@ -833,7 +839,9 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Index.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Navigate.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.Error.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Small.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.Error.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Storage.Inline.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.Storage.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Heap_Primitives_Core.build/Heap.swift.o
@@ -932,7 +940,6 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Transform_Primitives.build/Machine.Transform.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Transform_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Arena.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Box.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.Handle.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/Machine.Value.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Machine_Value_Primitives.build/exports.swift.o
@@ -1071,12 +1078,6 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Ownership_Primitives.build/Ownership.Unique.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Ownership_Primitives.build/Ownership.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Ownership_Primitives.build/exports.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/Parser.ASCII.Integer.Decimal.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/Parser.ASCII.Integer.Error.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/Parser.ASCII.Integer.Hexadecimal.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/Parser.ASCII.Integer.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/Parser.ASCII.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_ASCII_Integer_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Always_Primitives.build/Parser.Always.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Always_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Backtrack_Primitives.build/Parser.Backtrack.swift.o
@@ -1163,11 +1164,13 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Prefix_Primitives.build/Parser.Prefix.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Prefix_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parseable.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.Builder.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.ByteInput.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.Input.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.Parser.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.ParserPrinter.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.Printer.swift.o
-/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.Serializer.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/Parser.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Primitives_Core.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Rest_Primitives.build/Parser.Rest.swift.o
@@ -1180,6 +1183,8 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Span_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Spanned_Primitives.build/Parser.Spanned.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Spanned_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Collection.Slice+parse.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Builder+Take.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Optionally+Builder.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Take.Builder.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Take_Primitives.build/Parser.Take.Sequence.swift.o
@@ -1218,8 +1223,12 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Linked_Primitives.build/Queue.Linked.Bounded.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Linked_Primitives.build/Queue.Linked.Inline+Small.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Small.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.DoubleEnded.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Error.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Index.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Small.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/Queue.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Primitives_Core.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Queue_Small_Primitives.build/Queue.Small Copyable.swift.o'
@@ -1270,6 +1279,8 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Filter.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.First+Property.View.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.First.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.Iterator.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.FlatMap.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.ForEach+Property.View.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.ForEach.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Iterator.Protocol.swift.o
@@ -1293,6 +1304,7 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+Satisfies.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+collect.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+compactMap.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol+flatMap.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Protocol.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Reduce+Property.View.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Core.build/Sequence.Reduce.swift.o
@@ -1343,6 +1355,8 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Index.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Ordered.Error.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Ordered.Small.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Ordered.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Protocol+defaults.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.Protocol.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Set_Primitives_Core.build/Set.swift.o
@@ -1356,6 +1370,8 @@
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Error.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Index.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Small.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.Static.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/Stack.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Primitives_Core.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Stack_Small_Primitives.build/Stack.Small Copyable.swift.o'
@@ -1477,13 +1493,20 @@
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Pool_Primitives.build/Storage.Pool ~Copyable.swift.o'
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Pool_Primitives.build/exports.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives.build/exports.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Arena.Inline.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Arena.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Copy.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Deinitialize.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Error.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Heap.Header.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Heap.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Initialization.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Initialize.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Inline.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Move.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Pool.Inline.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Pool.swift.o
+/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.Slab.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/Storage.swift.o
 /Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Primitives_Core.build/exports.swift.o
 '/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Slab_Primitives.build/Storage.Slab ~Copyable.swift.o'
