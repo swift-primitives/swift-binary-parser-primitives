@@ -1,4 +1,5 @@
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Either.swift'
+'/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Located.Protocol.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Located.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Map.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Replace.swift'

@@ -9,6 +9,13 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Either.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Either.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Located.Protocol.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.Protocol.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.Protocol.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.Protocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.Protocol.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.Protocol.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Error Primitives/Parser.Error.Located.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Error_Primitives.build/Parser.Error.Located.swift.o",

@@ -1,6 +1,6 @@
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parseable.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.Builder.swift'
-'/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.ByteInput.swift'
+'/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.Input.Bytes.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.Input.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.Parser.swift'
 '/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Primitives Core/Parser.ParserPrinter.swift'

@@ -65,6 +65,13 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Chirality.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Chirality.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Coordinate.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Coordinate.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Coordinate.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Coordinate~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Coordinate.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Coordinate.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Degree.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Degree.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Degree.swift.o",
@@ -86,19 +93,26 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension+Arithmetic.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension+Arithmetic.dia"
   },
-  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Dimension.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Dimension.dia"
-  },
   "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Direction.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Direction.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Direction.swift.o",
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Direction~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Direction.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Direction.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Displacement.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Displacement.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Displacement.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Displacement~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Displacement.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Displacement.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Extent.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Extent.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Extent.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Extent~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Extent.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Extent.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Horizontal.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Horizontal.d",
@@ -120,6 +134,13 @@
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Interval~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Interval.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Interval.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Measure.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Measure.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Measure.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Measure~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Measure.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Measure.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Orientation.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Orientation.d",
@@ -148,6 +169,13 @@
     "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Scale~partial.swiftmodule",
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Scale.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Scale.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Spatial.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Spatial.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Spatial.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Spatial~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Spatial.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Spatial.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-dimension-primitives/Sources/Dimension Primitives/Tagged+Arithmetic.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Dimension_Primitives.build/Tagged+Arithmetic.d",
