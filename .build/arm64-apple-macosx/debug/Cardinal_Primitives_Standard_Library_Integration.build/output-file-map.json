@@ -44,6 +44,13 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/Span+Cardinal.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/Span+Cardinal.dia"
   },
+  "/Users/coen/Developer/swift-primitives/swift-cardinal-primitives/Sources/Cardinal Primitives Standard Library Integration/UInt32+Cardinal.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UInt32+Cardinal.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UInt32+Cardinal.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UInt32+Cardinal~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UInt32+Cardinal.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UInt32+Cardinal.dia"
+  },
   "/Users/coen/Developer/swift-primitives/swift-cardinal-primitives/Sources/Cardinal Primitives Standard Library Integration/UnsafeBufferPointer+Cardinal.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UnsafeBufferPointer+Cardinal.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Standard_Library_Integration.build/UnsafeBufferPointer+Cardinal.swift.o",
