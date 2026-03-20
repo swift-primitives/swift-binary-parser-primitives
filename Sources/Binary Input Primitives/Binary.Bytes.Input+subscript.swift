@@ -8,7 +8,7 @@ extension Binary.Bytes.Input {
     /// - Returns: The byte at the given offset.
     @inlinable
     public subscript(offset offset: Index<UInt8>.Offset) -> UInt8 {
-        let offsetInt = offset.rawValue.rawValue
+        let offsetInt = Int(bitPattern: offset)
         precondition(offsetInt >= 0 && offsetInt < Int(bitPattern: count.rawValue), "offset out of bounds")
         return storage[Int(bitPattern: position) + offsetInt]
     }
