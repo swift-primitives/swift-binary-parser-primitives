@@ -9,7 +9,7 @@ extension Binary.Bytes.Input {
     @inlinable
     public subscript(offset offset: Index<UInt8>.Offset) -> UInt8 {
         let offsetInt = Int(bitPattern: offset)
-        precondition(offsetInt >= 0 && offsetInt < Int(bitPattern: count.rawValue), "offset out of bounds")
+        precondition(offsetInt >= 0 && offsetInt < Int(bitPattern: count), "offset out of bounds")
         return storage[Int(bitPattern: position) + offsetInt]
     }
 
@@ -20,7 +20,7 @@ extension Binary.Bytes.Input {
     @inlinable
     public func starts<Prefix: Swift.Collection>(with prefix: Prefix) -> Bool
     where Prefix.Element == UInt8 {
-        guard prefix.count <= Int(bitPattern: count.rawValue) else { return false }
+        guard prefix.count <= Int(bitPattern: count) else { return false }
         var idx = Int(bitPattern: position)
         for byte in prefix {
             if storage[idx] != byte { return false }
