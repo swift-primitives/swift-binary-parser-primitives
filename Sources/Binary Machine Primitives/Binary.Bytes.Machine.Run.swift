@@ -6,10 +6,10 @@ public import Parser_Primitives
 public import Index_Primitives
 
 extension Binary.Bytes.Machine {
-    /// Executes a Machine program on any byte-oriented Parser_Primitives.Parser.Input.
+    /// Executes a Machine program on any byte-oriented Parser_Primitives.Parser.Input.`Protocol`.
     ///
     /// This is the owned-path executor, complementing the borrowed-path `withBorrowed`.
-    /// Both execute the same IR (Machine.Program); this one operates on any `Parser_Primitives.Parser.Input`
+    /// Both execute the same IR (Machine.Program); this one operates on any `Parser_Primitives.Parser.Input.`Protocol``
     /// where `Element == UInt8` and `Checkpoint == Int`.
     ///
     /// This generalization allows zero-copy parsing on both `Binary.Bytes.Input` and
@@ -18,11 +18,11 @@ extension Binary.Bytes.Machine {
     /// - Parameters:
     ///   - program: The program to execute.
     ///   - root: The root node ID.
-    ///   - input: The input cursor (any Parser_Primitives.Parser.Input with UInt8 elements).
+    ///   - input: The input cursor (any Parser_Primitives.Parser.Input.`Protocol` with UInt8 elements).
     /// - Returns: The parsed output.
     /// - Throws: `Fault` on parsing failure.
     @usableFromInline
-    static func run<Input: Parser_Primitives.Parser.Input, Output>(
+    static func run<Input: Parser_Primitives.Parser.Input.`Protocol`, Output>(
         program: Program,
         root: Node.ID,
         input: inout Input,
@@ -512,16 +512,16 @@ extension Binary.Bytes.Machine {
 // MARK: - Parser Extension
 
 extension Binary.Bytes.Machine.Parser {
-    /// Executes this parser on any byte-oriented Parser_Primitives.Parser.Input.
+    /// Executes this parser on any byte-oriented Parser_Primitives.Parser.Input.`Protocol`.
     ///
     /// This generic overload allows zero-copy parsing on both `Binary.Bytes.Input` and
     /// `ArraySlice<UInt8>` without conversion overhead.
     ///
-    /// - Parameter input: Any Parser_Primitives.Parser.Input with UInt8 elements and Int checkpoint.
+    /// - Parameter input: Any Parser_Primitives.Parser.Input.`Protocol` with UInt8 elements and Int checkpoint.
     /// - Returns: The parsed output.
     /// - Throws: `Fault` on parsing failure.
     @inlinable
-    public func parse<Input: Parser_Primitives.Parser.Input>(
+    public func parse<Input: Parser_Primitives.Parser.Input.`Protocol`>(
         _ input: inout Input
     ) throws(Binary.Bytes.Machine.Fault) -> Output
     where Input.Element == UInt8, Input.Checkpoint == Index<UInt8> {
