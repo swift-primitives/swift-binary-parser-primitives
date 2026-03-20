@@ -16,13 +16,6 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Builder.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Builder.dia"
   },
-  "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser OneOf Primitives/Parser.OneOf.Error.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Error.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Error.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Error~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Error.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Error.dia"
-  },
   "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser OneOf Primitives/Parser.OneOf.Sequence.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Sequence.d",
     "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_OneOf_Primitives.build/Parser.OneOf.Sequence.swift.o",
