@@ -2,19 +2,12 @@
   "": {
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/master.swiftdeps"
   },
-  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.FloatingPoint.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.FloatingPoint.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.FloatingPoint.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.FloatingPoint~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.FloatingPoint.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.FloatingPoint.dia"
-  },
-  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.DecimalSeparatorStrategy.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.DecimalSeparatorStrategy.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.DecimalSeparatorStrategy.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.DecimalSeparatorStrategy~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.DecimalSeparatorStrategy.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.DecimalSeparatorStrategy.dia"
+  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Decimal.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Decimal.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Decimal.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Decimal~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Decimal.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Decimal.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.Notation.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Notation.d",
@@ -23,12 +16,19 @@
     "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Notation.swiftdeps",
     "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Notation.dia"
   },
-  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.SignDisplayStrategy.swift": {
-    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.SignDisplayStrategy.d",
-    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.SignDisplayStrategy.swift.o",
-    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.SignDisplayStrategy~partial.swiftmodule",
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.SignDisplayStrategy.swiftdeps",
-    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.SignDisplayStrategy.dia"
+  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.Separator.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Separator.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Separator.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Separator~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Separator.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Separator.dia"
+  },
+  "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.Sign.swift": {
+    "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Sign.d",
+    "object": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Sign.swift.o",
+    "swiftmodule": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Sign~partial.swiftmodule",
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Sign.swiftdeps",
+    "diagnostics": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.Sign.dia"
   },
   "/Users/coen/Developer/swift-primitives/swift-formatting-primitives/Sources/Formatting Primitives/Format.Numeric.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Formatting_Primitives.build/Format.Numeric.d",

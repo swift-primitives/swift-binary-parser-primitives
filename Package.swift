@@ -64,13 +64,22 @@ let package = Package(
         .package(path: "../swift-coder-primitives"),
     ],
     targets: [
+        // MARK: - Core
+
+        .target(
+            name: "Binary Parser Primitives Core",
+            dependencies: [
+                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+            ]
+        ),
+
         // MARK: - Input
 
         .target(
             name: "Binary Input Primitives",
             dependencies: [
-                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                "Binary Parser Primitives Core",
             ]
         ),
         .target(
@@ -112,8 +121,7 @@ let package = Package(
         .target(
             name: "Binary LEB128 Primitives",
             dependencies: [
-                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
+                "Binary Parser Primitives Core",
             ]
         ),
 
@@ -145,6 +153,7 @@ let package = Package(
         .target(
             name: "Binary Parser Primitives",
             dependencies: [
+                "Binary Parser Primitives Core",
                 "Binary Input Primitives",
                 "Binary Input View Primitives",
                 "Binary Machine Primitives",
@@ -153,8 +162,6 @@ let package = Package(
                 "Binary LEB128 Primitives",
                 "Binary Coder Primitives",
                 "Binary Integer Primitives",
-                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
             ]
         ),
 
