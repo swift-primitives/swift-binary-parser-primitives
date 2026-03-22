@@ -5,7 +5,7 @@
 //  Binary coder for UInt16 serialization.
 //
 
-public import Input_Primitives
+internal import Input_Primitives
 
 extension UInt16 {
     /// Returns a coder for reading/writing two bytes as `UInt16`.

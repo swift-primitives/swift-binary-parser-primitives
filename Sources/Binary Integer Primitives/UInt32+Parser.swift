@@ -5,7 +5,7 @@
 //  Binary coder for UInt32 serialization.
 //
 
-public import Input_Primitives
+internal import Input_Primitives
 
 extension UInt32 {
     /// Returns a coder for reading/writing four bytes as `UInt32`.

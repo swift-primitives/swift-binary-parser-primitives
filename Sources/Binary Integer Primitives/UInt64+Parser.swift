@@ -5,7 +5,7 @@
 //  Binary coder for UInt64 serialization.
 //
 
-public import Input_Primitives
+internal import Input_Primitives
 
 extension UInt64 {
     /// Returns a coder for reading/writing eight bytes as `UInt64`.
