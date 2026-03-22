@@ -1,6 +1,6 @@
 public import Parser_Primitives
 public import Serialization_Primitives
-public import Index_Primitives
+internal import Index_Primitives
 
 extension Binary.Parse.Access {
     /// Parse prefix of input. Returns value and count of bytes consumed.

@@ -3,8 +3,8 @@
 
 public import Machine_Primitives
 public import Serialization_Primitives
-public import Index_Primitives
-public import Memory_Primitives
+internal import Index_Primitives
+internal import Memory_Primitives
 public import Vector_Primitives
 import Standard_Library_Extensions
 //

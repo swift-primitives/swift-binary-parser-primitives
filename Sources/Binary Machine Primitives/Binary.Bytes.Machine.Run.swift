@@ -3,7 +3,7 @@
 
 public import Machine_Primitives
 public import Parser_Primitives
-public import Index_Primitives
+internal import Index_Primitives
 
 extension Binary.Bytes.Machine {
     /// Executes a Machine program on any byte-oriented Parser_Primitives.Parser.Input.`Protocol`.
