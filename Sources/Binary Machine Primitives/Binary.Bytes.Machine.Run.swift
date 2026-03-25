@@ -62,7 +62,7 @@ extension Binary.Bytes.Machine {
                 case .tryMap(let transform):
                     do {
                         pendingHandle = arena.allocate(try transform.apply(using: program.captures, value))
-                    } catch let error as Fault {
+                    } catch let error {
                         instructionError = error
                     }
 
