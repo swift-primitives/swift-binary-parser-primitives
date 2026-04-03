@@ -13,6 +13,10 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "Binary Parser Primitives Core",
+            targets: ["Binary Parser Primitives Core"]
+        ),
+        .library(
             name: "Binary Parser Primitives",
             targets: ["Binary Parser Primitives"]
         ),
