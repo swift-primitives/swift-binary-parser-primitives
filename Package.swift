@@ -126,6 +126,7 @@ let package = Package(
             name: "Binary LEB128 Parser Primitives",
             dependencies: [
                 "Binary Parser Primitives Core",
+                .product(name: "Binary LEB128 Primitives", package: "swift-binary-primitives"),
             ]
         ),
 
