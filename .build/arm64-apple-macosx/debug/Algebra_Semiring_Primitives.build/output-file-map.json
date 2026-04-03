@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Semiring_Primitives.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Semiring_Primitives.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-algebra-semiring-primitives/Sources/Algebra Semiring Primitives/Algebra.Semiring+Bool.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Semiring_Primitives.build/Algebra.Semiring+Bool.d",

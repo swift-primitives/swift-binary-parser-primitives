@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Group_Primitives.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Group_Primitives.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-algebra-group-primitives/Sources/Algebra Group Primitives/Algebra.Group+Monoid.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Algebra_Group_Primitives.build/Algebra.Group+Monoid.d",

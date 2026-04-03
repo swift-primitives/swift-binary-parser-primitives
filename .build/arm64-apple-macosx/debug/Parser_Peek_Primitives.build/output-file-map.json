@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Peek_Primitives.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Peek_Primitives.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-parser-primitives/Sources/Parser Peek Primitives/Parser.Peek.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Parser_Peek_Primitives.build/Parser.Peek.d",

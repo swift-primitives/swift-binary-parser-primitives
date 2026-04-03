@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Core.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Core.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-cardinal-primitives/Sources/Cardinal Primitives Core/Cardinal+CustomStringConvertible.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Cardinal_Primitives_Core.build/Cardinal+CustomStringConvertible.d",

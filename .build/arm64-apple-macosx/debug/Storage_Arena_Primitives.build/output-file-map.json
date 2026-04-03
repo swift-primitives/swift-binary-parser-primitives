@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Arena_Primitives.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Arena_Primitives.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-storage-primitives/Sources/Storage Arena Primitives/Storage.Arena ~Copyable.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Storage_Arena_Primitives.build/Storage.Arena ~Copyable.d",

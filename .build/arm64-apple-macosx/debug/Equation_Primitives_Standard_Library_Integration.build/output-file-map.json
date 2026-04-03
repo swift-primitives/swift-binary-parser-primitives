@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Equation_Primitives_Standard_Library_Integration.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Equation_Primitives_Standard_Library_Integration.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-equation-primitives/Sources/Equation Primitives Standard Library Integration/Equation.Protocol+Swift.Array.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Equation_Primitives_Standard_Library_Integration.build/Equation.Protocol+Swift.Array.d",

@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Standard_Library_Integration.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Standard_Library_Integration.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-sequence-primitives/Sources/Sequence Primitives Standard Library Integration/Sequence.Protocol+Swift.Sequence.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Sequence_Primitives_Standard_Library_Integration.build/Sequence.Protocol+Swift.Sequence.d",

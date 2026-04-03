@@ -41,8 +41,8 @@ let package = Package(
             targets: ["Binary Parse Primitives"]
         ),
         .library(
-            name: "Binary LEB128 Primitives",
-            targets: ["Binary LEB128 Primitives"]
+            name: "Binary LEB128 Parser Primitives",
+            targets: ["Binary LEB128 Parser Primitives"]
         ),
         .library(
             name: "Binary Coder Primitives",
@@ -123,7 +123,7 @@ let package = Package(
         // MARK: - LEB128
 
         .target(
-            name: "Binary LEB128 Primitives",
+            name: "Binary LEB128 Parser Primitives",
             dependencies: [
                 "Binary Parser Primitives Core",
             ]
@@ -148,7 +148,7 @@ let package = Package(
             dependencies: [
                 "Binary Coder Primitives",
                 "Binary Parse Primitives",
-                "Binary LEB128 Primitives",
+                "Binary LEB128 Parser Primitives",
             ]
         ),
 
@@ -163,7 +163,7 @@ let package = Package(
                 "Binary Machine Primitives",
                 "Binary Borrowed Primitives",
                 "Binary Parse Primitives",
-                "Binary LEB128 Primitives",
+                "Binary LEB128 Parser Primitives",
                 "Binary Coder Primitives",
                 "Binary Integer Primitives",
             ]
@@ -193,7 +193,7 @@ let package = Package(
             dependencies: ["Binary Parser Primitives Test Support"]
         ),
         .testTarget(
-            name: "Binary LEB128 Primitives Tests",
+            name: "Binary LEB128 Parser Primitives Tests",
             dependencies: ["Binary Parser Primitives Test Support"]
         ),
         .testTarget(

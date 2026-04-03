@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Memory_Primitives_Standard_Library_Integration.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Memory_Primitives_Standard_Library_Integration.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-memory-primitives/Sources/Memory Primitives Standard Library Integration/Memory+Array.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Memory_Primitives_Standard_Library_Integration.build/Memory+Array.d",

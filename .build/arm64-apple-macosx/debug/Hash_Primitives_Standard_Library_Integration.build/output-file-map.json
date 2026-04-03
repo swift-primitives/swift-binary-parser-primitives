@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Primitives_Standard_Library_Integration.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Primitives_Standard_Library_Integration.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-hash-primitives/Sources/Hash Primitives Standard Library Integration/Hash.Protocol+Swift.Array.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Primitives_Standard_Library_Integration.build/Hash.Protocol+Swift.Array.d",

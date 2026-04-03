@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Standard_Library_Extensions.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Standard_Library_Extensions.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-standard-library-extensions/Sources/Standard Library Extensions/AdditiveArithmetic.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Standard_Library_Extensions.build/AdditiveArithmetic.d",

@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives_Test_Support.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives_Test_Support.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-hash-table-primitives/Tests/Support/Hash Table Primitives Test Support.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Hash_Table_Primitives_Test_Support.build/Hash Table Primitives Test Support.d",

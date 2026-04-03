@@ -511,6 +511,20 @@
       {
         "basedOn" : null,
         "packageRef" : {
+          "identity" : "swift-link-primitives",
+          "kind" : "fileSystem",
+          "location" : "/Users/coen/Developer/swift-primitives/swift-link-primitives",
+          "name" : "swift-link-primitives"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/coen/Developer/swift-primitives/swift-link-primitives"
+        },
+        "subpath" : "swift-link-primitives"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
           "identity" : "swift-list-primitives",
           "kind" : "fileSystem",
           "location" : "/Users/coen/Developer/swift-primitives/swift-list-primitives",
@@ -745,6 +759,20 @@
           "path" : "/Users/coen/Developer/swift-primitives/swift-storage-primitives"
         },
         "subpath" : "swift-storage-primitives"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swift-text-primitives",
+          "kind" : "fileSystem",
+          "location" : "/Users/coen/Developer/swift-primitives/swift-text-primitives",
+          "name" : "swift-text-primitives"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/Users/coen/Developer/swift-primitives/swift-text-primitives"
+        },
+        "subpath" : "swift-text-primitives"
       },
       {
         "basedOn" : null,

@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Input_Primitives_Test_Support.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Input_Primitives_Test_Support.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-input-primitives/Tests/Support/Input Primitives Test Support.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Input_Primitives_Test_Support.build/Input Primitives Test Support.d",

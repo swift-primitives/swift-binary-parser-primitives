@@ -1,6 +1,6 @@
 {
   "": {
-    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Buffer_Primitives_Test_Support.build/master.swiftdeps"
+    "swift-dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Buffer_Primitives_Test_Support.build/primary.swiftdeps"
   },
   "/Users/coen/Developer/swift-primitives/swift-buffer-primitives/Tests/Support/Buffer Primitives Test Support.swift": {
     "dependencies": "/Users/coen/Developer/swift-primitives/swift-binary-parser-primitives/.build/arm64-apple-macosx/debug/Buffer_Primitives_Test_Support.build/Buffer Primitives Test Support.d",
