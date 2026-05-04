@@ -28,10 +28,11 @@ extension UInt32 {
     /// ```
     @inlinable
     public static func coder(endianness: Binary.Endianness) -> Binary.Coder<UInt32> {
-        let parser: Binary.Bytes.Machine.Parser<UInt32> = switch endianness {
-        case .little: Binary.Bytes.Machine.u32leParser()
-        case .big: Binary.Bytes.Machine.u32beParser()
-        }
+        let parser: Binary.Bytes.Machine.Parser<UInt32> =
+            switch endianness {
+            case .little: Binary.Bytes.Machine.u32leParser()
+            case .big: Binary.Bytes.Machine.u32beParser()
+            }
         return Binary.Coder.machine(parser) { value, output in
             let bytes = value.bytes(endianness: endianness)
             output.append(contentsOf: bytes)

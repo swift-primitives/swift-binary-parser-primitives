@@ -1,9 +1,9 @@
 // Binary.Bytes.Machine.Error.swift
 // Error types for machine execution
 
+public import Index_Primitives
 import Machine_Primitives
 import Parser_Primitives
-public import Index_Primitives
 
 extension Binary.Bytes.Machine {
     /// Errors that can occur during machine execution.

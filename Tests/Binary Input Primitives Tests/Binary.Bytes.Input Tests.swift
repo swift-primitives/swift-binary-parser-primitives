@@ -1,6 +1,7 @@
-import Testing
-@testable import Binary_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
+import Testing
+
+@testable import Binary_Parser_Primitives
 
 // MARK: - Binary.Bytes.Input Tests
 
@@ -316,12 +317,13 @@ extension Binary.Bytes.Input.Test.Integration {
         let b2 = try input.advance()
         let b3 = try input.advance()
 
-        let value = UInt32(b0) << 24
+        let value =
+            UInt32(b0) << 24
             | UInt32(b1) << 16
             | UInt32(b2) << 8
             | UInt32(b3)
 
-        #expect(value == 0xDEADBEEF)
+        #expect(value == 0xDEAD_BEEF)
         #expect(input.isEmpty)
         #expect(input.consumedCount == 4)
     }
