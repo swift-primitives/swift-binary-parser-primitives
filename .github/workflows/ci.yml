@@ -27,11 +27,6 @@ jobs:
   docs:
     uses: swift-institute/.github/.github/workflows/swift-docs.yml@main
     with:
-      umbrella-module: Binary_Parser_Primitives
-      umbrella-display-name: "Binary Parser Primitives"
-      umbrella-bundle-id: "swift-binary-parser-primitives.Binary-Parser-Primitives"
-      umbrella-docc-path: "Sources/Binary Parser Primitives/Binary Parser Primitives.docc"
-      exclude-modules: "Binary_Parser_Primitives_Test_Support"
       enable-private-repos: true
     secrets:
       PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
