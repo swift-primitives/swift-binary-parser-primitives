@@ -1,6 +1,7 @@
-import Testing
-@testable import Binary_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
+import Testing
+
+@testable import Binary_Parser_Primitives
 
 // MARK: - Binary.Coder Tests
 
@@ -140,7 +141,7 @@ extension BinaryCoderTests.Integration {
     @Test
     func `round trip UInt32 big endian`() throws {
         let coder = UInt32.coder(endianness: .big)
-        let original: UInt32 = 0xDEADBEEF
+        let original: UInt32 = 0xDEAD_BEEF
 
         let encoded = coder.encodeToArray(original)
         let decoded = try coder.decodeWhole(encoded)

@@ -1,6 +1,7 @@
-import Testing
-@testable import Binary_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
+import Testing
+
+@testable import Binary_Parser_Primitives
 
 // MARK: - Binary.Bytes.Input.View Tests
 
@@ -297,7 +298,8 @@ extension BinaryBytesInputViewTests.Integration {
             let b2 = view.removeFirst()
             let b3 = view.removeFirst()
 
-            let value = UInt32(b0) << 24
+            let value =
+                UInt32(b0) << 24
                 | UInt32(b1) << 16
                 | UInt32(b2) << 8
                 | UInt32(b3)
@@ -305,7 +307,7 @@ extension BinaryBytesInputViewTests.Integration {
             return (value, view.isEmpty)
         }
 
-        #expect(value == 0xDEADBEEF)
+        #expect(value == 0xDEAD_BEEF)
         #expect(isEmpty)
     }
 }

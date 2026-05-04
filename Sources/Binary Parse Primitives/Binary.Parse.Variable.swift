@@ -43,8 +43,10 @@ extension Binary.Parse {
         ///   - endianness: Byte order for parsing
         @inlinable
         public init(count: Int, endianness: Binary.Endianness) {
-            precondition(count > 0 && count <= MemoryLayout<T>.size,
-                        "count must be between 1 and \(MemoryLayout<T>.size)")
+            precondition(
+                count > 0 && count <= MemoryLayout<T>.size,
+                "count must be between 1 and \(MemoryLayout<T>.size)"
+            )
             self.count = count
             self.endianness = endianness
         }

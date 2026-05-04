@@ -1,6 +1,7 @@
-import Testing
-@testable import Binary_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
+import Testing
+
+@testable import Binary_Parser_Primitives
 
 // MARK: - Binary.LEB128.Unsigned Tests
 

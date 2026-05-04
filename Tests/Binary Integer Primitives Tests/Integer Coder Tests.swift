@@ -1,6 +1,7 @@
-import Testing
-@testable import Binary_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
+import Testing
+
+@testable import Binary_Parser_Primitives
 
 // MARK: - Integer Coder Tests
 
@@ -141,7 +142,7 @@ extension IntegerCoderTests.UInt32Tests {
 
         let value = try coder.decodeWhole([0xDE, 0xAD, 0xBE, 0xEF])
 
-        #expect(value == 0xDEADBEEF)
+        #expect(value == 0xDEAD_BEEF)
     }
 
     @Test
@@ -150,14 +151,14 @@ extension IntegerCoderTests.UInt32Tests {
 
         let value = try coder.decodeWhole([0xEF, 0xBE, 0xAD, 0xDE])
 
-        #expect(value == 0xDEADBEEF)
+        #expect(value == 0xDEAD_BEEF)
     }
 
     @Test
     func `encode big endian`() {
         let coder = UInt32.coder(endianness: .big)
 
-        let bytes = coder.encodeToArray(0xDEADBEEF)
+        let bytes = coder.encodeToArray(0xDEAD_BEEF)
 
         #expect(bytes == [0xDE, 0xAD, 0xBE, 0xEF])
     }
@@ -166,7 +167,7 @@ extension IntegerCoderTests.UInt32Tests {
     func `encode little endian`() {
         let coder = UInt32.coder(endianness: .little)
 
-        let bytes = coder.encodeToArray(0xDEADBEEF)
+        let bytes = coder.encodeToArray(0xDEAD_BEEF)
 
         #expect(bytes == [0xEF, 0xBE, 0xAD, 0xDE])
     }
@@ -174,7 +175,7 @@ extension IntegerCoderTests.UInt32Tests {
     @Test
     func `round trip`() throws {
         let coder = UInt32.coder(endianness: .big)
-        let original: UInt32 = 0xCAFEBABE
+        let original: UInt32 = 0xCAFE_BABE
 
         let encoded = coder.encodeToArray(original)
         let decoded = try coder.decodeWhole(encoded)
@@ -193,7 +194,7 @@ extension IntegerCoderTests.UInt64Tests {
 
         let value = try coder.decodeWhole([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF])
 
-        #expect(value == 0x0123456789ABCDEF)
+        #expect(value == 0x0123_4567_89AB_CDEF)
     }
 
     @Test
@@ -202,7 +203,7 @@ extension IntegerCoderTests.UInt64Tests {
 
         let value = try coder.decodeWhole([0xEF, 0xCD, 0xAB, 0x89, 0x67, 0x45, 0x23, 0x01])
 
-        #expect(value == 0x0123456789ABCDEF)
+        #expect(value == 0x0123_4567_89AB_CDEF)
     }
 
     @Test
@@ -344,7 +345,7 @@ extension IntegerCoderTests.Int64Tests {
     @Test
     func `round trip`() throws {
         let coder = Int64.coder(endianness: .little)
-        let original: Int64 = -9876543210
+        let original: Int64 = -9_876_543_210
 
         let encoded = coder.encodeToArray(original)
         let decoded = try coder.decodeWhole(encoded)

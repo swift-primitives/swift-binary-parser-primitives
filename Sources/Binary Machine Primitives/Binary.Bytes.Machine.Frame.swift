@@ -1,8 +1,8 @@
 // Binary.Bytes.Machine.Frame.swift
 // Stack frame for machine interpreter
 
-public import Machine_Primitives
 import Index_Primitives
+public import Machine_Primitives
 
 extension Binary.Bytes.Machine {
     /// Checkpoint for backtracking - typed position index.

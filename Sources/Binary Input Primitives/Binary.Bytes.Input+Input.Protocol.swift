@@ -30,8 +30,10 @@ extension Binary.Bytes.Input: Input.`Protocol` {
     ///   and is within valid bounds.
     @inlinable
     public mutating func setPosition(to checkpoint: Checkpoint) {
-        precondition(checkpoint <= totalCount.map(Ordinal.init),
-                     "Invalid checkpoint: out of bounds")
+        precondition(
+            checkpoint <= totalCount.map(Ordinal.init),
+            "Invalid checkpoint: out of bounds"
+        )
         position = checkpoint
     }
 }
