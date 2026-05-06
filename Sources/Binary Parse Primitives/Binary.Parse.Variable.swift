@@ -77,6 +77,13 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
             }
             // Sign extension for signed types
             if T.isSigned {
+                // reason: Last index of `base + count` slice in stdlib `[UInt8]`
+                // ByteIterator; `count: Int` is a struct API parameter (1 ≤ count
+                // ≤ MemoryLayout<T>.size, validated at line 47), not a typed
+                // Cardinal; no typed surface available at this byte-access site.
+                // The math is the canonical "last index = base + count − 1"
+                // expression for variable-width integer parsing.
+                // swiftlint:disable:next cardinal_count_minus_one_anti_pattern
                 let signBit = (input[base + count - 1] & 0x80) != 0
                 if signBit {
                     // Fill high bits with 1s
@@ -90,6 +97,12 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
         case .big:
             // Big-endian: first byte is most significant
             for i in 0..<count {
+                // reason: Big-endian shift amount for byte i of count-byte
+                // integer: byte i contributes to bits at positions
+                // (count − 1 − i) × 8. `count: Int` is a stdlib struct property,
+                // no typed surface. The math IS the (count − 1 − i) form;
+                // operand-reorder rephrase obscures the bit-position derivation.
+                // swiftlint:disable:next cardinal_count_minus_one_anti_pattern
                 result |= T(truncatingIfNeeded: input[base + i]) << ((count - 1 - i) * 8)
             }
             // Sign extension for signed types
