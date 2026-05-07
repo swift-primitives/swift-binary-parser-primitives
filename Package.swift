@@ -60,6 +60,7 @@ let package = Package(
     dependencies: [
         .package(path: "../swift-parser-primitives"),
         .package(path: "../swift-binary-primitives"),
+        .package(path: "../swift-binary-leb128-primitives"),
         .package(path: "../swift-input-primitives"),
         .package(path: "../swift-machine-primitives"),
         .package(path: "../swift-index-primitives"),
@@ -126,7 +127,7 @@ let package = Package(
             name: "Binary LEB128 Parser Primitives",
             dependencies: [
                 "Binary Parser Primitives Core",
-                .product(name: "Binary LEB128 Primitives", package: "swift-binary-primitives"),
+                .product(name: "Binary LEB128 Primitives", package: "swift-binary-leb128-primitives"),
             ]
         ),
 
