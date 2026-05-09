@@ -58,7 +58,7 @@ extension Binary.Parse.Converting.Error: Sendable where Source: Sendable {}
 extension Binary.Parse.Converting: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
     public typealias Output = Target
-    public typealias Failure = Error
+    public typealias Failure = Swift.Error
 
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> Target {
