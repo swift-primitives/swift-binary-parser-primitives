@@ -62,7 +62,7 @@ extension Binary.Parse.Validated.Error: Sendable where T.RawValue: Sendable {}
 extension Binary.Parse.Validated: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
     public typealias Output = T
-    public typealias Failure = Swift.Error
+    public typealias Failure = Binary.Parse.Validated<T>.Error
 
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> T {
