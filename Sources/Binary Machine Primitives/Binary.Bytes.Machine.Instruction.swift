@@ -16,6 +16,9 @@ extension Binary.Bytes.Machine {
     ///
     /// - **Predicates on `UInt8`**: Predicates receive a single byte, not the view
     /// - **Transforms on outputs**: Via `map`/`tryMap` on `Value`
+    // SAFETY: Safe by construction — backing storage uses only stdlib
+    // SAFETY: safe types; `@safe` documents that this type performs no
+    // SAFETY: unsafe operations.
     @safe
     public enum Instruction {
         // MARK: - Cursor Operations

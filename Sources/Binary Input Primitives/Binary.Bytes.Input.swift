@@ -38,6 +38,9 @@ extension Binary.Bytes {
     ///     }
     /// }
     /// ```
+    // SAFETY: Safe by construction — backing storage uses only stdlib
+    // SAFETY: safe types; `@safe` documents that this type performs no
+    // SAFETY: unsafe operations.
     @safe
     public struct Input: Sendable {
         @usableFromInline
