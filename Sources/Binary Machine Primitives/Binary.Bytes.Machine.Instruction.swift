@@ -44,13 +44,13 @@ extension Binary.Bytes.Machine {
         case bytes([UInt8])
 
         /// Consume one byte if it satisfies the predicate.
-        case satisfy(@Sendable (UInt8) -> Bool)
+        case satisfy((UInt8) -> Bool)
 
         /// Consume bytes while predicate holds, return as `[UInt8]`.
-        case takeWhile(@Sendable (UInt8) -> Bool)
+        case takeWhile((UInt8) -> Bool)
 
         /// Skip bytes while predicate holds.
-        case skipWhile(@Sendable (UInt8) -> Bool)
+        case skipWhile((UInt8) -> Bool)
 
         // MARK: - Control Operations
 
@@ -87,4 +87,8 @@ extension Binary.Bytes.Machine {
     }
 }
 
-extension Binary.Bytes.Machine.Instruction: Sendable {}
+// `Binary.Bytes.Machine.Instruction` is intentionally NOT Sendable: predicate
+// closures on `.satisfy`, `.takeWhile`, `.skipWhile` are not constrained
+// `@Sendable` per [MEM-SEND-013] Pattern B. Consumers transport assembled
+// `Program`/`Parser` values across isolation domains via `sending` at the
+// program-transport boundary, not via a structural Sendable conformance.

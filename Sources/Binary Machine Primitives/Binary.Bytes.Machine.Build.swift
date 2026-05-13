@@ -57,9 +57,11 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Reference Expression
 
-// MARK: - Sendable Conformance
-
-extension Binary.Bytes.Machine.Parser: Sendable {}
+// `Binary.Bytes.Machine.Parser` is intentionally NOT Sendable. With
+// `Mode.Unchecked` non-Sendable and `Instruction` non-Sendable per
+// [MEM-SEND-013] Pattern B (post-Phase-B), consumers transport assembled
+// parsers via `sending` at the boundary rather than via structural
+// Sendable conformance.
 
 extension Binary.Bytes.Machine.Reference {
     /// Creates an expression from this reference, for use in recursive definitions.
