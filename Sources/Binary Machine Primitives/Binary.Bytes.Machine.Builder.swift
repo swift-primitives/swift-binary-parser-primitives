@@ -5,7 +5,14 @@ public import Machine_Primitives
 
 extension Binary.Bytes.Machine {
     /// The capture mode used by Binary.Bytes.Machine programs.
-    public typealias Mode = Machine_Primitives.Machine.Capture.Mode.Reference
+    ///
+    /// Uses `Mode.Unchecked` per [MEM-SEND-013] Pattern B (terminal direction):
+    /// combinator factories accept non-Sendable predicate/transform closures,
+    /// and the resulting `Parser<Output>` is itself non-Sendable. Consumers
+    /// transport assembled parsers across isolation domains via `sending` at
+    /// the program-transport boundary — not via a structural Sendable
+    /// conformance on the assembled value.
+    public typealias Mode = Machine_Primitives.Machine.Capture.Mode.Unchecked
 
     /// A builder context for constructing machine programs.
     public struct Builder: ~Copyable {
