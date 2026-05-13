@@ -28,7 +28,7 @@ extension Binary.Parse {
     /// // throws Error.invalid(rawValue: 255)
     /// ```
     public struct Validated<T>: Sendable
-    where T: RawRepresentable & Sendable, T.RawValue: FixedWidthInteger {
+    where T: RawRepresentable, T.RawValue: FixedWidthInteger {
         /// Byte order for parsing the raw value.
         public let endianness: Binary.Endianness
 
