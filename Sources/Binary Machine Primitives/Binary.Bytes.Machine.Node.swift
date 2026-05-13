@@ -6,5 +6,5 @@ import Tagged_Primitives
 
 extension Binary.Bytes.Machine {
     /// Node is a typealias to the core Machine.Node with Binary's Instruction type.
-    public typealias Node = Machine_Primitives.Machine.Node<Instruction, Fault, Machine_Primitives.Machine.Capture.Mode.Reference>
+    public typealias Node = Machine_Primitives.Machine.Node<Instruction, Fault, Mode>
 }

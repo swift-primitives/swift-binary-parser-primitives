@@ -242,7 +242,7 @@ extension Binary.Bytes.Machine {
 extension Binary.Bytes.Machine {
     /// Creates a pure expression that always succeeds with the given value.
     @inlinable
-    public static func pure<Output: Sendable>(
+    public static func pure<Output>(
         _ value: Output,
         in builder: inout Builder
     ) -> Expression<Output> {
@@ -257,10 +257,10 @@ extension Binary.Bytes.Machine {
 extension Binary.Bytes.Machine.Expression {
     /// Transforms the output of this expression.
     @inlinable
-    public func map<T: Sendable>(
-        _ transform: @Sendable @escaping (Output) -> T,
+    public func map<T>(
+        _ transform: @escaping (Output) -> T,
         in builder: inout Binary.Bytes.Machine.Builder
-    ) -> Binary.Bytes.Machine.Expression<T> where Output: Sendable {
+    ) -> Binary.Bytes.Machine.Expression<T> {
         let captureID = builder.captures.insert(transform)
         let node = Binary.Bytes.Machine.Node.map(
             child: self.node,
@@ -272,10 +272,10 @@ extension Binary.Bytes.Machine.Expression {
 
     /// Transforms the output with a throwing function.
     @inlinable
-    public func tryMap<T: Sendable>(
-        _ transform: @Sendable @escaping (Output) throws(Binary.Bytes.Machine.Fault) -> T,
+    public func tryMap<T>(
+        _ transform: @escaping (Output) throws(Binary.Bytes.Machine.Fault) -> T,
         in builder: inout Binary.Bytes.Machine.Builder
-    ) -> Binary.Bytes.Machine.Expression<T> where Output: Sendable {
+    ) -> Binary.Bytes.Machine.Expression<T> {
         let captureID = builder.captures.insert(transform)
         let node = Binary.Bytes.Machine.Node.tryMap(
             child: self.node,
@@ -291,10 +291,10 @@ extension Binary.Bytes.Machine.Expression {
 extension Binary.Bytes.Machine {
     /// Sequences two expressions and combines their outputs.
     @inlinable
-    public static func sequence<A: Sendable, B: Sendable, C: Sendable>(
+    public static func sequence<A, B, C>(
         _ a: Expression<A>,
         _ b: Expression<B>,
-        combine: @Sendable @escaping (A, B) -> C,
+        combine: @escaping (A, B) -> C,
         in builder: inout Builder
     ) -> Expression<C> {
         let captureID = builder.captures.insert(combine)
@@ -329,7 +329,7 @@ extension Binary.Bytes.Machine {
 extension Binary.Bytes.Machine {
     /// Creates an expression that parses zero or more occurrences.
     @inlinable
-    public static func many<T: Sendable>(
+    public static func many<T>(
         _ expr: Expression<T>,
         in builder: inout Builder
     ) -> Expression<[T]> {
@@ -365,10 +365,10 @@ extension Binary.Bytes.Machine {
     /// let number = fold(digit, initial: 0, combine: { acc, d in acc * 10 + d }, in: &builder)
     /// ```
     @inlinable
-    public static func fold<T: Sendable, Acc: Sendable>(
+    public static func fold<T, Acc>(
         _ expr: Expression<T>,
         initial: Acc,
-        combine: @Sendable @escaping (Acc, T) -> Acc,
+        combine: @escaping (Acc, T) -> Acc,
         in builder: inout Builder
     ) -> Expression<Acc> {
         let captureID = builder.captures.insert(combine)
@@ -387,11 +387,11 @@ extension Binary.Bytes.Machine {
 extension Binary.Bytes.Machine {
     /// Creates an expression that optionally parses its child.
     @inlinable
-    public static func optional<T: Sendable>(
+    public static func optional<T>(
         _ expr: Expression<T>,
         in builder: inout Builder
     ) -> Expression<T?> {
-        let wrapSome: @Sendable (T) -> T? = { Swift.Optional.some($0) }
+        let wrapSome: (T) -> T? = { Swift.Optional.some($0) }
         let captureID = builder.captures.insert(wrapSome)
         let node = Node.optional(
             child: expr.node,

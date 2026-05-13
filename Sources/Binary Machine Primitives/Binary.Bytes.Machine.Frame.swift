@@ -11,5 +11,5 @@ extension Binary.Bytes.Machine {
     /// Frame is a typealias to the core Machine.Frame with Binary's types.
     ///
     /// Binary uses `Never` for Extra since it has no memoization (the extra case is uninhabited).
-    public typealias Frame = Machine_Primitives.Machine.Frame<Node.ID, Checkpoint, Machine_Primitives.Machine.Capture.Mode.Reference, Fault, Never>
+    public typealias Frame = Machine_Primitives.Machine.Frame<Node.ID, Checkpoint, Mode, Fault, Never>
 }
