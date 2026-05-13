@@ -45,10 +45,6 @@ let package = Package(
             targets: ["Binary LEB128 Parser Primitives"]
         ),
         .library(
-            name: "Binary Coder Primitives",
-            targets: ["Binary Coder Primitives"]
-        ),
-        .library(
             name: "Binary Integer Primitives",
             targets: ["Binary Integer Primitives"]
         ),
@@ -63,10 +59,8 @@ let package = Package(
         .package(path: "../swift-binary-leb128-primitives"),
         .package(path: "../swift-input-primitives"),
         .package(path: "../swift-machine-primitives"),
-        .package(path: "../swift-index-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
         .package(path: "../swift-vector-primitives"),
-        .package(path: "../swift-witness-primitives"),
-        .package(path: "../swift-coder-primitives"),
     ],
     targets: [
         // MARK: - Core
@@ -132,23 +126,18 @@ let package = Package(
         ),
 
         // MARK: - Coder
-
-        .target(
-            name: "Binary Coder Primitives",
-            dependencies: [
-                "Binary Input Primitives",
-                "Binary Machine Primitives",
-                .product(name: "Witness Primitives", package: "swift-witness-primitives"),
-                .product(name: "Coder Primitives", package: "swift-coder-primitives"),
-            ]
-        ),
+        //
+        // Binary.Coder lives in swift-binary-coder-primitives per [MOD-DOMAIN]
+        // — Coder is a different transformation domain from Parser. The
+        // integer-specific coder methods (UInt8.coder, Int32.coder, ...) live
+        // there too in "Binary Integer Coder Primitives". See
+        // swift-institute/Research/transformation-domain-architecture.md v3.3.0.
 
         // MARK: - Integer Parsers
 
         .target(
             name: "Binary Integer Primitives",
             dependencies: [
-                "Binary Coder Primitives",
                 "Binary Parse Primitives",
                 "Binary LEB128 Parser Primitives",
             ]
@@ -166,7 +155,6 @@ let package = Package(
                 "Binary Borrowed Primitives",
                 "Binary Parse Primitives",
                 "Binary LEB128 Parser Primitives",
-                "Binary Coder Primitives",
                 "Binary Integer Primitives",
             ]
         ),
@@ -191,16 +179,11 @@ let package = Package(
             dependencies: ["Binary Parser Primitives Test Support"]
         ),
         .testTarget(
-            name: "Binary Coder Primitives Tests",
-            dependencies: ["Binary Parser Primitives Test Support"]
-        ),
-        .testTarget(
             name: "Binary LEB128 Parser Primitives Tests",
-            dependencies: ["Binary Parser Primitives Test Support"]
-        ),
-        .testTarget(
-            name: "Binary Integer Primitives Tests",
-            dependencies: ["Binary Parser Primitives Test Support"]
+            dependencies: [
+                "Binary LEB128 Parser Primitives",
+                "Binary Parser Primitives Test Support",
+            ]
         ),
     ],
     swiftLanguageModes: [.v6]

@@ -1,6 +1,6 @@
 public import Parser_Primitives
 
-extension Parser.`Protocol` where Self: Sendable, Input == Binary.Bytes.Input {
+extension Parser.`Protocol` where Input == Binary.Bytes.Input {
     /// Accessor for bytes parsing capabilities.
     ///
     /// Provides `parser.parse.whole(bytes)` and `parser.parse.prefix(bytes)` ergonomics.

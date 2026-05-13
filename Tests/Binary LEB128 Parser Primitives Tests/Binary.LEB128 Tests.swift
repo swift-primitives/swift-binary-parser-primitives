@@ -1,3 +1,4 @@
+import Binary_LEB128_Parser_Primitives
 import Binary_Parser_Primitives_Test_Support
 import Testing
 
