@@ -39,6 +39,7 @@ extension Binary.LEB128.Signed: Parser.`Protocol` {
     public typealias Input = ArraySlice<UInt8>
     public typealias Output = T
     public typealias Failure = Binary.LEB128.Error
+    public typealias Body = Never
 
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> T {
