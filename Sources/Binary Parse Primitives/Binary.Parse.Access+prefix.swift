@@ -1,6 +1,5 @@
 internal import Index_Primitives
 public import Parser_Primitives
-public import Serialization_Primitives
 
 extension Binary.Parse.Access {
     /// Parse prefix of input. Returns value and count of bytes consumed.
@@ -11,10 +10,10 @@ extension Binary.Parse.Access {
     @inlinable
     public func prefix<Bytes: Swift.Collection>(
         _ bytes: Bytes
-    ) throws(P.Failure) -> Serialization.Parsing.Prefix.Result<P.Output, Index<UInt8>.Count>
+    ) throws(P.Failure) -> (value: P.Output, count: Index<UInt8>.Count)
     where Bytes.Element == UInt8 {
         var input = Binary.Bytes.Input(bytes)
         let value = try parser.parse(&input)
-        return Serialization.Parsing.Prefix.Result(value: value, count: input.consumedCount)
+        return (value: value, count: input.consumedCount)
     }
 }
