@@ -4,7 +4,6 @@
 internal import Index_Primitives
 public import Machine_Primitives
 internal import Memory_Primitives
-public import Serialization_Primitives
 import Standard_Library_Extensions
 public import Vector_Primitives
 
@@ -69,9 +68,8 @@ extension Binary.Bytes.WithBorrowed {
     public func prefix<Output>(
         _ bytes: [UInt8],
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> Serialization.Parsing.Prefix.Result<Output, Index<UInt8>.Count> {
-        let r = try Binary.Bytes._withBorrowedPrefix(bytes, parser)
-        return Serialization.Parsing.Prefix.Result(value: r.value, count: r.count)
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) {
+        try Binary.Bytes._withBorrowedPrefix(bytes, parser)
     }
 
     /// Execute a machine parser, returning value and consumed count (unconstrained).
@@ -125,9 +123,8 @@ extension Binary.Bytes.WithBorrowed {
     public func prefix<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> Serialization.Parsing.Prefix.Result<Output, Index<UInt8>.Count> where C: ~Copyable, C.Element == UInt8 {
-        let r = try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
-        return Serialization.Parsing.Prefix.Result(value: r.value, count: r.count)
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) where C: ~Copyable, C.Element == UInt8 {
+        try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
     }
 
     /// Execute a machine parser on contiguous storage, returning value and consumed count (unconstrained).
