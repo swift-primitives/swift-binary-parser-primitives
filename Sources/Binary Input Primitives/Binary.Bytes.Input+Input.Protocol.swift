@@ -7,7 +7,7 @@
 
 public import Input_Primitives
 
-extension Binary.Bytes.Input: Input.`Protocol` {
+extension Binary.Bytes.Input: Input_Primitives.Input.`Protocol` {
     public typealias Element = UInt8
     public typealias Checkpoint = Index<UInt8>
 
