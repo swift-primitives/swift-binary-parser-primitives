@@ -6,6 +6,9 @@ public import Machine_Primitives
 internal import Memory_Primitives
 import Standard_Library_Extensions
 public import Vector_Primitives
+public import Byte_Primitives
+public import Cursor_Span_Primitives
+public import Cursor_Primitives_Core
 
 //
 // ## Design Note
@@ -283,14 +286,14 @@ extension Binary.Bytes {
                         case .oneOf(let alternatives, let index, let savedCheckpoint):
                             if index < alternatives.count {
                                 // Restore position via write (writes are okay)
-                                view.position = Int(bitPattern: savedCheckpoint)
+                                view.seek(to: savedCheckpoint.retag(Byte.self))
                                 consumed = savedCheckpoint
                                 frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
                                 current = alternatives[index]
                                 recovered = true
                             }
                         case .many(_, let savedCheckpoint, let resultHandles, let finalize):
-                            view.position = Int(bitPattern: savedCheckpoint)
+                            view.seek(to: savedCheckpoint.retag(Byte.self))
                             consumed = savedCheckpoint
                             var results: [Value] = []
                             results.reserveCapacity(resultHandles.count)
@@ -298,12 +301,12 @@ extension Binary.Bytes {
                             pendingHandle = arena.allocate(finalize.finalize(using: program.captures, results))
                             recovered = true
                         case .fold(_, let savedCheckpoint, let accHandle, _):
-                            view.position = Int(bitPattern: savedCheckpoint)
+                            view.seek(to: savedCheckpoint.retag(Byte.self))
                             consumed = savedCheckpoint
                             pendingHandle = accHandle
                             recovered = true
                         case .optional(let savedCheckpoint, _, let noneHandle):
-                            view.position = Int(bitPattern: savedCheckpoint)
+                            view.seek(to: savedCheckpoint.retag(Byte.self))
                             consumed = savedCheckpoint
                             pendingHandle = noneHandle
                             recovered = true
@@ -809,14 +812,14 @@ extension Binary.Bytes {
                     switch recoveryFrame {
                     case .oneOf(let alternatives, let index, let savedCheckpoint):
                         if index < alternatives.count {
-                            view.position = Int(bitPattern: savedCheckpoint)
+                            view.seek(to: savedCheckpoint.retag(Byte.self))
                             consumed = savedCheckpoint
                             frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
                             current = alternatives[index]
                             recovered = true
                         }
                     case .many(_, let savedCheckpoint, let resultHandles, let finalize):
-                        view.position = Int(bitPattern: savedCheckpoint)
+                        view.seek(to: savedCheckpoint.retag(Byte.self))
                         consumed = savedCheckpoint
                         var results: [Value] = []
                         results.reserveCapacity(resultHandles.count)
@@ -824,12 +827,12 @@ extension Binary.Bytes {
                         pendingHandle = arena.allocate(finalize.finalize(using: program.captures, results))
                         recovered = true
                     case .fold(_, let savedCheckpoint, let accHandle, _):
-                        view.position = Int(bitPattern: savedCheckpoint)
+                        view.seek(to: savedCheckpoint.retag(Byte.self))
                         consumed = savedCheckpoint
                         pendingHandle = accHandle
                         recovered = true
                     case .optional(let savedCheckpoint, _, let noneHandle):
-                        view.position = Int(bitPattern: savedCheckpoint)
+                        view.seek(to: savedCheckpoint.retag(Byte.self))
                         consumed = savedCheckpoint
                         pendingHandle = noneHandle
                         recovered = true

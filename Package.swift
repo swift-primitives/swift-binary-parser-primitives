@@ -61,6 +61,8 @@ let package = Package(
         .package(path: "../swift-machine-primitives"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
         .package(path: "../swift-vector-primitives"),
+        .package(path: "../swift-byte-primitives"),
+        .package(path: "../swift-cursor-primitives"),
     ],
     targets: [
         // MARK: - Core
@@ -85,6 +87,9 @@ let package = Package(
             name: "Binary Input View Primitives",
             dependencies: [
                 "Binary Input Primitives",
+                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
+                .product(name: "Cursor Span Primitives", package: "swift-cursor-primitives"),
+                .product(name: "Cursor Primitives Core", package: "swift-cursor-primitives"),
             ]
         ),
 

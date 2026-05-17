@@ -1,117 +1,59 @@
+public import Byte_Primitives
+public import Cursor_Span_Primitives
+public import Cursor_Primitives_Core
+
 extension Binary.Bytes.Input {
     /// Borrowed input view for zero-copy bytes parsing.
     ///
-    /// This type provides a scope-bound cursor over borrowed bytes using
-    /// Swift's lifetime-checked `Span<UInt8>`. It cannot outlive the data it borrows.
+    /// `Binary.Bytes.Input.View` is a typealias for ``Cursor/Span`` parameterized
+    /// over ``Byte`` — the institute's unified borrowed read-only cursor over a
+    /// `Swift.Span<UInt8>`, phantom-typed as the binary-byte domain. Position is
+    /// typed `Tagged<Byte, Ordinal>` (≡ `Index<Byte>`) per the typed-position
+    /// discipline.
     ///
-    /// ## Invariants
+    /// ## Lifetime
     ///
-    /// - `0 <= position <= span.count`
-    /// - `count == span.count - position`
-    /// - `consumedCount == position`
-    ///
-    /// ## Lifetime Safety
-    ///
-    /// `Input.View` is `~Copyable` and `~Escapable`. The compiler enforces that:
-    /// - The view cannot escape the scope of the borrowed data
-    /// - The borrowed data must outlive the view
-    /// - No implicit copies can be made; any copy requires explicit `copy` and
-    ///   remains lifetime-bound to the same underlying storage
+    /// `~Copyable` and `~Escapable` — the cursor cannot be duplicated and cannot
+    /// outlive the span it borrows. Compiler-enforced via `@_lifetime(borrow source)`
+    /// on the underlying primitive's initializer.
     ///
     /// ## NOT Sendable
     ///
-    /// `Input.View` is explicitly NOT `Sendable`. Borrowed views must not cross
-    /// task boundaries. Use `Binary.Bytes.Input` (owned) if you need to transfer
-    /// parsing state across concurrency domains.
+    /// Borrowed views must not cross task boundaries. For cross-task transfer
+    /// use ``Binary/Bytes/Input`` (Copyable, `[UInt8]`-backed).
     ///
-    /// ## Owned Alternative
+    /// ## Migration note
     ///
-    /// For inputs that need to be stored or sent across concurrency domains,
-    /// use `Binary.Bytes.Input` which owns its storage as `[UInt8]`.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// struct MyParser: Binary.Bytes.Parser {
-    ///     typealias Output = UInt8
-    ///     typealias Failure = Never
-    ///
-    ///     mutating func parse(_ input: inout Binary.Bytes.Input.View) -> UInt8 {
-    ///         input.removeFirst()
-    ///     }
-    /// }
-    ///
-    /// let result = try Binary.Bytes.withBorrowed(data, MyParser())
-    /// ```
-    // SAFETY: Safe by construction — backing storage uses only stdlib
-    // SAFETY: safe types; `@safe` documents that this type performs no
-    // SAFETY: unsafe operations.
-    @safe
-    public struct View: ~Copyable, ~Escapable {
-        @usableFromInline
-        let span: Span<UInt8>
-
-        public var position: Int
-
-        /// Memberwise initializer with explicit lifetime annotation.
-        @inlinable
-        @_lifetime(borrow span)
-        internal init(span: borrowing Span<UInt8>, position: Int) {
-            self.span = copy span
-            self.position = position
-        }
-    }
+    /// `position` was previously a raw `Int` stored property. As part of the
+    /// cursor-abstractions arc (`swift-institute/Research/cursor-abstractions-l1-ecosystem.md`
+    /// v1.3.0 DECISION 2026-05-17), position now types as
+    /// `Tagged<Byte, Ordinal>`. Position assignment is performed via
+    /// ``Cursor/Span/seek(to:)`` for parser-machine backtracking.
+    public typealias View = Cursor.Span<Byte>
 }
 
-// MARK: - Initialization (Span-based only)
+// MARK: - Legacy public API (binary-domain extensions)
+//
+// The original `Binary.Bytes.Input.View` shipped a domain-specific public API
+// (`isEmpty`, `first`, `removeFirst`, `removeFirst(_:)`, `subscript[offset:]`,
+// `consumedCount`). The Cursor.Span<DomainTag> substrate uses cursor-style
+// names (`isAtEnd`, `peek`, `consume`, `advance`, `peek(at:)`). These
+// extensions preserve the legacy binary-domain API on the typealiased identity
+// so existing call sites continue to compile.
 
-extension Binary.Bytes.Input.View {
-    /// Creates a borrowed input view from a span.
-    ///
-    /// The view's lifetime is bound to the span's lifetime, which is in turn
-    /// bound to the underlying storage. The compiler enforces this relationship.
-    ///
-    /// - Parameter span: The byte span to borrow.
-    @inlinable
-    @_lifetime(borrow span)
-    public init(_ span: borrowing Span<UInt8>) {
-        self.span = copy span
-        self.position = 0
-    }
-}
-
-// MARK: - Properties
-
-extension Binary.Bytes.Input.View {
-    /// Total length of the underlying span.
-    @usableFromInline
-    internal var totalCount: Int {
-        span.count
-    }
-
-    /// The number of bytes remaining to parse.
-    @inlinable
-    public var count: Int { totalCount - position }
-
+extension Cursor.Span where DomainTag == Byte {
     /// Whether there are no more bytes to parse.
     @inlinable
-    public var isEmpty: Bool { position == totalCount }
-
-    /// The number of bytes consumed since construction (canonical measure).
-    @inlinable
-    public var consumedCount: Int { position }
+    public var isEmpty: Bool { isAtEnd }
 
     /// The first byte, or `nil` if empty.
     @inlinable
-    public var first: UInt8? {
-        guard position < totalCount else { return nil }
-        return span[position]
-    }
-}
+    public var first: UInt8? { peek() }
 
-// MARK: - Mutation
+    /// The number of bytes consumed since construction (canonical measure).
+    @inlinable
+    public var consumedCount: Int { Int(bitPattern: position) }
 
-extension Binary.Bytes.Input.View {
     /// Removes and returns the first byte.
     ///
     /// - Precondition: The view must not be empty.
@@ -120,10 +62,7 @@ extension Binary.Bytes.Input.View {
     @discardableResult
     @_lifetime(self: copy self)
     public mutating func removeFirst() -> UInt8 {
-        precondition(position < totalCount, "removeFirst() called on empty view")
-        let byte = span[position]
-        position += 1
-        return byte
+        consume()
     }
 
     /// Removes the first `n` bytes.
@@ -133,14 +72,10 @@ extension Binary.Bytes.Input.View {
     @inlinable
     @_lifetime(self: copy self)
     public mutating func removeFirst(_ n: Int) {
-        precondition(n >= 0 && n <= count)
-        position += n
+        precondition(n >= 0, "removeFirst(_:) requires non-negative count")
+        advance(by: Tagged<Byte, Cardinal>(_unchecked: Cardinal(UInt(bitPattern: n))))
     }
-}
 
-// MARK: - Subscript
-
-extension Binary.Bytes.Input.View {
     /// Accesses the byte at the given offset from the current position.
     ///
     /// - Parameter offset: The offset from the current position (0-indexed).
@@ -149,8 +84,12 @@ extension Binary.Bytes.Input.View {
     @inlinable
     @_lifetime(copy self)
     public subscript(offset offset: Int) -> UInt8 {
-        precondition(offset >= 0 && offset < count, "offset out of bounds")
-        return span[position + offset]
+        precondition(offset >= 0, "subscript offset must be non-negative")
+        let typedOffset = Tagged<Byte, Cardinal>(_unchecked: Cardinal(UInt(bitPattern: offset)))
+        guard let byte = peek(at: typedOffset) else {
+            preconditionFailure("subscript offset out of bounds")
+        }
+        return byte
     }
 
     /// Checks if the remaining bytes start with the given prefix.
@@ -160,19 +99,19 @@ extension Binary.Bytes.Input.View {
     @inlinable
     public func starts<Prefix: Swift.Collection>(with prefix: Prefix) -> Bool
     where Prefix.Element == UInt8 {
-        guard prefix.count <= count else { return false }
-        var idx = position
+        var i: Int = 0
         for byte in prefix {
-            if span[idx] != byte { return false }
-            idx += 1
+            let typedOffset = Tagged<Byte, Cardinal>(_unchecked: Cardinal(UInt(bitPattern: i)))
+            guard let observed = peek(at: typedOffset), observed == byte else { return false }
+            i += 1
         }
         return true
     }
 }
 
-// MARK: - Conversion
+// MARK: - Domain owned-form conversion
 
-extension Binary.Bytes.Input.View {
+extension Cursor.Span where DomainTag == Byte {
     /// Copies the remaining bytes to an owned input.
     ///
     /// Use this when you need to store or send the input across concurrency domains.
@@ -180,15 +119,17 @@ extension Binary.Bytes.Input.View {
     /// - Returns: An owned `Binary.Bytes.Input` containing the remaining bytes.
     @inlinable
     public func copyToOwned() -> Binary.Bytes.Input {
+        let remaining = Int(bitPattern: count)
         var bytes: [UInt8] = []
-        bytes.reserveCapacity(count)
-        for i in position..<totalCount {
-            bytes.append(span[i])
+        bytes.reserveCapacity(remaining)
+        var i: Int = 0
+        while i < remaining {
+            let typedOffset = Tagged<Byte, Cardinal>(_unchecked: Cardinal(UInt(bitPattern: i)))
+            if let b = peek(at: typedOffset) {
+                bytes.append(b)
+            }
+            i += 1
         }
         return Binary.Bytes.Input(bytes)
     }
 }
-
-// MARK: - NOT Sendable
-// Input.View is explicitly NOT Sendable. Borrowed views must not cross task boundaries.
-// This is intentional - use Binary.Bytes.Input (owned) for cross-task transfer.
