@@ -62,6 +62,7 @@ let package = Package(
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
         .package(path: "../swift-vector-primitives"),
         .package(path: "../swift-byte-primitives"),
+        .package(path: "../swift-byte-parser-primitives"),
         .package(path: "../swift-cursor-primitives"),
     ],
     targets: [
@@ -81,6 +82,7 @@ let package = Package(
             name: "Binary Input Primitives",
             dependencies: [
                 "Binary Parser Primitives Core",
+                .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
             ]
         ),
         .target(
