@@ -88,7 +88,6 @@ let package = Package(
             dependencies: [
                 "Binary Input Primitives",
                 .product(name: "Byte Primitives", package: "swift-byte-primitives"),
-                .product(name: "Cursor Span Primitives", package: "swift-cursor-primitives"),
                 .product(name: "Cursor Primitives Core", package: "swift-cursor-primitives"),
             ]
         ),
