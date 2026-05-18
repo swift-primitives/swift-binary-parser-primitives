@@ -11,7 +11,7 @@ extension Binary.Parse.Access {
         _ bytes: Bytes
     ) throws(Either<P.Failure, Binary.Parse.Error>) -> P.Output
     where Bytes.Element == UInt8 {
-        var input = Binary.Bytes.Input(bytes)
+        var input = Byte.Input(bytes)
         let value: P.Output
         do {
             value = try parser.parse(&input)

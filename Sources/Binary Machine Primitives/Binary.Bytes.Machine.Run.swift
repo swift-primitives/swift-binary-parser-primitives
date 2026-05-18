@@ -12,7 +12,7 @@ extension Binary.Bytes.Machine {
     /// Both execute the same IR (Machine.Program); this one operates on any `Input_Primitives.Input.`Protocol``
     /// where `Element == UInt8` and `Checkpoint == Int`.
     ///
-    /// This generalization allows zero-copy parsing on both `Binary.Bytes.Input` and
+    /// This generalization allows zero-copy parsing on both `Byte.Input` and
     /// `ArraySlice<UInt8>` without conversion overhead.
     ///
     /// - Parameters:
@@ -531,7 +531,7 @@ extension Binary.Bytes.Machine {
 extension Binary.Bytes.Machine.Parser {
     /// Executes this parser on any byte-oriented Input_Primitives.Input.`Protocol`.
     ///
-    /// This generic overload allows zero-copy parsing on both `Binary.Bytes.Input` and
+    /// This generic overload allows zero-copy parsing on both `Byte.Input` and
     /// `ArraySlice<UInt8>` without conversion overhead.
     ///
     /// - Parameter input: Any Input_Primitives.Input.`Protocol` with UInt8 elements and Int checkpoint.

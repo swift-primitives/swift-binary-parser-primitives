@@ -14,9 +14,9 @@ public import Cursor_Primitives_Core
 //
 // The interpreter is LITERALLY inlined into each `withBorrowed` overload.
 // This is required because Swift 6.x's lifetime checker sees ANY function
-// call with `inout Input.View` as a potential escape.
+// call with `inout Byte.Input.View` as a potential escape.
 //
-// CRITICAL: NO COMPUTED PROPERTY READS on Input.View inside the interpreter.
+// CRITICAL: NO COMPUTED PROPERTY READS on Byte.Input.View inside the interpreter.
 // The lifetime checker cannot reason through computed property accessors in
 // complex control flow. Track position externally via local counters.
 //
@@ -187,7 +187,7 @@ extension Binary.Bytes {
                 _unsafeStart: buffer.baseAddress ?? UnsafePointer<UInt8>(bitPattern: 1)!,
                 count: buffer.count
             )
-            var view = Input.View(span)
+            var view = Byte.Input.View(span)
 
             typealias Value = Machine.Value
             typealias Frame = Machine.Frame
@@ -718,7 +718,7 @@ extension Binary.Bytes {
     ) throws(Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) where C: ~Copyable, C.Element == UInt8 {
         let sourceBytes = source.span
         let total = Index<UInt8>.Count(Cardinal(UInt(sourceBytes.count)))
-        var view = Input.View(sourceBytes)
+        var view = Byte.Input.View(sourceBytes)
 
         typealias Value = Machine.Value
         typealias Frame = Machine.Frame
@@ -1225,33 +1225,33 @@ extension Binary.Bytes {
     }
 }
 
-// MARK: - Owned APIs (copying, pass Input)
+// MARK: - Owned APIs (copying, pass Byte.Input)
 
 extension Binary.Bytes {
     @inlinable
     public static func withInput<T, E: Swift.Error>(
         _ bytes: [UInt8],
-        _ body: (inout Input) throws(E) -> T
+        _ body: (inout Byte.Input) throws(E) -> T
     ) throws(E) -> T {
-        var input = Input(bytes)
+        var input = Byte.Input(bytes)
         return try body(&input)
     }
 
     @inlinable
     public static func withInput<Bytes, T, E: Swift.Error>(
         _ bytes: Bytes,
-        _ body: (inout Input) throws(E) -> T
+        _ body: (inout Byte.Input) throws(E) -> T
     ) throws(E) -> T where Bytes: Swift.Collection, Bytes.Element == UInt8 {
-        var input = Input(Swift.Array(bytes))
+        var input = Byte.Input(Swift.Array(bytes))
         return try body(&input)
     }
 
     @inlinable
     public static func withInput<T, E: Swift.Error>(
         _ string: some StringProtocol,
-        _ body: (inout Input) throws(E) -> T
+        _ body: (inout Byte.Input) throws(E) -> T
     ) throws(E) -> T {
-        var input = Input(Swift.Array(string.utf8))
+        var input = Byte.Input(Swift.Array(string.utf8))
         return try body(&input)
     }
 }

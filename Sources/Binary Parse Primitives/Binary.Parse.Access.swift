@@ -12,7 +12,7 @@ extension Binary.Parse {
     /// let value = try parser.parse.whole(bytes)
     /// let result = try parser.parse.prefix(bytes)
     /// ```
-    public struct Access<P: Parser.`Protocol`> where P.Input == Binary.Bytes.Input {
+    public struct Access<P: Parser.`Protocol`> where P.Input == Byte.Input {
         @usableFromInline
         internal let parser: P
 

@@ -25,8 +25,8 @@ extension Binary.Bytes {
     ///
     /// | World | Input Type | Machine | Leaf Representation |
     /// |-------|-----------|---------|---------------------|
-    /// | **Owned** | `Binary.Bytes.Input` | `Parser.Machine` | Closure `(inout Input) -> Value` |
-    /// | **Borrowed** | `Binary.Bytes.Input.View` | `Binary.Bytes.Machine` | `Instruction` enum |
+    /// | **Owned** | `Byte.Input` | `Parser.Machine` | Closure `(inout Input) -> Value` |
+    /// | **Borrowed** | `Byte.Input.View` | `Binary.Bytes.Machine` | `Instruction` enum |
     ///
     /// ## Invariant
     ///

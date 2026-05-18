@@ -1,6 +1,6 @@
 public import Parser_Primitives
 
-extension Parser.`Protocol` where Input == Binary.Bytes.Input {
+extension Parser.`Protocol` where Input == Byte.Input {
     /// Accessor for bytes parsing capabilities.
     ///
     /// Provides `parser.parse.whole(bytes)` and `parser.parse.prefix(bytes)` ergonomics.
@@ -8,7 +8,7 @@ extension Parser.`Protocol` where Input == Binary.Bytes.Input {
     /// ## Example
     ///
     /// ```swift
-    /// let parser: some Parser.Parser<Binary.Bytes.Input, MyType, MyError> = ...
+    /// let parser: some Parser.Parser<Byte.Input, MyType, MyError> = ...
     /// let bytes: [UInt8] = [...]
     ///
     /// // Whole-buffer parsing (fails if bytes remain)
