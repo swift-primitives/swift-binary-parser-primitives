@@ -3,12 +3,12 @@ import Testing
 
 @testable import Binary_Parser_Primitives
 
-// MARK: - Binary.Bytes.Input.View Tests
+// MARK: - Byte.Input.View Tests
 
 // Note: Input.View is ~Copyable and ~Escapable, so tests must extract values
 // before using #expect since the macro doesn't support these types.
 
-@Suite("Binary.Bytes.Input.View")
+@Suite("Byte.Input.View")
 struct BinaryBytesInputViewTests {
     @Suite struct Unit {}
     @Suite struct EdgeCase {}
@@ -25,7 +25,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let count = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.count
         }
 
@@ -38,7 +38,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let isEmpty = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.isEmpty
         }
 
@@ -51,7 +51,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let first = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.first
         }
 
@@ -64,7 +64,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let consumedCount = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.consumedCount
         }
 
@@ -77,7 +77,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let (byte, count, first) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
             let byte = view.removeFirst()
             return (byte, view.count, view.first)
         }
@@ -93,7 +93,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let (consumed1, consumed2) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             _ = view.removeFirst()
             let c1 = view.consumedCount
@@ -114,7 +114,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let (count, first, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             view.removeFirst(3)
 
@@ -132,7 +132,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let (b0, b1, b2, b3) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return (view[offset: 0], view[offset: 1], view[offset: 2], view[offset: 3])
         }
 
@@ -148,7 +148,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let (b0, b1) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             _ = view.removeFirst()
 
@@ -165,7 +165,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.starts(with: [0x01, 0x02])
         }
 
@@ -178,7 +178,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return view.starts(with: [0x01, 0x03])
         }
 
@@ -196,7 +196,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
         let (count, isEmpty, first) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            let view = Binary.Bytes.Input.View(span)
+            let view = Byte.Input.View(span)
             return (view.count, view.isEmpty, view.first)
         }
 
@@ -211,7 +211,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
         let (isEmpty, first, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             view.removeFirst(3)
 
@@ -229,7 +229,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
         let (count, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             view.removeFirst(0)
 
@@ -251,7 +251,7 @@ extension BinaryBytesInputViewTests.Integration {
 
         let (ownedCount, ownedFirst) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             _ = view.removeFirst()
             let owned = view.copyToOwned()
@@ -269,7 +269,7 @@ extension BinaryBytesInputViewTests.Integration {
 
         let (first, second, third, consumedCount, count) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             let first = view.removeFirst()
             let second = view.removeFirst()
@@ -291,7 +291,7 @@ extension BinaryBytesInputViewTests.Integration {
 
         let (value, isEmpty) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
-            var view = Binary.Bytes.Input.View(span)
+            var view = Byte.Input.View(span)
 
             let b0 = view.removeFirst()
             let b1 = view.removeFirst()
