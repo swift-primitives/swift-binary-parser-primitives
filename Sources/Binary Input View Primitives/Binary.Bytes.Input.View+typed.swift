@@ -4,7 +4,7 @@ public import Cursor_Primitives_Core
 
 // MARK: - Typed Subscript
 
-extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
+extension Cursor where DomainTag == Byte {
     /// Accesses the byte at the given typed index offset from the current position.
     ///
     /// This subscript encapsulates the Int conversion at the API boundary,
