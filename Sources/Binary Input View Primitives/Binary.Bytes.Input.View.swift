@@ -4,17 +4,18 @@ public import Cursor_Primitives_Core
 extension Binary.Bytes.Input {
     /// Borrowed input view for zero-copy bytes parsing.
     ///
-    /// `Binary.Bytes.Input.View` is a typealias for ``Cursor/Span`` parameterized
-    /// over ``Byte`` — the institute's unified borrowed read-only cursor over a
-    /// `Swift.Span<UInt8>`, phantom-typed as the binary-byte domain. Position is
-    /// typed `Tagged<Byte, Ordinal>` (≡ `Index<Byte>`) per the typed-position
+    /// `Binary.Bytes.Input.View` is a typealias for the institute's unified
+    /// single-generic borrowed-bytes cursor — ``Cursor`` parameterized over
+    /// ``Byte``. Storage derives from `Byte.Borrowed` via Byte's
+    /// `Ownership.Borrow.`Protocol`` conformance; position is typed
+    /// `Tagged<Byte, Ordinal>` (≡ `Index<Byte>`) per the typed-position
     /// discipline.
     ///
     /// ## Lifetime
     ///
-    /// `~Copyable` and `~Escapable` — the cursor cannot be duplicated and cannot
-    /// outlive the span it borrows. Compiler-enforced via `@_lifetime(borrow source)`
-    /// on the underlying primitive's initializer.
+    /// `~Copyable` and `~Escapable` — the cursor cannot be duplicated and
+    /// cannot outlive the span it borrows. Compiler-enforced via
+    /// `@_lifetime(borrow source)` on the underlying primitive's initializer.
     ///
     /// ## NOT Sendable
     ///
@@ -27,20 +28,31 @@ extension Binary.Bytes.Input {
     /// cursor-abstractions arc (`swift-institute/Research/cursor-abstractions-l1-ecosystem.md`
     /// v1.3.0 DECISION 2026-05-17), position now types as
     /// `Tagged<Byte, Ordinal>`. Position assignment is performed via
-    /// ``Cursor/Span/seek(to:)`` for parser-machine backtracking.
-    public typealias View = Cursor<Byte.Borrowed, Byte>
+    /// ``Cursor/seek(to:)`` for parser-machine backtracking.
+    ///
+    /// ## Cursor shape lineage
+    ///
+    /// The substrate Cursor type reshaped twice through 2026-05-18:
+    /// `Cursor.Span<DomainTag>` (Shape γ; pre-2026-05-18) →
+    /// `Cursor<Storage, PositionTag>` (Shape A two-generic; 2026-05-18) →
+    /// `Cursor<DomainTag: Ownership.Borrow.`Protocol`>` (Shape A
+    /// single-generic; the current shape, per
+    /// `cursor-shape-a-vs-three-worlds.md` v1.2.0). Call-site shape at this
+    /// typealias is invariant across the changes — `Binary.Bytes.Input.View`
+    /// continues to resolve to the correct cursor instantiation.
+    public typealias View = Cursor<Byte>
 }
 
 // MARK: - Legacy public API (binary-domain extensions)
 //
 // The original `Binary.Bytes.Input.View` shipped a domain-specific public API
 // (`isEmpty`, `first`, `removeFirst`, `removeFirst(_:)`, `subscript[offset:]`,
-// `consumedCount`). The Cursor.Span<DomainTag> substrate uses cursor-style
+// `consumedCount`). The unified Cursor<Byte> substrate uses cursor-style
 // names (`isAtEnd`, `peek`, `consume`, `advance`, `peek(at:)`). These
 // extensions preserve the legacy binary-domain API on the typealiased identity
 // so existing call sites continue to compile.
 
-extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
+extension Cursor where DomainTag == Byte {
     /// Whether there are no more bytes to parse.
     @inlinable
     public var isEmpty: Bool { isAtEnd }
@@ -110,7 +122,7 @@ extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
 
 // MARK: - Domain owned-form conversion
 
-extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
+extension Cursor where DomainTag == Byte {
     /// Copies the remaining bytes to an owned input.
     ///
     /// Use this when you need to store or send the input across concurrency domains.
