@@ -7,7 +7,6 @@ internal import Memory_Primitives
 import Standard_Library_Extensions
 public import Vector_Primitives
 public import Byte_Primitives
-public import Cursor_Span_Primitives
 public import Cursor_Primitives_Core
 
 //

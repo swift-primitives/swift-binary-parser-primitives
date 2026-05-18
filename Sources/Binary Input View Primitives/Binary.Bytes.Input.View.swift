@@ -1,5 +1,4 @@
 public import Byte_Primitives
-public import Cursor_Span_Primitives
 public import Cursor_Primitives_Core
 
 extension Binary.Bytes.Input {
@@ -29,7 +28,7 @@ extension Binary.Bytes.Input {
     /// v1.3.0 DECISION 2026-05-17), position now types as
     /// `Tagged<Byte, Ordinal>`. Position assignment is performed via
     /// ``Cursor/Span/seek(to:)`` for parser-machine backtracking.
-    public typealias View = Cursor.Span<Byte>
+    public typealias View = Cursor<Byte.Borrowed, Byte>
 }
 
 // MARK: - Legacy public API (binary-domain extensions)
@@ -41,7 +40,7 @@ extension Binary.Bytes.Input {
 // extensions preserve the legacy binary-domain API on the typealiased identity
 // so existing call sites continue to compile.
 
-extension Cursor.Span where DomainTag == Byte {
+extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
     /// Whether there are no more bytes to parse.
     @inlinable
     public var isEmpty: Bool { isAtEnd }
@@ -111,7 +110,7 @@ extension Cursor.Span where DomainTag == Byte {
 
 // MARK: - Domain owned-form conversion
 
-extension Cursor.Span where DomainTag == Byte {
+extension Cursor where Storage == Byte.Borrowed, PositionTag == Byte {
     /// Copies the remaining bytes to an owned input.
     ///
     /// Use this when you need to store or send the input across concurrency domains.
