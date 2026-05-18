@@ -14,6 +14,6 @@ extension Binary.Parse.Access {
     where Bytes.Element == UInt8 {
         var input = Byte.Input(bytes)
         let value = try parser.parse(&input)
-        return (value: value, count: input.consumedCount)
+        return (value: value, count: input.consumed)
     }
 }

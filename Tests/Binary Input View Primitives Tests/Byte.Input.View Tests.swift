@@ -59,16 +59,16 @@ extension BinaryBytesInputViewTests.Unit {
     }
 
     @Test
-    func `consumedCount starts at zero`() {
+    func `consumed starts at zero`() {
         let bytes: [UInt8] = [0x01, 0x02, 0x03]
 
-        let consumedCount = bytes.withUnsafeBufferPointer { buffer in
+        let consumed = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             let view = Byte.Input.View(span)
             return view.consumedCount
         }
 
-        #expect(consumedCount == 0)
+        #expect(consumed == 0)
     }
 
     @Test
@@ -88,7 +88,7 @@ extension BinaryBytesInputViewTests.Unit {
     }
 
     @Test
-    func `removeFirst updates consumedCount`() {
+    func `removeFirst updates consumed`() {
         let bytes: [UInt8] = [0x01, 0x02, 0x03]
 
         let (consumed1, consumed2) = bytes.withUnsafeBufferPointer { buffer in
@@ -112,7 +112,7 @@ extension BinaryBytesInputViewTests.Unit {
     func `removeFirst n removes multiple bytes`() {
         let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04, 0x05]
 
-        let (count, first, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
+        let (count, first, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             var view = Byte.Input.View(span)
 
@@ -123,7 +123,7 @@ extension BinaryBytesInputViewTests.Unit {
 
         #expect(count == 2)
         #expect(first == 0x04)
-        #expect(consumedCount == 3)
+        #expect(consumed == 3)
     }
 
     @Test
@@ -209,7 +209,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
     func `consuming all bytes makes view empty`() {
         let bytes: [UInt8] = [0x01, 0x02, 0x03]
 
-        let (isEmpty, first, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
+        let (isEmpty, first, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             var view = Byte.Input.View(span)
 
@@ -220,14 +220,14 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
         #expect(isEmpty)
         #expect(first == nil)
-        #expect(consumedCount == 3)
+        #expect(consumed == 3)
     }
 
     @Test
     func `removeFirst zero is no-op`() {
         let bytes: [UInt8] = [0x01, 0x02]
 
-        let (count, consumedCount) = bytes.withUnsafeBufferPointer { buffer in
+        let (count, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             var view = Byte.Input.View(span)
 
@@ -237,7 +237,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
         }
 
         #expect(count == 2)
-        #expect(consumedCount == 0)
+        #expect(consumed == 0)
     }
 }
 
@@ -267,7 +267,7 @@ extension BinaryBytesInputViewTests.Integration {
     func `sequential byte consumption works`() {
         let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04]
 
-        let (first, second, third, consumedCount, count) = bytes.withUnsafeBufferPointer { buffer in
+        let (first, second, third, consumed, count) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             var view = Byte.Input.View(span)
 
@@ -281,7 +281,7 @@ extension BinaryBytesInputViewTests.Integration {
         #expect(first == 0x01)
         #expect(second == 0x02)
         #expect(third == 0x03)
-        #expect(consumedCount == 3)
+        #expect(consumed == 3)
         #expect(count == 1)
     }
 

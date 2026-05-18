@@ -120,14 +120,14 @@ extension Binary.Bytes.Machine {
                     switch recoveryFrame {
                     case .oneOf(let alternatives, let index, let savedCheckpoint):
                         guard index < alternatives.count else { break }
-                        input.setPosition(to: savedCheckpoint)
+                        input.seek(to: savedCheckpoint)
                         frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
                         current = alternatives[index]
                         recovered = true
                         break
 
                     case .many(_, let savedCheckpoint, let resultHandles, let finalize):
-                        input.setPosition(to: savedCheckpoint)
+                        input.seek(to: savedCheckpoint)
                         var results: [Value] = []
                         results.reserveCapacity(resultHandles.count)
                         for h in resultHandles { results.append(arena.release(h)) }
@@ -135,12 +135,12 @@ extension Binary.Bytes.Machine {
                         recovered = true
 
                     case .fold(_, let savedCheckpoint, let accHandle, _):
-                        input.setPosition(to: savedCheckpoint)
+                        input.seek(to: savedCheckpoint)
                         pendingHandle = accHandle
                         recovered = true
 
                     case .optional(let savedCheckpoint, _, let noneHandle):
-                        input.setPosition(to: savedCheckpoint)
+                        input.seek(to: savedCheckpoint)
                         pendingHandle = noneHandle
                         recovered = true
 
@@ -193,7 +193,7 @@ extension Binary.Bytes.Machine {
                     } else {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
-                        input.setPosition(to: cp)
+                        input.seek(to: cp)
                         pendingHandle = arena.allocate(Value.make(UInt8?(byte)))
                     }
 
@@ -204,7 +204,7 @@ extension Binary.Bytes.Machine {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
                         if byte != expected {
-                            input.setPosition(to: cp)
+                            input.seek(to: cp)
                             instructionError = .unexpectedByte(expected: expected, found: byte)
                         } else {
                             pendingHandle = arena.allocate(Value.make(byte))
@@ -232,7 +232,7 @@ extension Binary.Bytes.Machine {
 
                         if mismatch {
                             // Restore to checkpoint on mismatch
-                            input.setPosition(to: cp)
+                            input.seek(to: cp)
                             instructionError = .unexpectedBytes(expected: expected, found: found)
                         } else {
                             // Input already advanced past expected bytes
@@ -249,7 +249,7 @@ extension Binary.Bytes.Machine {
                         if predicate(byte) {
                             pendingHandle = arena.allocate(Value.make(byte))
                         } else {
-                            input.setPosition(to: cp)
+                            input.seek(to: cp)
                             instructionError = .predicateFailed(byte: byte)
                         }
                     }
@@ -262,7 +262,7 @@ extension Binary.Bytes.Machine {
                         if predicate(byte) {
                             bytes.append(byte)
                         } else {
-                            input.setPosition(to: cp)
+                            input.seek(to: cp)
                             break
                         }
                     }
@@ -273,7 +273,7 @@ extension Binary.Bytes.Machine {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
                         if !predicate(byte) {
-                            input.setPosition(to: cp)
+                            input.seek(to: cp)
                             break
                         }
                     }

@@ -26,7 +26,7 @@ public import Cursor_Primitives_Core
 // - position = x - write for backtracking (writes appear to be okay)
 //
 // Forbidden operations on view inside interpreter:
-// - consumedCount, count, isEmpty, first (computed properties)
+// - consumed, count, isEmpty, first (computed properties)
 
 // MARK: - Typed Count Constants
 

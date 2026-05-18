@@ -94,10 +94,10 @@ extension Byte.Input.Test.Unit {
     }
 
     @Test
-    func `consumedCount starts at zero`() {
+    func `consumed starts at zero`() {
         let input = Byte.Input([0x01, 0x02, 0x03])
 
-        #expect(input.consumedCount == 0)
+        #expect(input.consumed == 0)
     }
 
     // MARK: Advance
@@ -114,14 +114,14 @@ extension Byte.Input.Test.Unit {
     }
 
     @Test
-    func `advance updates consumedCount`() throws {
+    func `advance updates consumed`() throws {
         var input = Byte.Input([0x01, 0x02, 0x03])
 
         _ = try input.advance()
-        #expect(input.consumedCount == 1)
+        #expect(input.consumed == 1)
 
         _ = try input.advance()
-        #expect(input.consumedCount == 2)
+        #expect(input.consumed == 2)
     }
 
     @Test
@@ -132,7 +132,7 @@ extension Byte.Input.Test.Unit {
 
         #expect(input.count == 2)
         #expect(input.first == 0x04)
-        #expect(input.consumedCount == 3)
+        #expect(input.consumed == 3)
     }
 
     @Test
@@ -142,7 +142,7 @@ extension Byte.Input.Test.Unit {
         input.advance(by: 0)
 
         #expect(input.count == 2)
-        #expect(input.consumedCount == 0)
+        #expect(input.consumed == 0)
     }
 
     @Test
@@ -153,7 +153,7 @@ extension Byte.Input.Test.Unit {
 
         #expect(input.isEmpty)
         #expect(input.first == nil)
-        #expect(input.consumedCount == 3)
+        #expect(input.consumed == 3)
     }
 
     // MARK: Subscript
@@ -269,7 +269,7 @@ extension Byte.Input.Test.EdgeCase {
 
         #expect(byte == 0xFF)
         #expect(input.isEmpty)
-        #expect(input.consumedCount == 1)
+        #expect(input.consumed == 1)
     }
 }
 
@@ -278,7 +278,7 @@ extension Byte.Input.Test.EdgeCase {
 extension Byte.Input.Test.Integration {
 
     @Test
-    func `consumedCount enables prefix result calculation`() throws {
+    func `consumed enables prefix result calculation`() throws {
         var input = Byte.Input([0x31, 0x32, 0x33, 0x41, 0x42])
 
         // Parse ASCII digits manually
@@ -289,7 +289,7 @@ extension Byte.Input.Test.Integration {
         }
 
         #expect(value == 123)
-        #expect(input.consumedCount == 3)
+        #expect(input.consumed == 3)
         #expect(input.count == 2)
     }
 
@@ -304,7 +304,7 @@ extension Byte.Input.Test.Integration {
         #expect(first == 0x01)
         #expect(second == 0x02)
         #expect(third == 0x03)
-        #expect(input.consumedCount == 3)
+        #expect(input.consumed == 3)
         #expect(input.count == 1)
     }
 
@@ -325,6 +325,6 @@ extension Byte.Input.Test.Integration {
 
         #expect(value == 0xDEAD_BEEF)
         #expect(input.isEmpty)
-        #expect(input.consumedCount == 4)
+        #expect(input.consumed == 4)
     }
 }
