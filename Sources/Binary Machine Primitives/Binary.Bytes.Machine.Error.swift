@@ -1,6 +1,7 @@
 // Binary.Bytes.Machine.Error.swift
 // Error types for machine execution
 
+public import Byte_Primitives
 public import Index_Primitives
 import Machine_Primitives
 import Parser_Primitives
@@ -12,16 +13,16 @@ extension Binary.Bytes.Machine {
         case insufficientBytes(need: Index<Byte>.Count, have: Index<Byte>.Count)
 
         /// Expected a specific byte but found different or end.
-        case unexpectedByte(expected: UInt8, found: UInt8?)
+        case unexpectedByte(expected: Byte, found: Byte?)
 
         /// Expected a specific byte sequence but found mismatch.
-        case unexpectedBytes(expected: [UInt8], found: [UInt8])
+        case unexpectedBytes(expected: [Byte], found: [Byte])
 
         /// Expected end of input but bytes remain.
         case expectedEnd(remaining: Index<Byte>.Count)
 
         /// Byte did not satisfy predicate.
-        case predicateFailed(byte: UInt8)
+        case predicateFailed(byte: Byte)
 
         /// Recursion depth exceeded.
         case depthExceeded(limit: Int)
@@ -50,14 +51,14 @@ extension Binary.Bytes.Machine.Fault {
         case .insufficientBytes(let need, let have):
             return .unexpected(expected: "\(Int(bitPattern: need)) bytes for \(typeName), have \(Int(bitPattern: have))")
         case .unexpectedByte(let expected, let found):
-            let foundStr = found.map { "0x\(String($0, radix: 16))" } ?? "EOF"
-            return .unexpected(expected: "byte 0x\(String(expected, radix: 16)) for \(typeName), found \(foundStr)")
+            let foundStr = found.map { "0x\(String($0.underlying, radix: 16))" } ?? "EOF"
+            return .unexpected(expected: "byte 0x\(String(expected.underlying, radix: 16)) for \(typeName), found \(foundStr)")
         case .unexpectedBytes(let expected, _):
             return .unexpected(expected: "\(expected.count) byte sequence for \(typeName)")
         case .expectedEnd(let remaining):
             return .unexpected(expected: "end of input for \(typeName), \(Int(bitPattern: remaining)) bytes remain")
         case .predicateFailed(let byte):
-            return .unexpected(expected: "byte satisfying predicate for \(typeName), got 0x\(String(byte, radix: 16))")
+            return .unexpected(expected: "byte satisfying predicate for \(typeName), got 0x\(String(byte.underlying, radix: 16))")
         case .depthExceeded(let limit):
             return .unexpected(expected: "recursion within depth \(limit) for \(typeName)")
         case .leb128Overflow:

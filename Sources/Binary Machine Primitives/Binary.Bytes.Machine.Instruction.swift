@@ -1,6 +1,7 @@
 // Binary.Bytes.Machine.Instruction.swift
 // Closed-world instruction set for byte parsing
 
+public import Byte_Primitives
 import Machine_Primitives
 
 extension Binary.Bytes.Machine {
@@ -14,7 +15,7 @@ extension Binary.Bytes.Machine {
     ///
     /// ## Allowed Extensibility
     ///
-    /// - **Predicates on `UInt8`**: Predicates receive a single byte, not the view
+    /// - **Predicates on `Byte`**: Predicates receive a single byte, not the view
     /// - **Transforms on outputs**: Via `map`/`tryMap` on `Value`
     // SAFETY: Safe by construction — backing storage uses only stdlib
     // SAFETY: safe types; `@safe` documents that this type performs no
@@ -26,7 +27,7 @@ extension Binary.Bytes.Machine {
         /// Consume and return one byte. Fails if input is empty.
         case take1
 
-        /// Consume exactly `n` bytes and return as `[UInt8]`.
+        /// Consume exactly `n` bytes and return as `[Byte]`.
         case take(Int)
 
         /// Consume and discard `n` bytes.
@@ -38,19 +39,19 @@ extension Binary.Bytes.Machine {
         // MARK: - Matching Operations
 
         /// Match a specific byte. Fails if mismatch or empty.
-        case byte(UInt8)
+        case byte(Byte)
 
         /// Match an exact byte sequence. Fails if mismatch or insufficient bytes.
-        case bytes([UInt8])
+        case bytes([Byte])
 
         /// Consume one byte if it satisfies the predicate.
-        case satisfy((UInt8) -> Bool)
+        case satisfy((Byte) -> Bool)
 
-        /// Consume bytes while predicate holds, return as `[UInt8]`.
-        case takeWhile((UInt8) -> Bool)
+        /// Consume bytes while predicate holds, return as `[Byte]`.
+        case takeWhile((Byte) -> Bool)
 
         /// Skip bytes while predicate holds.
-        case skipWhile((UInt8) -> Bool)
+        case skipWhile((Byte) -> Bool)
 
         // MARK: - Control Operations
 

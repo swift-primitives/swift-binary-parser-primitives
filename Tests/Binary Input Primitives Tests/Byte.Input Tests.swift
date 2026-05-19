@@ -284,7 +284,7 @@ extension Byte.Input.Test.Integration {
         // Parse ASCII digits manually
         var value = 0
         while let byte = input.first, byte >= 0x30 && byte <= 0x39 {
-            value = value * 10 + Int(byte - 0x30)
+            value = value * 10 + Int(byte.underlying - 0x30)
             _ = try input.advance()
         }
 
