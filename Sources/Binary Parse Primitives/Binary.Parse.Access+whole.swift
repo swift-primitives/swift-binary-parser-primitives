@@ -19,7 +19,7 @@ extension Binary.Parse.Access {
             throw .left(error)
         }
         guard input.isEmpty else {
-            throw .right(.end(remaining: input.count))
+            throw .right(.end(remaining: input.count.retag(Byte.self)))
         }
         return value
     }

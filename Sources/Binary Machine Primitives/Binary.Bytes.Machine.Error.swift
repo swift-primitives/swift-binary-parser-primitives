@@ -9,7 +9,7 @@ extension Binary.Bytes.Machine {
     /// Errors that can occur during machine execution.
     public enum Fault: Swift.Error, Sendable, Equatable {
         /// Not enough bytes in input.
-        case insufficientBytes(need: Index<UInt8>.Count, have: Index<UInt8>.Count)
+        case insufficientBytes(need: Index<Byte>.Count, have: Index<Byte>.Count)
 
         /// Expected a specific byte but found different or end.
         case unexpectedByte(expected: UInt8, found: UInt8?)
@@ -18,7 +18,7 @@ extension Binary.Bytes.Machine {
         case unexpectedBytes(expected: [UInt8], found: [UInt8])
 
         /// Expected end of input but bytes remain.
-        case expectedEnd(remaining: Index<UInt8>.Count)
+        case expectedEnd(remaining: Index<Byte>.Count)
 
         /// Byte did not satisfy predicate.
         case predicateFailed(byte: UInt8)

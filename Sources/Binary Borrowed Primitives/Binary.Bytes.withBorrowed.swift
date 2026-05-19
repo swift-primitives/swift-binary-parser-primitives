@@ -31,13 +31,13 @@ public import Cursor_Primitives_Core
 // MARK: - Typed Count Constants
 
 /// Typed count constants for common byte widths.
-/// These avoid repeated construction of Index<UInt8>.Count values.
+/// These avoid repeated construction of Index<Byte>.Count values.
 @usableFromInline
-let _two: Index<UInt8>.Count = Index<UInt8>.Count(Cardinal(2))
+let _two: Index<Byte>.Count = Index<Byte>.Count(Cardinal(2))
 @usableFromInline
-let _four: Index<UInt8>.Count = Index<UInt8>.Count(Cardinal(4))
+let _four: Index<Byte>.Count = Index<Byte>.Count(Cardinal(4))
 @usableFromInline
-let _eight: Index<UInt8>.Count = Index<UInt8>.Count(Cardinal(8))
+let _eight: Index<Byte>.Count = Index<Byte>.Count(Cardinal(8))
 
 // MARK: - WithBorrowed Accessor Type
 
@@ -70,7 +70,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefix<Output>(
         _ bytes: [UInt8],
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         try Binary.Bytes._withBorrowedPrefix(bytes, parser)
     }
 
@@ -79,7 +79,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefixUnchecked<Output>(
         _ bytes: [UInt8],
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         try Binary.Bytes._withBorrowedPrefix(bytes, parser)
     }
 
@@ -98,7 +98,7 @@ extension Binary.Bytes.WithBorrowed {
         _ bytes: [UInt8],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Output {
-        let total = Index<UInt8>.Count(Cardinal(UInt(bytes.count)))
+        let total = Index<Byte>.Count(Cardinal(UInt(bytes.count)))
         let (value, consumed) = try Binary.Bytes._withBorrowedPrefix(bytes, parser)
         let remaining = total.subtract.saturating(consumed)
         guard remaining == .zero else {
@@ -125,7 +125,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefix<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
         try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
     }
 
@@ -134,7 +134,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefixUnchecked<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
         try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
     }
 
@@ -153,7 +153,7 @@ extension Binary.Bytes.WithBorrowed {
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Output where C: ~Copyable, C.Element == UInt8 {
-        let total = Index<UInt8>.Count(Cardinal(UInt(source.span.count)))
+        let total = Index<Byte>.Count(Cardinal(UInt(source.span.count)))
         let (value, consumed) = try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
         let remaining = total.subtract.saturating(consumed)
         guard remaining == .zero else {
@@ -180,9 +180,9 @@ extension Binary.Bytes {
     static func _withBorrowedPrefix<Output>(
         _ bytes: [UInt8],
         _ parser: Machine.Parser<Output>
-    ) throws(Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) {
-        try unsafe bytes.withUnsafeBufferPointer { buffer throws(Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) in
-            let total = Index<UInt8>.Count(Cardinal(UInt(buffer.count)))
+    ) throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
+        try unsafe bytes.withUnsafeBufferPointer { buffer throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) in
+            let total = Index<Byte>.Count(Cardinal(UInt(buffer.count)))
             let span = unsafe Span(
                 _unsafeStart: buffer.baseAddress ?? UnsafePointer<UInt8>(bitPattern: 1)!,
                 count: buffer.count
@@ -206,7 +206,7 @@ extension Binary.Bytes {
             var instructionError: Fault? = nil
 
             // Track position externally - avoid reading view.consumedCount
-            var consumed: Index<UInt8> = .zero
+            var consumed: Index<Byte> = .zero
 
             interpreterLoop: while true {
                 // Handle pending value
@@ -215,7 +215,7 @@ extension Binary.Bytes {
                     let value = arena.release(handle)
 
                     if frames.isEmpty {
-                        return (value: value[as: Output.self], count: Index<UInt8>.Count(consumed))
+                        return (value: value[as: Output.self], count: Index<Byte>.Count(consumed))
                     }
 
                     let frame = frames.removeLast()
@@ -326,32 +326,32 @@ extension Binary.Bytes {
                 switch node {
                 case .leaf(let instruction):
                     // Compute remaining from locals (avoid view.count)
-                    let remaining = total.subtract.saturating(Index<UInt8>.Count(consumed))
+                    let remaining = total.subtract.saturating(Index<Byte>.Count(consumed))
 
                     switch instruction {
                     case .take1:
                         if remaining < .one {
                             instructionError = .insufficientBytes(need: .one, have: remaining)
                         } else {
-                            let byte = view.removeFirst()
+                            let byte = view.removeFirst().underlying
                             consumed += .one
                             pendingHandle = arena.allocate(Value.make(byte))
                         }
                     case .take(let n):
-                        let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                        let need = Index<Byte>.Count(Cardinal(UInt(n)))
                         if remaining < need {
                             instructionError = .insufficientBytes(need: need, have: remaining)
                         } else {
                             var bytes: [UInt8] = []
                             bytes.reserveCapacity(n)
                             (.zero..<need).forEach { _ in
-                                bytes.append(view.removeFirst())
+                                bytes.append(view.removeFirst().underlying)
                                 consumed += .one
                             }
                             pendingHandle = arena.allocate(Value.make(bytes))
                         }
                     case .skip(let n):
-                        let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                        let need = Index<Byte>.Count(Cardinal(UInt(n)))
                         if remaining < need {
                             instructionError = .insufficientBytes(need: need, have: remaining)
                         } else {
@@ -360,13 +360,13 @@ extension Binary.Bytes {
                             pendingHandle = arena.allocate(Value.make(()))
                         }
                     case .peek:
-                        let byte: UInt8? = remaining > .zero ? view[offset: .zero] : nil
+                        let byte: UInt8? = remaining > .zero ? view[offset: 0].underlying : nil
                         pendingHandle = arena.allocate(Value.make(byte))
                     case .byte(let expected):
                         if remaining < .one {
                             instructionError = .unexpectedByte(expected: expected, found: nil)
                         } else {
-                            let found = view[offset: .zero]
+                            let found = view[offset: 0].underlying
                             if found == expected {
                                 _ = view.removeFirst()
                                 consumed += .one
@@ -376,21 +376,21 @@ extension Binary.Bytes {
                             }
                         }
                     case .bytes(let expected):
-                        let expectedCount = Index<UInt8>.Count(Cardinal(UInt(expected.count)))
+                        let expectedCount = Index<Byte>.Count(Cardinal(UInt(expected.count)))
                         if remaining < expectedCount {
                             var found: [UInt8] = []
                             (.zero..<remaining).forEach { idx in
-                                found.append(view[offset: idx])
+                                found.append(view[offset: idx].underlying)
                             }
                             instructionError = .unexpectedBytes(expected: expected, found: found)
                         } else {
                             var mismatch = false
-                            var viewIdx: Index<UInt8> = .zero
+                            var viewIdx: Index<Byte> = .zero
                             for expectedByte in expected {
-                                if view[offset: viewIdx] != expectedByte {
+                                if view[offset: viewIdx].underlying != expectedByte {
                                     var found: [UInt8] = []
                                     (.zero..<expectedCount).forEach { j in
-                                        found.append(view[offset: j])
+                                        found.append(view[offset: j].underlying)
                                     }
                                     instructionError = .unexpectedBytes(expected: expected, found: found)
                                     mismatch = true
@@ -408,7 +408,7 @@ extension Binary.Bytes {
                         if remaining < .one {
                             instructionError = .insufficientBytes(need: .one, have: remaining)
                         } else {
-                            let byte = view[offset: .zero]
+                            let byte = view[offset: 0].underlying
                             if predicate(byte) {
                                 _ = view.removeFirst()
                                 consumed += .one
@@ -420,9 +420,9 @@ extension Binary.Bytes {
                     case .takeWhile(let predicate):
                         var bytes: [UInt8] = []
                         while consumed < total {
-                            let byte = view[offset: .zero]
+                            let byte = view[offset: 0].underlying
                             if predicate(byte) {
-                                bytes.append(view.removeFirst())
+                                bytes.append(view.removeFirst().underlying)
                                 consumed += .one
                             } else {
                                 break
@@ -431,7 +431,7 @@ extension Binary.Bytes {
                         pendingHandle = arena.allocate(Value.make(bytes))
                     case .skipWhile(let predicate):
                         while consumed < total {
-                            let byte = view[offset: .zero]
+                            let byte = view[offset: 0].underlying
                             if predicate(byte) {
                                 _ = view.removeFirst()
                                 consumed += .one
@@ -447,7 +447,7 @@ extension Binary.Bytes {
                             instructionError = .expectedEnd(remaining: remaining)
                         }
                     case .require(let n):
-                        let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                        let need = Index<Byte>.Count(Cardinal(UInt(n)))
                         if remaining >= need {
                             pendingHandle = arena.allocate(Value.make(()))
                         } else {
@@ -457,7 +457,7 @@ extension Binary.Bytes {
                         if remaining < .one {
                             instructionError = .insufficientBytes(need: .one, have: remaining)
                         } else {
-                            let byte = view.removeFirst()
+                            let byte = view.removeFirst().underlying
                             consumed += .one
                             pendingHandle = arena.allocate(Value.make(byte))
                         }
@@ -465,8 +465,8 @@ extension Binary.Bytes {
                         if remaining < _two {
                             instructionError = .insufficientBytes(need: _two, have: remaining)
                         } else {
-                            let b0 = UInt16(view.removeFirst())
-                            let b1 = UInt16(view.removeFirst())
+                            let b0 = UInt16(view.removeFirst().underlying)
+                            let b1 = UInt16(view.removeFirst().underlying)
                             consumed += _two
                             pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8)))
                         }
@@ -474,8 +474,8 @@ extension Binary.Bytes {
                         if remaining < _two {
                             instructionError = .insufficientBytes(need: _two, have: remaining)
                         } else {
-                            let b0 = UInt16(view.removeFirst())
-                            let b1 = UInt16(view.removeFirst())
+                            let b0 = UInt16(view.removeFirst().underlying)
+                            let b1 = UInt16(view.removeFirst().underlying)
                             consumed += _two
                             pendingHandle = arena.allocate(Value.make((b0 << 8) | b1))
                         }
@@ -483,10 +483,10 @@ extension Binary.Bytes {
                         if remaining < _four {
                             instructionError = .insufficientBytes(need: _four, have: remaining)
                         } else {
-                            let b0 = UInt32(view.removeFirst())
-                            let b1 = UInt32(view.removeFirst())
-                            let b2 = UInt32(view.removeFirst())
-                            let b3 = UInt32(view.removeFirst())
+                            let b0 = UInt32(view.removeFirst().underlying)
+                            let b1 = UInt32(view.removeFirst().underlying)
+                            let b2 = UInt32(view.removeFirst().underlying)
+                            let b3 = UInt32(view.removeFirst().underlying)
                             consumed += _four
                             pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
                         }
@@ -494,10 +494,10 @@ extension Binary.Bytes {
                         if remaining < _four {
                             instructionError = .insufficientBytes(need: _four, have: remaining)
                         } else {
-                            let b0 = UInt32(view.removeFirst())
-                            let b1 = UInt32(view.removeFirst())
-                            let b2 = UInt32(view.removeFirst())
-                            let b3 = UInt32(view.removeFirst())
+                            let b0 = UInt32(view.removeFirst().underlying)
+                            let b1 = UInt32(view.removeFirst().underlying)
+                            let b2 = UInt32(view.removeFirst().underlying)
+                            let b3 = UInt32(view.removeFirst().underlying)
                             consumed += _four
                             pendingHandle = arena.allocate(Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
                         }
@@ -508,7 +508,7 @@ extension Binary.Bytes {
                             var result: UInt64 = 0
                             var shift: UInt64 = 0
                             (.zero..<_eight).forEach { _ in
-                                result |= UInt64(view.removeFirst()) << shift
+                                result |= UInt64(view.removeFirst().underlying) << shift
                                 shift += 8
                             }
                             consumed += _eight
@@ -520,7 +520,7 @@ extension Binary.Bytes {
                         } else {
                             var result: UInt64 = 0
                             (.zero..<_eight).forEach { _ in
-                                result = (result << 8) | UInt64(view.removeFirst())
+                                result = (result << 8) | UInt64(view.removeFirst().underlying)
                             }
                             consumed += _eight
                             pendingHandle = arena.allocate(Value.make(result))
@@ -529,7 +529,7 @@ extension Binary.Bytes {
                         if remaining < .one {
                             instructionError = .insufficientBytes(need: .one, have: remaining)
                         } else {
-                            let byte = view.removeFirst()
+                            let byte = view.removeFirst().underlying
                             consumed += .one
                             pendingHandle = arena.allocate(Value.make(Int8(bitPattern: byte)))
                         }
@@ -537,8 +537,8 @@ extension Binary.Bytes {
                         if remaining < _two {
                             instructionError = .insufficientBytes(need: _two, have: remaining)
                         } else {
-                            let b0 = UInt16(view.removeFirst())
-                            let b1 = UInt16(view.removeFirst())
+                            let b0 = UInt16(view.removeFirst().underlying)
+                            let b1 = UInt16(view.removeFirst().underlying)
                             consumed += _two
                             pendingHandle = arena.allocate(Value.make(Int16(bitPattern: b0 | (b1 << 8))))
                         }
@@ -546,8 +546,8 @@ extension Binary.Bytes {
                         if remaining < _two {
                             instructionError = .insufficientBytes(need: _two, have: remaining)
                         } else {
-                            let b0 = UInt16(view.removeFirst())
-                            let b1 = UInt16(view.removeFirst())
+                            let b0 = UInt16(view.removeFirst().underlying)
+                            let b1 = UInt16(view.removeFirst().underlying)
                             consumed += _two
                             pendingHandle = arena.allocate(Value.make(Int16(bitPattern: (b0 << 8) | b1)))
                         }
@@ -555,10 +555,10 @@ extension Binary.Bytes {
                         if remaining < _four {
                             instructionError = .insufficientBytes(need: _four, have: remaining)
                         } else {
-                            let b0 = UInt32(view.removeFirst())
-                            let b1 = UInt32(view.removeFirst())
-                            let b2 = UInt32(view.removeFirst())
-                            let b3 = UInt32(view.removeFirst())
+                            let b0 = UInt32(view.removeFirst().underlying)
+                            let b1 = UInt32(view.removeFirst().underlying)
+                            let b2 = UInt32(view.removeFirst().underlying)
+                            let b3 = UInt32(view.removeFirst().underlying)
                             consumed += _four
                             pendingHandle = arena.allocate(Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))))
                         }
@@ -566,10 +566,10 @@ extension Binary.Bytes {
                         if remaining < _four {
                             instructionError = .insufficientBytes(need: _four, have: remaining)
                         } else {
-                            let b0 = UInt32(view.removeFirst())
-                            let b1 = UInt32(view.removeFirst())
-                            let b2 = UInt32(view.removeFirst())
-                            let b3 = UInt32(view.removeFirst())
+                            let b0 = UInt32(view.removeFirst().underlying)
+                            let b1 = UInt32(view.removeFirst().underlying)
+                            let b2 = UInt32(view.removeFirst().underlying)
+                            let b3 = UInt32(view.removeFirst().underlying)
                             consumed += _four
                             pendingHandle = arena.allocate(Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3)))
                         }
@@ -580,7 +580,7 @@ extension Binary.Bytes {
                             var result: UInt64 = 0
                             var shift: UInt64 = 0
                             (.zero..<_eight).forEach { _ in
-                                result |= UInt64(view.removeFirst()) << shift
+                                result |= UInt64(view.removeFirst().underlying) << shift
                                 shift += 8
                             }
                             consumed += _eight
@@ -592,7 +592,7 @@ extension Binary.Bytes {
                         } else {
                             var result: UInt64 = 0
                             (.zero..<_eight).forEach { _ in
-                                result = (result << 8) | UInt64(view.removeFirst())
+                                result = (result << 8) | UInt64(view.removeFirst().underlying)
                             }
                             consumed += _eight
                             pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
@@ -607,7 +607,7 @@ extension Binary.Bytes {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
                                 break
                             }
-                            let byte = view.removeFirst()
+                            let byte = view.removeFirst().underlying
                             consumed += .one
                             let byteValue = UInt64(byte & 0x7F)
                             if shift >= 64 || (shift == 63 && byteValue > 1) {
@@ -629,7 +629,7 @@ extension Binary.Bytes {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
                                 break
                             }
-                            byte = view.removeFirst()
+                            byte = view.removeFirst().underlying.underlying
                             consumed += .one
                             if shift >= 64 {
                                 overflow = true
@@ -715,9 +715,9 @@ extension Binary.Bytes {
     static func _withBorrowedPrefixContiguous<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Machine.Parser<Output>
-    ) throws(Machine.Fault) -> (value: Output, count: Index<UInt8>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
         let sourceBytes = source.span
-        let total = Index<UInt8>.Count(Cardinal(UInt(sourceBytes.count)))
+        let total = Index<Byte>.Count(Cardinal(UInt(sourceBytes.count)))
         var view = Byte.Input.View(sourceBytes)
 
         typealias Value = Machine.Value
@@ -735,7 +735,7 @@ extension Binary.Bytes {
         var depth = 0
         var pendingHandle: Value.Handle? = nil
         var instructionError: Fault? = nil
-        var consumed: Index<UInt8> = .zero
+        var consumed: Index<Byte> = .zero
 
         interpreterLoop: while true {
             if let handle = pendingHandle {
@@ -743,7 +743,7 @@ extension Binary.Bytes {
                 let value = arena.release(handle)
 
                 if frames.isEmpty {
-                    return (value: value[as: Output.self], count: Index<UInt8>.Count(consumed))
+                    return (value: value[as: Output.self], count: Index<Byte>.Count(consumed))
                 }
 
                 let frame = frames.removeLast()
@@ -850,32 +850,32 @@ extension Binary.Bytes {
 
             switch node {
             case .leaf(let instruction):
-                let remaining = total.subtract.saturating(Index<UInt8>.Count(consumed))
+                let remaining = total.subtract.saturating(Index<Byte>.Count(consumed))
 
                 switch instruction {
                 case .take1:
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
-                        let b = view.removeFirst()
+                        let b = view.removeFirst().underlying
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(b))
                     }
                 case .take(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
                         var bytes: [UInt8] = []
                         bytes.reserveCapacity(n)
                         (.zero..<need).forEach { _ in
-                            bytes.append(view.removeFirst())
+                            bytes.append(view.removeFirst().underlying)
                             consumed += .one
                         }
                         pendingHandle = arena.allocate(Value.make(bytes))
                     }
                 case .skip(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
@@ -884,13 +884,13 @@ extension Binary.Bytes {
                         pendingHandle = arena.allocate(Value.make(()))
                     }
                 case .peek:
-                    let byte: UInt8? = remaining > .zero ? view[offset: .zero] : nil
+                    let byte: UInt8? = remaining > .zero ? view[offset: 0].underlying : nil
                     pendingHandle = arena.allocate(Value.make(byte))
                 case .byte(let expected):
                     if remaining < .one {
                         instructionError = .unexpectedByte(expected: expected, found: nil)
                     } else {
-                        let found = view[offset: .zero]
+                        let found = view[offset: 0].underlying
                         if found == expected {
                             _ = view.removeFirst()
                             consumed += .one
@@ -900,21 +900,21 @@ extension Binary.Bytes {
                         }
                     }
                 case .bytes(let expected):
-                    let expectedCount = Index<UInt8>.Count(Cardinal(UInt(expected.count)))
+                    let expectedCount = Index<Byte>.Count(Cardinal(UInt(expected.count)))
                     if remaining < expectedCount {
                         var found: [UInt8] = []
                         (.zero..<remaining).forEach { idx in
-                            found.append(view[offset: idx])
+                            found.append(view[offset: idx].underlying)
                         }
                         instructionError = .unexpectedBytes(expected: expected, found: found)
                     } else {
                         var mismatch = false
-                        var viewIdx: Index<UInt8> = .zero
+                        var viewIdx: Index<Byte> = .zero
                         for expectedByte in expected {
-                            if view[offset: viewIdx] != expectedByte {
+                            if view[offset: viewIdx].underlying != expectedByte {
                                 var found: [UInt8] = []
                                 (.zero..<expectedCount).forEach { j in
-                                    found.append(view[offset: j])
+                                    found.append(view[offset: j].underlying)
                                 }
                                 instructionError = .unexpectedBytes(expected: expected, found: found)
                                 mismatch = true
@@ -932,7 +932,7 @@ extension Binary.Bytes {
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
-                        let byte = view[offset: .zero]
+                        let byte = view[offset: 0].underlying
                         if predicate(byte) {
                             _ = view.removeFirst()
                             consumed += .one
@@ -944,9 +944,9 @@ extension Binary.Bytes {
                 case .takeWhile(let predicate):
                     var bytes: [UInt8] = []
                     while consumed < total {
-                        let byte = view[offset: .zero]
+                        let byte = view[offset: 0].underlying
                         if predicate(byte) {
-                            bytes.append(view.removeFirst())
+                            bytes.append(view.removeFirst().underlying)
                             consumed += .one
                         } else {
                             break
@@ -955,7 +955,7 @@ extension Binary.Bytes {
                     pendingHandle = arena.allocate(Value.make(bytes))
                 case .skipWhile(let predicate):
                     while consumed < total {
-                        let byte = view[offset: .zero]
+                        let byte = view[offset: 0].underlying
                         if predicate(byte) {
                             _ = view.removeFirst()
                             consumed += .one
@@ -971,7 +971,7 @@ extension Binary.Bytes {
                         instructionError = .expectedEnd(remaining: remaining)
                     }
                 case .require(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining >= need {
                         pendingHandle = arena.allocate(Value.make(()))
                     } else {
@@ -981,7 +981,7 @@ extension Binary.Bytes {
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
-                        let b = view.removeFirst()
+                        let b = view.removeFirst().underlying
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(b))
                     }
@@ -989,8 +989,8 @@ extension Binary.Bytes {
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
                     } else {
-                        let b0 = UInt16(view.removeFirst())
-                        let b1 = UInt16(view.removeFirst())
+                        let b0 = UInt16(view.removeFirst().underlying)
+                        let b1 = UInt16(view.removeFirst().underlying)
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8)))
                     }
@@ -998,8 +998,8 @@ extension Binary.Bytes {
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
                     } else {
-                        let b0 = UInt16(view.removeFirst())
-                        let b1 = UInt16(view.removeFirst())
+                        let b0 = UInt16(view.removeFirst().underlying)
+                        let b1 = UInt16(view.removeFirst().underlying)
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make((b0 << 8) | b1))
                     }
@@ -1007,10 +1007,10 @@ extension Binary.Bytes {
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
                     } else {
-                        let b0 = UInt32(view.removeFirst())
-                        let b1 = UInt32(view.removeFirst())
-                        let b2 = UInt32(view.removeFirst())
-                        let b3 = UInt32(view.removeFirst())
+                        let b0 = UInt32(view.removeFirst().underlying)
+                        let b1 = UInt32(view.removeFirst().underlying)
+                        let b2 = UInt32(view.removeFirst().underlying)
+                        let b3 = UInt32(view.removeFirst().underlying)
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
                     }
@@ -1018,10 +1018,10 @@ extension Binary.Bytes {
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
                     } else {
-                        let b0 = UInt32(view.removeFirst())
-                        let b1 = UInt32(view.removeFirst())
-                        let b2 = UInt32(view.removeFirst())
-                        let b3 = UInt32(view.removeFirst())
+                        let b0 = UInt32(view.removeFirst().underlying)
+                        let b1 = UInt32(view.removeFirst().underlying)
+                        let b2 = UInt32(view.removeFirst().underlying)
+                        let b3 = UInt32(view.removeFirst().underlying)
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
                     }
@@ -1032,7 +1032,7 @@ extension Binary.Bytes {
                         var result: UInt64 = 0
                         var shift: UInt64 = 0
                         (.zero..<_eight).forEach { _ in
-                            result |= UInt64(view.removeFirst()) << shift
+                            result |= UInt64(view.removeFirst().underlying) << shift
                             shift += 8
                         }
                         consumed += _eight
@@ -1044,7 +1044,7 @@ extension Binary.Bytes {
                     } else {
                         var result: UInt64 = 0
                         (.zero..<_eight).forEach { _ in
-                            result = (result << 8) | UInt64(view.removeFirst())
+                            result = (result << 8) | UInt64(view.removeFirst().underlying)
                         }
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(result))
@@ -1053,7 +1053,7 @@ extension Binary.Bytes {
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
-                        let b = view.removeFirst()
+                        let b = view.removeFirst().underlying
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(Int8(bitPattern: b)))
                     }
@@ -1061,8 +1061,8 @@ extension Binary.Bytes {
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
                     } else {
-                        let b0 = UInt16(view.removeFirst())
-                        let b1 = UInt16(view.removeFirst())
+                        let b0 = UInt16(view.removeFirst().underlying)
+                        let b1 = UInt16(view.removeFirst().underlying)
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(Int16(bitPattern: b0 | (b1 << 8))))
                     }
@@ -1070,8 +1070,8 @@ extension Binary.Bytes {
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
                     } else {
-                        let b0 = UInt16(view.removeFirst())
-                        let b1 = UInt16(view.removeFirst())
+                        let b0 = UInt16(view.removeFirst().underlying)
+                        let b1 = UInt16(view.removeFirst().underlying)
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(Int16(bitPattern: (b0 << 8) | b1)))
                     }
@@ -1079,10 +1079,10 @@ extension Binary.Bytes {
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
                     } else {
-                        let b0 = UInt32(view.removeFirst())
-                        let b1 = UInt32(view.removeFirst())
-                        let b2 = UInt32(view.removeFirst())
-                        let b3 = UInt32(view.removeFirst())
+                        let b0 = UInt32(view.removeFirst().underlying)
+                        let b1 = UInt32(view.removeFirst().underlying)
+                        let b2 = UInt32(view.removeFirst().underlying)
+                        let b3 = UInt32(view.removeFirst().underlying)
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))))
                     }
@@ -1090,10 +1090,10 @@ extension Binary.Bytes {
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
                     } else {
-                        let b0 = UInt32(view.removeFirst())
-                        let b1 = UInt32(view.removeFirst())
-                        let b2 = UInt32(view.removeFirst())
-                        let b3 = UInt32(view.removeFirst())
+                        let b0 = UInt32(view.removeFirst().underlying)
+                        let b1 = UInt32(view.removeFirst().underlying)
+                        let b2 = UInt32(view.removeFirst().underlying)
+                        let b3 = UInt32(view.removeFirst().underlying)
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3)))
                     }
@@ -1104,7 +1104,7 @@ extension Binary.Bytes {
                         var result: UInt64 = 0
                         var shift: UInt64 = 0
                         (.zero..<_eight).forEach { _ in
-                            result |= UInt64(view.removeFirst()) << shift
+                            result |= UInt64(view.removeFirst().underlying) << shift
                             shift += 8
                         }
                         consumed += _eight
@@ -1116,7 +1116,7 @@ extension Binary.Bytes {
                     } else {
                         var result: UInt64 = 0
                         (.zero..<_eight).forEach { _ in
-                            result = (result << 8) | UInt64(view.removeFirst())
+                            result = (result << 8) | UInt64(view.removeFirst().underlying)
                         }
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
@@ -1131,7 +1131,7 @@ extension Binary.Bytes {
                             instructionError = .insufficientBytes(need: .one, have: .zero)
                             break
                         }
-                        let byte = view.removeFirst()
+                        let byte = view.removeFirst().underlying
                         consumed += .one
                         let byteValue = UInt64(byte & 0x7F)
                         if shift >= 64 || (shift == 63 && byteValue > 1) {
@@ -1153,7 +1153,7 @@ extension Binary.Bytes {
                             instructionError = .insufficientBytes(need: .one, have: .zero)
                             break
                         }
-                        byte = view.removeFirst()
+                        byte = view.removeFirst().underlying
                         consumed += .one
                         if shift >= 64 {
                             overflow = true
