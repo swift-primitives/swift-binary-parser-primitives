@@ -9,7 +9,7 @@ extension Parser.`Protocol` where Input == Byte.Input {
     ///
     /// ```swift
     /// let parser: some Parser.Parser<Byte.Input, MyType, MyError> = ...
-    /// let bytes: [UInt8] = [...]
+    /// let bytes: [Byte] = [...]
     ///
     /// // Whole-buffer parsing (fails if bytes remain)
     /// let value = try parser.parse.whole(bytes)

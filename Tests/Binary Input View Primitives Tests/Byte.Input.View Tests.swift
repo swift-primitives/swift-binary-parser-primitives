@@ -166,7 +166,7 @@ extension BinaryBytesInputViewTests.Unit {
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             let view = Byte.Input.View(span)
-            return view.starts(with: [0x01, 0x02])
+            return view.starts(with: [0x01, 0x02] as [Byte])
         }
 
         #expect(startsWith)
@@ -179,7 +179,7 @@ extension BinaryBytesInputViewTests.Unit {
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
             let view = Byte.Input.View(span)
-            return view.starts(with: [0x01, 0x03])
+            return view.starts(with: [0x01, 0x03] as [Byte])
         }
 
         #expect(!startsWith)
