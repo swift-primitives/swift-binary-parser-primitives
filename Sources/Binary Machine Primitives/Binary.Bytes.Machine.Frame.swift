@@ -6,7 +6,7 @@ public import Machine_Primitives
 
 extension Binary.Bytes.Machine {
     /// Checkpoint for backtracking - typed position index.
-    public typealias Checkpoint = Index<UInt8>
+    public typealias Checkpoint = Index<Byte>
 
     /// Frame is a typealias to the core Machine.Frame with Binary's types.
     ///

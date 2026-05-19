@@ -293,10 +293,10 @@ extension BinaryBytesInputViewTests.Integration {
             let span = Span(_unsafeElements: buffer)
             var view = Byte.Input.View(span)
 
-            let b0 = view.removeFirst()
-            let b1 = view.removeFirst()
-            let b2 = view.removeFirst()
-            let b3 = view.removeFirst()
+            let b0 = view.removeFirst().underlying
+            let b1 = view.removeFirst().underlying
+            let b2 = view.removeFirst().underlying
+            let b3 = view.removeFirst().underlying
 
             let value =
                 UInt32(b0) << 24

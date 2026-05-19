@@ -27,7 +27,7 @@ extension Binary.Bytes.Machine {
         root: Node.ID,
         input: inout Input,
         as outputType: Output.Type
-    ) throws(Fault) -> Output where Input.Element == UInt8, Input.Checkpoint == Index<UInt8> {
+    ) throws(Fault) -> Output where Input.Element == UInt8, Input.Checkpoint == Index<Byte> {
         typealias Frame = Binary.Bytes.Machine.Frame
         typealias Value = Binary.Bytes.Machine.Value
         typealias Node = Binary.Bytes.Machine.Node
@@ -161,14 +161,14 @@ extension Binary.Bytes.Machine {
 
             switch node {
             case .leaf(let instruction):
-                let remaining = input.count
+                let remaining = input.count.retag(Byte.self)
 
                 switch instruction {
                 case .take1:
                     if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance())) }
 
                 case .take(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
@@ -179,11 +179,11 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .skip(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
-                        input.advance(by: need)
+                        input.advance(by: need.retag(UInt8.self))
                         pendingHandle = arena.allocate(Value.make(()))
                     }
 
@@ -213,7 +213,7 @@ extension Binary.Bytes.Machine {
 
                 case .bytes(let expected):
                     let n = expected.count
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
@@ -283,7 +283,7 @@ extension Binary.Bytes.Machine {
                     if !input.isEmpty { instructionError = .expectedEnd(remaining: remaining) } else { pendingHandle = arena.allocate(Value.make(())) }
 
                 case .require(let n):
-                    let need = Index<UInt8>.Count(Cardinal(UInt(n)))
+                    let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need { instructionError = .insufficientBytes(need: need, have: remaining) } else { pendingHandle = arena.allocate(Value.make(())) }
 
                 // Integer decoding (unsigned)
@@ -291,8 +291,8 @@ extension Binary.Bytes.Machine {
                     if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance())) }
 
                 case .u16le:
-                    if remaining < Index<UInt8>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(2)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(2)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
                     } else {
                         let b0 = UInt16(try! input.advance())
                         let b1 = UInt16(try! input.advance())
@@ -300,8 +300,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .u16be:
-                    if remaining < Index<UInt8>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(2)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(2)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
                     } else {
                         let b0 = UInt16(try! input.advance())
                         let b1 = UInt16(try! input.advance())
@@ -309,8 +309,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .u32le:
-                    if remaining < Index<UInt8>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(4)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(4)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
                     } else {
                         let b0 = UInt32(try! input.advance())
                         let b1 = UInt32(try! input.advance())
@@ -320,8 +320,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .u32be:
-                    if remaining < Index<UInt8>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(4)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(4)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
                     } else {
                         let b0 = UInt32(try! input.advance())
                         let b1 = UInt32(try! input.advance())
@@ -331,8 +331,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .u64le:
-                    if remaining < Index<UInt8>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(8)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(8)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
                     } else {
                         var result: UInt64 = 0
                         for i in 0..<8 {
@@ -342,8 +342,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .u64be:
-                    if remaining < Index<UInt8>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(8)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(8)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
                     } else {
                         var result: UInt64 = 0
                         for _ in 0..<8 {
@@ -361,8 +361,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i16le:
-                    if remaining < Index<UInt8>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(2)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(2)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
                     } else {
                         let b0 = UInt16(try! input.advance())
                         let b1 = UInt16(try! input.advance())
@@ -370,8 +370,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i16be:
-                    if remaining < Index<UInt8>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(2)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(2)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
                     } else {
                         let b0 = UInt16(try! input.advance())
                         let b1 = UInt16(try! input.advance())
@@ -379,8 +379,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i32le:
-                    if remaining < Index<UInt8>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(4)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(4)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
                     } else {
                         let b0 = UInt32(try! input.advance())
                         let b1 = UInt32(try! input.advance())
@@ -390,8 +390,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i32be:
-                    if remaining < Index<UInt8>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(4)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(4)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
                     } else {
                         let b0 = UInt32(try! input.advance())
                         let b1 = UInt32(try! input.advance())
@@ -401,8 +401,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i64le:
-                    if remaining < Index<UInt8>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(8)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(8)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
                     } else {
                         var result: UInt64 = 0
                         for i in 0..<8 {
@@ -412,8 +412,8 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .i64be:
-                    if remaining < Index<UInt8>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<UInt8>.Count(Cardinal(8)), have: remaining)
+                    if remaining < Index<Byte>.Count(Cardinal(8)) {
+                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
                     } else {
                         var result: UInt64 = 0
                         for _ in 0..<8 {
@@ -541,7 +541,7 @@ extension Binary.Bytes.Machine.Parser {
     public func parse<Input: Input_Primitives.Input.`Protocol`>(
         _ input: inout Input
     ) throws(Binary.Bytes.Machine.Fault) -> Output
-    where Input.Element == UInt8, Input.Checkpoint == Index<UInt8> {
+    where Input.Element == UInt8, Input.Checkpoint == Index<Byte> {
         try Binary.Bytes.Machine.run(program: program, root: root, input: &input, as: Output.self)
     }
 }
