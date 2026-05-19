@@ -57,10 +57,8 @@ let package = Package(
         .package(path: "../swift-parser-primitives"),
         .package(path: "../swift-binary-primitives"),
         .package(path: "../swift-binary-leb128-primitives"),
-        .package(path: "../swift-input-primitives"),
         .package(path: "../swift-machine-primitives"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
-        .package(path: "../swift-vector-primitives"),
         .package(path: "../swift-byte-primitives"),
         .package(path: "../swift-byte-parser-primitives"),
         .package(path: "../swift-cursor-primitives"),
@@ -102,6 +100,7 @@ let package = Package(
                 "Binary Input Primitives",
                 "Binary Input View Primitives",
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
+                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
         ),
         .target(
@@ -109,6 +108,7 @@ let package = Package(
             dependencies: [
                 "Binary Machine Primitives",
                 "Binary Input View Primitives",
+                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
         ),
 
@@ -172,6 +172,7 @@ let package = Package(
             dependencies: [
                 "Binary Parser Primitives",
                 .product(name: "Binary Primitives Test Support", package: "swift-binary-primitives"),
+                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
                 .product(name: "Index Primitives Test Support", package: "swift-index-primitives"),
             ],
             path: "Tests/Support"

@@ -1,6 +1,8 @@
 // Binary.Bytes.Machine.Run.swift
 // Owned executor for Machine programs
 
+public import Byte_Primitives
+public import Byte_Primitives_Standard_Library_Integration
 internal import Index_Primitives
 public import Machine_Primitives
 public import Parser_Primitives
@@ -18,7 +20,7 @@ extension Binary.Bytes.Machine {
     /// - Parameters:
     ///   - program: The program to execute.
     ///   - root: The root node ID.
-    ///   - input: The input cursor (any Input_Primitives.Input.`Protocol` with UInt8 elements).
+    ///   - input: The input cursor (any Input_Primitives.Input.`Protocol` with Byte elements).
     /// - Returns: The parsed output.
     /// - Throws: `Fault` on parsing failure.
     @usableFromInline
@@ -27,7 +29,7 @@ extension Binary.Bytes.Machine {
         root: Node.ID,
         input: inout Input,
         as outputType: Output.Type
-    ) throws(Fault) -> Output where Input.Element == UInt8, Input.Checkpoint == Index<Byte> {
+    ) throws(Fault) -> Output where Input.Element == Byte, Input.Checkpoint == Index<Byte> {
         typealias Frame = Binary.Bytes.Machine.Frame
         typealias Value = Binary.Bytes.Machine.Value
         typealias Node = Binary.Bytes.Machine.Node
@@ -161,7 +163,7 @@ extension Binary.Bytes.Machine {
 
             switch node {
             case .leaf(let instruction):
-                let remaining = input.count.retag(Byte.self)
+                let remaining = input.count
 
                 switch instruction {
                 case .take1:
@@ -172,7 +174,7 @@ extension Binary.Bytes.Machine {
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
-                        var bytes: [UInt8] = []
+                        var bytes: [Byte] = []
                         bytes.reserveCapacity(n)
                         for _ in 0..<n { bytes.append(try! input.advance()) }
                         pendingHandle = arena.allocate(Value.make(bytes))
@@ -183,18 +185,18 @@ extension Binary.Bytes.Machine {
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
-                        input.advance(by: need.retag(UInt8.self))
+                        input.advance(by: need)
                         pendingHandle = arena.allocate(Value.make(()))
                     }
 
                 case .peek:
                     if input.isEmpty {
-                        pendingHandle = arena.allocate(Value.make(UInt8?.none))
+                        pendingHandle = arena.allocate(Value.make(Byte?.none))
                     } else {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
                         input.seek(to: cp)
-                        pendingHandle = arena.allocate(Value.make(UInt8?(byte)))
+                        pendingHandle = arena.allocate(Value.make(Byte?(byte)))
                     }
 
                 case .byte(let expected):
@@ -219,7 +221,7 @@ extension Binary.Bytes.Machine {
                     } else {
                         // Save checkpoint before consuming
                         let cp = input.checkpoint
-                        var found: [UInt8] = []
+                        var found: [Byte] = []
                         found.reserveCapacity(n)
                         var mismatch = false
 
@@ -255,7 +257,7 @@ extension Binary.Bytes.Machine {
                     }
 
                 case .takeWhile(let predicate):
-                    var bytes: [UInt8] = []
+                    var bytes: [Byte] = []
                     while !input.isEmpty {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
@@ -288,7 +290,7 @@ extension Binary.Bytes.Machine {
 
                 // Integer decoding (unsigned)
                 case .u8:
-                    if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance())) }
+                    if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance().underlying)) }
 
                 case .u16le:
                     if remaining < Index<Byte>.Count(Cardinal(2)) {
@@ -447,7 +449,7 @@ extension Binary.Bytes.Machine {
                 case .sleb128:
                     var result: Int64 = 0
                     var shift: UInt64 = 0
-                    var byte: UInt8 = 0
+                    var byte: Byte = 0
                     var overflow = false
                     var done = false
                     while !done {
@@ -534,14 +536,14 @@ extension Binary.Bytes.Machine.Parser {
     /// This generic overload allows zero-copy parsing on both `Byte.Input` and
     /// `ArraySlice<UInt8>` without conversion overhead.
     ///
-    /// - Parameter input: Any Input_Primitives.Input.`Protocol` with UInt8 elements and Int checkpoint.
+    /// - Parameter input: Any Input_Primitives.Input.`Protocol` with Byte elements and Index<Byte> checkpoint.
     /// - Returns: The parsed output.
     /// - Throws: `Fault` on parsing failure.
     @inlinable
     public func parse<Input: Input_Primitives.Input.`Protocol`>(
         _ input: inout Input
     ) throws(Binary.Bytes.Machine.Fault) -> Output
-    where Input.Element == UInt8, Input.Checkpoint == Index<Byte> {
+    where Input.Element == Byte, Input.Checkpoint == Index<Byte> {
         try Binary.Bytes.Machine.run(program: program, root: root, input: &input, as: Output.self)
     }
 }

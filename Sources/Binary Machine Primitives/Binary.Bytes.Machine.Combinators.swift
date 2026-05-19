@@ -1,6 +1,7 @@
 // Binary.Bytes.Machine.Combinators.swift
 // Combinator API for building machine programs
 
+public import Byte_Primitives
 public import Machine_Primitives
 
 // MARK: - Instruction Expressions
@@ -10,7 +11,7 @@ extension Binary.Bytes.Machine {
     @inlinable
     public static func take1(
         in builder: inout Builder
-    ) -> Expression<UInt8> {
+    ) -> Expression<Byte> {
         let node = Node.leaf(.take1)
         let nodeID = builder.allocate(node)
         return Expression(node: nodeID)
@@ -21,7 +22,7 @@ extension Binary.Bytes.Machine {
     public static func take(
         _ n: Int,
         in builder: inout Builder
-    ) -> Expression<[UInt8]> {
+    ) -> Expression<[Byte]> {
         let node = Node.leaf(.take(n))
         let nodeID = builder.allocate(node)
         return Expression(node: nodeID)
@@ -41,9 +42,9 @@ extension Binary.Bytes.Machine {
     /// Creates an expression for matching a specific byte.
     @inlinable
     public static func byte(
-        _ expected: UInt8,
+        _ expected: Byte,
         in builder: inout Builder
-    ) -> Expression<UInt8> {
+    ) -> Expression<Byte> {
         let node = Node.leaf(.byte(expected))
         let nodeID = builder.allocate(node)
         return Expression(node: nodeID)
@@ -52,9 +53,9 @@ extension Binary.Bytes.Machine {
     /// Creates an expression for matching a byte sequence.
     @inlinable
     public static func bytes(
-        _ expected: [UInt8],
+        _ expected: [Byte],
         in builder: inout Builder
-    ) -> Expression<[UInt8]> {
+    ) -> Expression<[Byte]> {
         let node = Node.leaf(.bytes(expected))
         let nodeID = builder.allocate(node)
         return Expression(node: nodeID)
