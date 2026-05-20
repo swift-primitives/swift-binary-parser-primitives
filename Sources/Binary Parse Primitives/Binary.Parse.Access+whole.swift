@@ -10,7 +10,7 @@ extension Binary.Parse.Access {
     public func whole<Bytes: Swift.Collection>(
         _ bytes: Bytes
     ) throws(Either<P.Failure, Binary.Parse.Error>) -> P.Output
-    where Bytes.Element == UInt8 {
+    where Bytes.Element == Byte {
         var input = Byte.Input(bytes)
         let value: P.Output
         do {

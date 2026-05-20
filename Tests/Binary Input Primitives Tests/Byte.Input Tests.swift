@@ -1,4 +1,5 @@
 import Binary_Parser_Primitives_Test_Support
+import Byte_Primitives
 import Testing
 
 @testable import Binary_Parser_Primitives
@@ -23,7 +24,7 @@ extension Byte.Input.Test.Unit {
 
     @Test
     func `init from Array creates input with correct count`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
         let input = Byte.Input(bytes)
 
         #expect(input.count == 3)
@@ -32,7 +33,7 @@ extension Byte.Input.Test.Unit {
 
     @Test
     func `init from ArraySlice creates input with correct count`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04, 0x05]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04, 0x05]
         let slice = bytes[1..<4]
         let input = Byte.Input(slice)
 
@@ -41,7 +42,7 @@ extension Byte.Input.Test.Unit {
 
     @Test
     func `init from Collection preserves first byte`() {
-        let bytes: [UInt8] = [0x41, 0x42, 0x43]
+        let bytes: [Byte] = [0x41, 0x42, 0x43]
         let input = Byte.Input(bytes)
 
         #expect(input.first == 0x41)

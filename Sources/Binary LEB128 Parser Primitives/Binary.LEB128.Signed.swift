@@ -17,7 +17,7 @@ extension Binary.LEB128 {
     /// ```swift
     /// // Parse negative Int64 from LEB128
     /// let parser = Binary.LEB128.Signed<Int64>()
-    /// var input: ArraySlice<UInt8> = [0x7F][...]  // -1
+    /// var input: ArraySlice<Byte> = [0x7F][...]  // -1
     /// let value = try parser.parse(&input)
     /// // value == -1
     /// ```
@@ -36,7 +36,7 @@ extension Binary.LEB128 {
 // MARK: - Parser.Parser
 
 extension Binary.LEB128.Signed: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = T
     public typealias Failure = Binary.LEB128.Error
     public typealias Body = Never
@@ -45,7 +45,7 @@ extension Binary.LEB128.Signed: Parser.`Protocol` {
     public func parse(_ input: inout Input) throws(Failure) -> T {
         var result: T = 0
         var shift: Int = 0
-        var byte: UInt8 = 0
+        var byte: Byte = 0
 
         while true {
             guard let nextByte = input.first else {
@@ -54,8 +54,10 @@ extension Binary.LEB128.Signed: Parser.`Protocol` {
             input.removeFirst()
             byte = nextByte
 
-            // Extract 7-bit payload
-            let payload = T(truncatingIfNeeded: byte & 0x7F)
+            // Extract 7-bit payload — bridge through .underlying for the
+            // generic FixedWidthInteger init(truncatingIfNeeded:); Byte
+            // itself doesn't conform to BinaryInteger.
+            let payload = T(truncatingIfNeeded: byte.underlying & 0x7F)
 
             // Check for overflow before shifting
             if shift >= T.bitWidth && payload != 0 && payload != 0x7F {

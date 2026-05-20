@@ -15,7 +15,7 @@ extension Binary.Parse {
     /// ```swift
     /// // Parse 3 bytes as Int32 (sign-extended)
     /// let parser = Binary.Parse.Variable<Int32>(count: 3, endianness: .big)
-    /// var input: ArraySlice<UInt8> = [0xFF, 0x12, 0x34][...]
+    /// var input: ArraySlice<Byte> = [0xFF, 0x12, 0x34][...]
     /// let value = try parser.parse(&input)
     /// // value == -60876 (sign-extended from 24-bit)
     /// ```
@@ -56,7 +56,7 @@ extension Binary.Parse {
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Variable: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = T
     public typealias Failure = Parser.EndOfInput.Error
 
@@ -73,7 +73,7 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
         case .little:
             // Little-endian: first byte is least significant
             for i in 0..<count {
-                result |= T(truncatingIfNeeded: input[base + i]) << (i * 8)
+                result |= T(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
             // Sign extension for signed types
             if T.isSigned {
@@ -103,7 +103,7 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
                 // no typed surface. The math IS the (count − 1 − i) form;
                 // operand-reorder rephrase obscures the bit-position derivation.
                 // swiftlint:disable:next cardinal_count_minus_one_anti_pattern
-                result |= T(truncatingIfNeeded: input[base + i]) << ((count - 1 - i) * 8)
+                result |= T(truncatingIfNeeded: input[base + i].underlying) << ((count - 1 - i) * 8)
             }
             // Sign extension for signed types
             if T.isSigned {

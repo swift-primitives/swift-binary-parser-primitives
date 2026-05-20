@@ -16,7 +16,7 @@ extension Binary.LEB128 {
     /// ```swift
     /// // Parse UInt64 from LEB128
     /// let parser = Binary.LEB128.Unsigned<UInt64>()
-    /// var input: ArraySlice<UInt8> = [0xE5, 0x8E, 0x26][...]
+    /// var input: ArraySlice<Byte> = [0xE5, 0x8E, 0x26][...]
     /// let value = try parser.parse(&input)
     /// // value == 624485
     /// ```
@@ -34,7 +34,7 @@ extension Binary.LEB128 {
 // MARK: - Parser.Parser
 
 extension Binary.LEB128.Unsigned: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = T
     public typealias Failure = Binary.LEB128.Error
     public typealias Body = Never
@@ -50,8 +50,10 @@ extension Binary.LEB128.Unsigned: Parser.`Protocol` {
             }
             input.removeFirst()
 
-            // Extract 7-bit payload
-            let payload = T(byte & 0x7F)
+            // Extract 7-bit payload — bridge through .underlying for the
+            // generic FixedWidthInteger init; Byte itself doesn't conform
+            // to BinaryInteger.
+            let payload = T(byte.underlying & 0x7F)
 
             // Check for overflow before shifting
             if shift >= T.bitWidth {
