@@ -129,7 +129,7 @@ let package = Package(
         .target(
             name: "Binary Parseable Primitives",
             dependencies: [
-                .product(name: "Binary Primitives Core", package: "swift-binary-primitives"),
+                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
                 .product(name: "Byte Primitives", package: "swift-byte-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
