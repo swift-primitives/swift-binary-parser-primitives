@@ -1,10 +1,10 @@
-// Binary.Bytes.Machine.Frame.swift
+// Binary.Machine.Frame.swift
 // Stack frame for machine interpreter
 
 import Index_Primitives
 public import Machine_Primitives
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Checkpoint for backtracking - typed position index.
     public typealias Checkpoint = Index<Byte>
 

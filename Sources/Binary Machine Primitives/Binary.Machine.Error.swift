@@ -1,4 +1,4 @@
-// Binary.Bytes.Machine.Error.swift
+// Binary.Machine.Error.swift
 // Error types for machine execution
 
 public import Byte_Primitives
@@ -6,7 +6,7 @@ public import Index_Primitives
 import Machine_Primitives
 import Parser_Primitives
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Errors that can occur during machine execution.
     public enum Fault: Swift.Error, Sendable, Equatable {
         /// Not enough bytes in input.
@@ -37,7 +37,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Error Bridging
 
-extension Binary.Bytes.Machine.Fault {
+extension Binary.Machine.Fault {
     /// Converts this fault to a `Parser.EndOfInput.Error` with preserved specificity.
     ///
     /// Used by ad-hoc ParserPrinter types that delegate parsing to Machine but
