@@ -19,11 +19,11 @@ extension Binary.Parse {
     /// }
     ///
     /// let parser = Binary.Parse.Validated<Status>(endianness: .big)
-    /// var input: ArraySlice<UInt8> = [0x01][...]
+    /// var input: ArraySlice<Byte> = [0x01][...]
     /// let status = try parser.parse(&input)
     /// // status == .active
     ///
-    /// var badInput: ArraySlice<UInt8> = [0xFF][...]
+    /// var badInput: ArraySlice<Byte> = [0xFF][...]
     /// _ = try parser.parse(&badInput)
     /// // throws Error.invalid(rawValue: 255)
     /// ```
@@ -60,7 +60,7 @@ extension Binary.Parse.Validated.Error: Sendable where T.RawValue: Sendable {}
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Validated: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = T
     public typealias Failure = Binary.Parse.Validated<T>.Error
 
@@ -77,11 +77,11 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
         switch endianness {
         case .little:
             for i in 0..<rawSize {
-                rawValue |= T.RawValue(truncatingIfNeeded: input[base + i]) << (i * 8)
+                rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
         case .big:
             for i in 0..<rawSize {
-                rawValue |= T.RawValue(truncatingIfNeeded: input[base + i]) << ((rawSize - 1 - i) * 8)
+                rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << ((rawSize - 1 - i) * 8)
             }
         }
 

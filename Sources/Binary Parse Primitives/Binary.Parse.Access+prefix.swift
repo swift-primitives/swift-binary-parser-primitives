@@ -11,7 +11,7 @@ extension Binary.Parse.Access {
     public func prefix<Bytes: Swift.Collection>(
         _ bytes: Bytes
     ) throws(P.Failure) -> (value: P.Output, count: Index<Byte>.Count)
-    where Bytes.Element == UInt8 {
+    where Bytes.Element == Byte {
         var input = Byte.Input(bytes)
         let value = try parser.parse(&input)
         return (value: value, count: input.consumed)

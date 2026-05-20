@@ -12,7 +12,7 @@ extension Binary.Parse {
     ///
     /// ```swift
     /// let parser = Binary.Parse.Inline<3, UInt16>(endianness: .big)
-    /// var input: ArraySlice<UInt8> = [0x00, 0x01, 0x00, 0x02, 0x00, 0x03][...]
+    /// var input: ArraySlice<Byte> = [0x00, 0x01, 0x00, 0x02, 0x00, 0x03][...]
     /// let array = try parser.parse(&input)
     /// // array: InlineArray<3, UInt16> == [1, 2, 3]
     /// ```
@@ -33,7 +33,7 @@ extension Binary.Parse {
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Inline: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = InlineArray<Count, Element>
     public typealias Failure = Parser.EndOfInput.Error
 

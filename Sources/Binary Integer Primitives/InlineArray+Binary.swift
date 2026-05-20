@@ -12,7 +12,7 @@ extension InlineArray where Element: FixedWidthInteger {
     /// ## Example
     ///
     /// ```swift
-    /// var input: ArraySlice<UInt8> = [0x00, 0x01, 0x00, 0x02, 0x00, 0x03][...]
+    /// var input: ArraySlice<Byte> = [0x00, 0x01, 0x00, 0x02, 0x00, 0x03][...]
     /// let array = try InlineArray<3, UInt16>(parsing: &input, endianness: .big)
     /// // array == [1, 2, 3]
     /// ```
@@ -23,7 +23,7 @@ extension InlineArray where Element: FixedWidthInteger {
     /// - Throws: `Parser.EndOfInput.Error` if insufficient bytes remain.
     @inlinable
     public init(
-        parsing input: inout ArraySlice<UInt8>,
+        parsing input: inout ArraySlice<Byte>,
         endianness: Binary.Endianness
     ) throws(Parser.EndOfInput.Error) {
         self = Self(repeating: 0)
@@ -40,11 +40,11 @@ extension InlineArray where Element: FixedWidthInteger {
             switch endianness {
             case .little:
                 for j in 0..<elementSize {
-                    value |= Element(truncatingIfNeeded: input[base + j]) << (j * 8)
+                    value |= Element(truncatingIfNeeded: input[base + j].underlying) << (j * 8)
                 }
             case .big:
                 for j in 0..<elementSize {
-                    value |= Element(truncatingIfNeeded: input[base + j]) << ((elementSize - 1 - j) * 8)
+                    value |= Element(truncatingIfNeeded: input[base + j].underlying) << ((elementSize - 1 - j) * 8)
                 }
             }
 

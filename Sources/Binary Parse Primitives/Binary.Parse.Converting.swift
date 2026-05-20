@@ -14,7 +14,7 @@ extension Binary.Parse {
     /// ```swift
     /// // Parse UInt32, convert to Int
     /// let parser = Binary.Parse.Converting<UInt32, Int>(endianness: .big)
-    /// var input: ArraySlice<UInt8> = [0x00, 0x01, 0x00, 0x00][...]
+    /// var input: ArraySlice<Byte> = [0x00, 0x01, 0x00, 0x00][...]
     /// let value = try parser.parse(&input)
     /// // value: Int == 65536
     /// ```
@@ -56,7 +56,7 @@ extension Binary.Parse.Converting.Error: Sendable where Source: Sendable {}
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Converting: Parser.`Protocol` {
-    public typealias Input = ArraySlice<UInt8>
+    public typealias Input = ArraySlice<Byte>
     public typealias Output = Target
     public typealias Failure = Binary.Parse.Converting<Source, Target>.Error
 
@@ -73,11 +73,11 @@ extension Binary.Parse.Converting: Parser.`Protocol` {
         switch endianness {
         case .little:
             for i in 0..<sourceSize {
-                sourceValue |= Source(truncatingIfNeeded: input[base + i]) << (i * 8)
+                sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
         case .big:
             for i in 0..<sourceSize {
-                sourceValue |= Source(truncatingIfNeeded: input[base + i]) << ((sourceSize - 1 - i) * 8)
+                sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << ((sourceSize - 1 - i) * 8)
             }
         }
 
