@@ -21,7 +21,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `count returns correct value`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04, 0x05]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04, 0x05]
 
         let count = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -34,7 +34,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `isEmpty returns false for non-empty view`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
 
         let isEmpty = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -47,7 +47,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `first returns first byte`() {
-        let bytes: [UInt8] = [0xAB, 0xCD, 0xEF]
+        let bytes: [Byte] = [0xAB, 0xCD, 0xEF]
 
         let first = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -60,7 +60,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `consumed starts at zero`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
 
         let consumed = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -73,7 +73,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `removeFirst removes and returns first byte`() {
-        let bytes: [UInt8] = [0x41, 0x42, 0x43]
+        let bytes: [Byte] = [0x41, 0x42, 0x43]
 
         let (byte, count, first) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -89,7 +89,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `removeFirst updates consumed`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
 
         let (consumed1, consumed2) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -110,7 +110,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `removeFirst n removes multiple bytes`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04, 0x05]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04, 0x05]
 
         let (count, first, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -128,7 +128,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `subscript accesses byte at offset`() {
-        let bytes: [UInt8] = [0x10, 0x20, 0x30, 0x40]
+        let bytes: [Byte] = [0x10, 0x20, 0x30, 0x40]
 
         let (b0, b1, b2, b3) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -144,7 +144,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `subscript respects consumed bytes`() {
-        let bytes: [UInt8] = [0x10, 0x20, 0x30, 0x40]
+        let bytes: [Byte] = [0x10, 0x20, 0x30, 0x40]
 
         let (b0, b1) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -161,7 +161,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `starts with returns true for matching prefix`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04]
 
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -174,7 +174,7 @@ extension BinaryBytesInputViewTests.Unit {
 
     @Test
     func `starts with returns false for non-matching prefix`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
 
         let startsWith = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -192,7 +192,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
     @Test
     func `empty view has count zero`() {
-        let bytes: [UInt8] = []
+        let bytes: [Byte] = []
 
         let (count, isEmpty, first) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -207,7 +207,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
     @Test
     func `consuming all bytes makes view empty`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03]
+        let bytes: [Byte] = [0x01, 0x02, 0x03]
 
         let (isEmpty, first, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -225,7 +225,7 @@ extension BinaryBytesInputViewTests.EdgeCase {
 
     @Test
     func `removeFirst zero is no-op`() {
-        let bytes: [UInt8] = [0x01, 0x02]
+        let bytes: [Byte] = [0x01, 0x02]
 
         let (count, consumed) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -247,7 +247,7 @@ extension BinaryBytesInputViewTests.Integration {
 
     @Test
     func `copyToOwned creates independent input`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04]
 
         let (ownedCount, ownedFirst) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -265,7 +265,7 @@ extension BinaryBytesInputViewTests.Integration {
 
     @Test
     func `sequential byte consumption works`() {
-        let bytes: [UInt8] = [0x01, 0x02, 0x03, 0x04]
+        let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04]
 
         let (first, second, third, consumed, count) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
@@ -287,7 +287,7 @@ extension BinaryBytesInputViewTests.Integration {
 
     @Test
     func `parse fixed-width integer from view`() {
-        let bytes: [UInt8] = [0xDE, 0xAD, 0xBE, 0xEF]
+        let bytes: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
 
         let (value, isEmpty) = bytes.withUnsafeBufferPointer { buffer in
             let span = Span(_unsafeElements: buffer)
