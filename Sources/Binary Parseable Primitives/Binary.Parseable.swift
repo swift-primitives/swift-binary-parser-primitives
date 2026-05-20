@@ -1,6 +1,9 @@
 // Binary.Parseable.swift
 // Streaming byte deserialization protocol — symmetric peer of Binary.Serializable.
 
+public import Binary_Parse_Primitives
+public import Byte_Primitives
+
 extension Binary {
     /// A type that can parse itself from a byte stream.
     ///
