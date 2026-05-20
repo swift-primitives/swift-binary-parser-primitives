@@ -192,6 +192,10 @@ let package = Package(
                 "Binary Parser Primitives Test Support",
             ]
         ),
+        .testTarget(
+            name: "Binary Borrowed Primitives Tests",
+            dependencies: ["Binary Parser Primitives Test Support"]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
