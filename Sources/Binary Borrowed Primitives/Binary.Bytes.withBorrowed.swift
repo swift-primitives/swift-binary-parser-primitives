@@ -60,7 +60,7 @@ extension Binary.Bytes.WithBorrowed {
     /// Execute a machine parser on borrowed bytes from an array.
     @inlinable
     public func callAsFunction<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Output {
         try Binary.Bytes._withBorrowedPrefix(bytes, parser).value
@@ -69,7 +69,7 @@ extension Binary.Bytes.WithBorrowed {
     /// Execute a machine parser, returning value and consumed count.
     @inlinable
     public func prefix<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         try Binary.Bytes._withBorrowedPrefix(bytes, parser)
@@ -78,7 +78,7 @@ extension Binary.Bytes.WithBorrowed {
     /// Execute a machine parser, returning value and consumed count (unconstrained).
     @inlinable
     public func prefixUnchecked<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         try Binary.Bytes._withBorrowedPrefix(bytes, parser)
@@ -96,7 +96,7 @@ extension Binary.Bytes.WithBorrowed {
     /// - Throws: `Machine.Fault` if parsing fails or input remains.
     @inlinable
     public func whole<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Binary.Bytes.Machine.Parser<Output>
     ) throws(Binary.Bytes.Machine.Fault) -> Output {
         let total = Index<Byte>.Count(Cardinal(UInt(bytes.count)))
@@ -117,7 +117,7 @@ extension Binary.Bytes.WithBorrowed {
     public func callAsFunction<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> Output where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> Output where C: ~Copyable, C.Element == Byte {
         try Binary.Bytes._withBorrowedPrefixContiguous(source, parser).value
     }
 
@@ -126,7 +126,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefix<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == Byte {
         try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
     }
 
@@ -135,7 +135,7 @@ extension Binary.Bytes.WithBorrowed {
     public func prefixUnchecked<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == Byte {
         try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
     }
 
@@ -153,7 +153,7 @@ extension Binary.Bytes.WithBorrowed {
     public func whole<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Binary.Bytes.Machine.Parser<Output>
-    ) throws(Binary.Bytes.Machine.Fault) -> Output where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Binary.Bytes.Machine.Fault) -> Output where C: ~Copyable, C.Element == Byte {
         let total = Index<Byte>.Count(Cardinal(UInt(source.span.count)))
         let (value, consumed) = try Binary.Bytes._withBorrowedPrefixContiguous(source, parser)
         let remaining = total.subtract.saturating(consumed)
@@ -170,7 +170,7 @@ extension Binary.Bytes {
     /// Execute a machine parser on borrowed bytes from an array.
     @inlinable
     public static func withBorrowed<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Machine.Parser<Output>
     ) throws(Machine.Fault) -> Output {
         try _withBorrowedPrefix(bytes, parser).value
@@ -179,13 +179,13 @@ extension Binary.Bytes {
     /// Internal engine returning both output and consumed count.
     @inlinable
     static func _withBorrowedPrefix<Output>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ parser: Machine.Parser<Output>
     ) throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         try unsafe bytes.withUnsafeBufferPointer { buffer throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) in
             let total = Index<Byte>.Count(Cardinal(UInt(buffer.count)))
             let span = unsafe Span(
-                _unsafeStart: buffer.baseAddress ?? UnsafePointer<UInt8>(bitPattern: 1)!,
+                _unsafeStart: buffer.baseAddress ?? UnsafePointer<Byte>(bitPattern: 1)!,
                 count: buffer.count
             )
             var view = Byte.Input.View(span)
@@ -707,7 +707,7 @@ extension Binary.Bytes {
     public static func withBorrowed<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Machine.Parser<Output>
-    ) throws(Machine.Fault) -> Output where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Machine.Fault) -> Output where C: ~Copyable, C.Element == Byte {
         try _withBorrowedPrefixContiguous(source, parser).value
     }
 
@@ -716,7 +716,7 @@ extension Binary.Bytes {
     static func _withBorrowedPrefixContiguous<C: Memory.Contiguous.`Protocol`, Output>(
         _ source: borrowing C,
         _ parser: Machine.Parser<Output>
-    ) throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == UInt8 {
+    ) throws(Machine.Fault) -> (value: Output, count: Index<Byte>.Count) where C: ~Copyable, C.Element == Byte {
         let sourceBytes = source.span
         let total = Index<Byte>.Count(Cardinal(UInt(sourceBytes.count)))
         var view = Byte.Input.View(sourceBytes)
@@ -1231,7 +1231,7 @@ extension Binary.Bytes {
 extension Binary.Bytes {
     @inlinable
     public static func withInput<T, E: Swift.Error>(
-        _ bytes: [UInt8],
+        _ bytes: [Byte],
         _ body: (inout Byte.Input) throws(E) -> T
     ) throws(E) -> T {
         var input = Byte.Input(bytes)
@@ -1242,7 +1242,7 @@ extension Binary.Bytes {
     public static func withInput<Bytes, T, E: Swift.Error>(
         _ bytes: Bytes,
         _ body: (inout Byte.Input) throws(E) -> T
-    ) throws(E) -> T where Bytes: Swift.Collection, Bytes.Element == UInt8 {
+    ) throws(E) -> T where Bytes: Swift.Collection, Bytes.Element == Byte {
         var input = Byte.Input(Swift.Array(bytes))
         return try body(&input)
     }
