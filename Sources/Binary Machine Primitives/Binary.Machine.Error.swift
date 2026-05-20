@@ -32,6 +32,22 @@ extension Binary.Machine {
 
         /// No alternatives matched in oneOf.
         case noAlternativesMatched
+
+        /// Source bytes were structurally malformed for the target type.
+        ///
+        /// Ported from `Binary.Parse.Failure.malformed` during the
+        /// Binary.Serializable / Binary.Parseable → canonical witness
+        /// migration so consumer parse logic can express the same
+        /// semantic precision under the new `Binary.Parser<Value>` shape.
+        case malformed
+
+        /// Parsed raw value did not initialize a valid instance of the
+        /// target type.
+        ///
+        /// Ported from `Binary.Parse.Failure.outOfRange` during the
+        /// migration. Use this when bytes decode successfully into a
+        /// raw value (e.g., a UInt8) but `Self(rawValue:)` returns nil.
+        case outOfRange
     }
 }
 
@@ -65,6 +81,10 @@ extension Binary.Machine.Fault {
             return .unexpected(expected: "LEB128 value within bit width for \(typeName)")
         case .noAlternativesMatched:
             return .unexpected(expected: "one of alternatives to match for \(typeName)")
+        case .malformed:
+            return .unexpected(expected: "well-formed bytes for \(typeName)")
+        case .outOfRange:
+            return .unexpected(expected: "in-range raw value for \(typeName)")
         }
     }
 }
