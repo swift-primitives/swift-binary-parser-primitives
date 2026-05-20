@@ -1,6 +1,8 @@
 // Binary.Parse.Failure.swift
 // Typed failure for Binary.Parseable.parse(from:) implementations.
 
+public import Binary_Parse_Primitives
+
 extension Binary.Parse {
     /// Typed failure for ``Binary/Parseable/parse(from:)`` implementations.
     ///
