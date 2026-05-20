@@ -5,7 +5,6 @@ internal import Index_Primitives
 public import Machine_Primitives
 internal import Memory_Primitives
 import Standard_Library_Extensions
-public import Vector_Primitives
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 public import Cursor_Primitives_Core
