@@ -1,10 +1,10 @@
-// Binary.Bytes.Machine.Builder.swift
+// Binary.Machine.Builder.swift
 // Builder context for constructing machine programs
 
 public import Machine_Primitives
 
-extension Binary.Bytes.Machine {
-    /// The capture mode used by Binary.Bytes.Machine programs.
+extension Binary.Machine {
+    /// The capture mode used by Binary.Machine programs.
     ///
     /// Uses `Mode.Unchecked` per [MEM-SEND-013] Pattern B (terminal direction):
     /// combinator factories accept non-Sendable predicate/transform closures,

@@ -1,10 +1,10 @@
-// Binary.Bytes.Machine.Instruction.swift
+// Binary.Machine.Instruction.swift
 // Closed-world instruction set for byte parsing
 
 public import Byte_Primitives
 import Machine_Primitives
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// A byte parsing instruction that operates on `Input.View`.
     ///
     /// ## Closed World Design
@@ -88,7 +88,7 @@ extension Binary.Bytes.Machine {
     }
 }
 
-// `Binary.Bytes.Machine.Instruction` is intentionally NOT Sendable: predicate
+// `Binary.Machine.Instruction` is intentionally NOT Sendable: predicate
 // closures on `.satisfy`, `.takeWhile`, `.skipWhile` are not constrained
 // `@Sendable` per [MEM-SEND-013] Pattern B. Consumers transport assembled
 // `Program`/`Parser` values across isolation domains via `sending` at the

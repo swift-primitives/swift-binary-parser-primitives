@@ -1,9 +1,9 @@
-// Binary.Bytes.Machine.Parsers.swift
+// Binary.Machine.Parsers.swift
 // Factory functions for pre-built Machine parsers
 
 // MARK: - Integer Parser Factories
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     // MARK: Unsigned Integers
 
     /// Creates a parser for UInt8.

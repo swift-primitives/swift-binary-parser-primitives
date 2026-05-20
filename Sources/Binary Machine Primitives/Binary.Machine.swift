@@ -1,9 +1,9 @@
-// Binary.Bytes.Machine.swift
+// Binary.Machine.swift
 // Defunctionalized parsing machine for borrowed byte views
 
 public import Machine_Primitives
 
-extension Binary.Bytes {
+extension Binary {
     /// Defunctionalized parsing machine for borrowed byte views.
     ///
     /// ## Design Rationale
@@ -26,7 +26,7 @@ extension Binary.Bytes {
     /// | World | Input Type | Machine | Leaf Representation |
     /// |-------|-----------|---------|---------------------|
     /// | **Owned** | `Byte.Input` | `Parser.Machine` | Closure `(inout Input) -> Value` |
-    /// | **Borrowed** | `Byte.Input.View` | `Binary.Bytes.Machine` | `Instruction` enum |
+    /// | **Borrowed** | `Byte.Input.View` | `Binary.Machine` | `Instruction` enum |
     ///
     /// ## Invariant
     ///
@@ -37,7 +37,7 @@ extension Binary.Bytes {
 
 // MARK: - Core Type Aliases
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Type-erased value container from Machine Primitives.
     public typealias Value = Machine_Primitives.Machine.Value<Mode>
 

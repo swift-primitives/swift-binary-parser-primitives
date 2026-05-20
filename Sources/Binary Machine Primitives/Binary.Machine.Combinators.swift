@@ -1,4 +1,4 @@
-// Binary.Bytes.Machine.Combinators.swift
+// Binary.Machine.Combinators.swift
 // Combinator API for building machine programs
 
 public import Byte_Primitives
@@ -6,7 +6,7 @@ public import Machine_Primitives
 
 // MARK: - Instruction Expressions
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates an expression for the take1 instruction.
     @inlinable
     public static func take1(
@@ -240,7 +240,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Pure
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates a pure expression that always succeeds with the given value.
     @inlinable
     public static func pure<Output>(
@@ -255,41 +255,41 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Map
 
-extension Binary.Bytes.Machine.Expression {
+extension Binary.Machine.Expression {
     /// Transforms the output of this expression.
     @inlinable
     public func map<T>(
         _ transform: @escaping (Output) -> T,
-        in builder: inout Binary.Bytes.Machine.Builder
-    ) -> Binary.Bytes.Machine.Expression<T> {
+        in builder: inout Binary.Machine.Builder
+    ) -> Binary.Machine.Expression<T> {
         let captureID = builder.captures.insert(transform)
-        let node = Binary.Bytes.Machine.Node.map(
+        let node = Binary.Machine.Node.map(
             child: self.node,
-            transform: Binary.Bytes.Machine.Transform.Erased(capture: captureID)
+            transform: Binary.Machine.Transform.Erased(capture: captureID)
         )
         let nodeID = builder.allocate(node)
-        return Binary.Bytes.Machine.Expression(node: nodeID)
+        return Binary.Machine.Expression(node: nodeID)
     }
 
     /// Transforms the output with a throwing function.
     @inlinable
     public func tryMap<T>(
-        _ transform: @escaping (Output) throws(Binary.Bytes.Machine.Fault) -> T,
-        in builder: inout Binary.Bytes.Machine.Builder
-    ) -> Binary.Bytes.Machine.Expression<T> {
+        _ transform: @escaping (Output) throws(Binary.Machine.Fault) -> T,
+        in builder: inout Binary.Machine.Builder
+    ) -> Binary.Machine.Expression<T> {
         let captureID = builder.captures.insert(transform)
-        let node = Binary.Bytes.Machine.Node.tryMap(
+        let node = Binary.Machine.Node.tryMap(
             child: self.node,
-            transform: Binary.Bytes.Machine.Transform.Throwing(capture: captureID)
+            transform: Binary.Machine.Transform.Throwing(capture: captureID)
         )
         let nodeID = builder.allocate(node)
-        return Binary.Bytes.Machine.Expression(node: nodeID)
+        return Binary.Machine.Expression(node: nodeID)
     }
 }
 
 // MARK: - Sequence
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Sequences two expressions and combines their outputs.
     @inlinable
     public static func sequence<A, B, C>(
@@ -311,7 +311,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - OneOf
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates an expression that tries alternatives in order until one succeeds.
     @inlinable
     public static func oneOf<Output>(
@@ -327,7 +327,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Many
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates an expression that parses zero or more occurrences.
     @inlinable
     public static func many<T>(
@@ -345,7 +345,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Fold
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates an expression that folds zero or more occurrences without allocation.
     ///
     /// Unlike `many` which collects into an array, `fold` accumulates incrementally:
@@ -385,7 +385,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Optional
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Creates an expression that optionally parses its child.
     @inlinable
     public static func optional<T>(

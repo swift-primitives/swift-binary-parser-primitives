@@ -1,9 +1,9 @@
-// Binary.Bytes.Machine.Build.swift
+// Binary.Machine.Build.swift
 // Entry points for building machine programs
 
 public import Machine_Primitives
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// The final parser type that can be executed on borrowed byte views.
     ///
     /// ## Error Type
@@ -57,20 +57,20 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Reference Expression
 
-// `Binary.Bytes.Machine.Parser` is intentionally NOT Sendable. With
+// `Binary.Machine.Parser` is intentionally NOT Sendable. With
 // `Mode.Unchecked` non-Sendable and `Instruction` non-Sendable per
 // [MEM-SEND-013] Pattern B (post-Phase-B), consumers transport assembled
 // parsers via `sending` at the boundary rather than via structural
 // Sendable conformance.
 
-extension Binary.Bytes.Machine.Reference {
+extension Binary.Machine.Reference {
     /// Creates an expression from this reference, for use in recursive definitions.
     @inlinable
     public func expression(
-        in builder: inout Binary.Bytes.Machine.Builder
-    ) -> Binary.Bytes.Machine.Expression<Output> {
-        let node = Binary.Bytes.Machine.Node.ref(self.node)
+        in builder: inout Binary.Machine.Builder
+    ) -> Binary.Machine.Expression<Output> {
+        let node = Binary.Machine.Node.ref(self.node)
         let nodeID = builder.allocate(node)
-        return Binary.Bytes.Machine.Expression(node: nodeID)
+        return Binary.Machine.Expression(node: nodeID)
     }
 }

@@ -1,4 +1,4 @@
-// Binary.Bytes.Machine.Run.swift
+// Binary.Machine.Run.swift
 // Owned executor for Machine programs
 
 public import Byte_Primitives
@@ -7,7 +7,7 @@ internal import Index_Primitives
 public import Machine_Primitives
 public import Parser_Primitives
 
-extension Binary.Bytes.Machine {
+extension Binary.Machine {
     /// Executes a Machine program on any byte-oriented Input_Primitives.Input.`Protocol`.
     ///
     /// This is the owned-path executor, complementing the borrowed-path `withBorrowed`.
@@ -30,9 +30,9 @@ extension Binary.Bytes.Machine {
         input: inout Input,
         as outputType: Output.Type
     ) throws(Fault) -> Output where Input.Element == Byte, Input.Checkpoint == Index<Byte> {
-        typealias Frame = Binary.Bytes.Machine.Frame
-        typealias Value = Binary.Bytes.Machine.Value
-        typealias Node = Binary.Bytes.Machine.Node
+        typealias Frame = Binary.Machine.Frame
+        typealias Value = Binary.Machine.Value
+        typealias Node = Binary.Machine.Node
 
         // Use same stack sizing policy as Parsing
         let stackCapacity = (program.maxDepth ?? 10_000) * 4
@@ -530,7 +530,7 @@ extension Binary.Bytes.Machine {
 
 // MARK: - Parser Extension
 
-extension Binary.Bytes.Machine.Parser {
+extension Binary.Machine.Parser {
     /// Executes this parser on any byte-oriented Input_Primitives.Input.`Protocol`.
     ///
     /// This generic overload allows zero-copy parsing on both `Byte.Input` and
@@ -542,8 +542,8 @@ extension Binary.Bytes.Machine.Parser {
     @inlinable
     public func parse<Input: Input_Primitives.Input.`Protocol`>(
         _ input: inout Input
-    ) throws(Binary.Bytes.Machine.Fault) -> Output
+    ) throws(Binary.Machine.Fault) -> Output
     where Input.Element == Byte, Input.Checkpoint == Index<Byte> {
-        try Binary.Bytes.Machine.run(program: program, root: root, input: &input, as: Output.self)
+        try Binary.Machine.run(program: program, root: root, input: &input, as: Output.self)
     }
 }
