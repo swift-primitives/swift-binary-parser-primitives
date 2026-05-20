@@ -21,6 +21,10 @@ let package = Package(
             targets: ["Binary Parser Primitives"]
         ),
         .library(
+            name: "Binary Parseable Primitives",
+            targets: ["Binary Parseable Primitives"]
+        ),
+        .library(
             name: "Binary Input Primitives",
             targets: ["Binary Input Primitives"]
         ),
@@ -121,6 +125,16 @@ let package = Package(
             ]
         ),
 
+        // MARK: - Sibling Protocol (relocated from swift-binary-primitives)
+        .target(
+            name: "Binary Parseable Primitives",
+            dependencies: [
+                .product(name: "Binary Primitives Core", package: "swift-binary-primitives"),
+                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
+                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
+            ]
+        ),
+
         // MARK: - LEB128
 
         .target(
@@ -160,6 +174,7 @@ let package = Package(
                 "Binary Machine Primitives",
                 "Binary Borrowed Primitives",
                 "Binary Parse Primitives",
+                "Binary Parseable Primitives",
                 "Binary LEB128 Parser Primitives",
                 "Binary Integer Primitives",
             ]
@@ -171,6 +186,7 @@ let package = Package(
             name: "Binary Parser Primitives Test Support",
             dependencies: [
                 "Binary Parser Primitives",
+                "Binary Parseable Primitives",
                 .product(name: "Binary Primitives Test Support", package: "swift-binary-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
                 .product(name: "Index Primitives Test Support", package: "swift-index-primitives"),
