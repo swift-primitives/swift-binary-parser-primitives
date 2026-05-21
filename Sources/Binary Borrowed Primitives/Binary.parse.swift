@@ -14,9 +14,9 @@ public import Cursor_Primitives_Core
 //
 // The interpreter is LITERALLY inlined into the engine on Binary.Borrowed.
 // This is required because Swift 6.x's lifetime checker sees ANY function
-// call with `inout Byte.Input.View` as a potential escape.
+// call with `inout Cursor<Byte>` as a potential escape.
 //
-// CRITICAL: NO COMPUTED PROPERTY READS on Byte.Input.View inside the interpreter.
+// CRITICAL: NO COMPUTED PROPERTY READS on Cursor<Byte> inside the interpreter.
 // The lifetime checker cannot reason through computed property accessors in
 // complex control flow. Track position externally via local counters.
 //
@@ -143,7 +143,7 @@ extension Binary.Borrowed {
     ) throws(Binary.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         let sourceBytes = self.span
         let total = Index<Byte>.Count(Cardinal(UInt(sourceBytes.count)))
-        var view = Byte.Input.View(sourceBytes)
+        var view = Cursor<Byte>(sourceBytes)
 
         typealias Value = Binary.Machine.Value
         typealias Frame = Binary.Machine.Frame
@@ -329,17 +329,17 @@ extension Binary.Borrowed {
                     if remaining < expectedCount {
                         var found: [Byte] = []
                         (.zero..<remaining).forEach { idx in
-                            found.append(view[offset: idx])
+                            found.append(view.peek(at: idx.map { Cardinal($0) })!)
                         }
                         instructionError = .unexpectedBytes(expected: expected, found: found)
                     } else {
                         var mismatch = false
                         var viewIdx: Index<Byte> = .zero
                         for expectedByte in expected {
-                            if view[offset: viewIdx] != expectedByte {
+                            if view.peek(at: viewIdx.map { Cardinal($0) })! != expectedByte {
                                 var found: [Byte] = []
                                 (.zero..<expectedCount).forEach { j in
-                                    found.append(view[offset: j])
+                                    found.append(view.peek(at: j.map { Cardinal($0) })!)
                                 }
                                 instructionError = .unexpectedBytes(expected: expected, found: found)
                                 mismatch = true
