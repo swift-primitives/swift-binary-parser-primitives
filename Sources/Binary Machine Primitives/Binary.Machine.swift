@@ -26,7 +26,7 @@ extension Binary {
     /// | World | Input Type | Machine | Leaf Representation |
     /// |-------|-----------|---------|---------------------|
     /// | **Owned** | `Byte.Input` | `Parser.Machine` | Closure `(inout Input) -> Value` |
-    /// | **Borrowed** | `Byte.Input.View` | `Binary.Machine` | `Instruction` enum |
+    /// | **Borrowed** | `Cursor<Byte>` | `Binary.Machine` | `Instruction` enum |
     ///
     /// ## Invariant
     ///
