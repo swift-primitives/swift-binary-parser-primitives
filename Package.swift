@@ -29,10 +29,6 @@ let package = Package(
             targets: ["Binary Input Primitives"]
         ),
         .library(
-            name: "Binary Input View Primitives",
-            targets: ["Binary Input View Primitives"]
-        ),
-        .library(
             name: "Binary Machine Primitives",
             targets: ["Binary Machine Primitives"]
         ),
@@ -65,7 +61,6 @@ let package = Package(
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
         .package(path: "../swift-byte-primitives"),
         .package(path: "../swift-byte-parser-primitives"),
-        .package(path: "../swift-cursor-primitives"),
     ],
     targets: [
         // MARK: - Core
@@ -87,14 +82,6 @@ let package = Package(
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
             ]
         ),
-        .target(
-            name: "Binary Input View Primitives",
-            dependencies: [
-                "Binary Input Primitives",
-                .product(name: "Byte Primitives", package: "swift-byte-primitives"),
-                .product(name: "Cursor Primitives Core", package: "swift-cursor-primitives"),
-            ]
-        ),
 
         // MARK: - Machine
 
@@ -102,7 +89,7 @@ let package = Package(
             name: "Binary Machine Primitives",
             dependencies: [
                 "Binary Input Primitives",
-                "Binary Input View Primitives",
+                .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
@@ -111,7 +98,7 @@ let package = Package(
             name: "Binary Borrowed Primitives",
             dependencies: [
                 "Binary Machine Primitives",
-                "Binary Input View Primitives",
+                .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
         ),
@@ -171,7 +158,6 @@ let package = Package(
             dependencies: [
                 "Binary Parser Primitives Core",
                 "Binary Input Primitives",
-                "Binary Input View Primitives",
                 "Binary Machine Primitives",
                 "Binary Borrowed Primitives",
                 "Binary Parse Primitives",
@@ -196,10 +182,6 @@ let package = Package(
         ),
         .testTarget(
             name: "Binary Input Primitives Tests",
-            dependencies: ["Binary Parser Primitives Test Support"]
-        ),
-        .testTarget(
-            name: "Binary Input View Primitives Tests",
             dependencies: ["Binary Parser Primitives Test Support"]
         ),
         .testTarget(
