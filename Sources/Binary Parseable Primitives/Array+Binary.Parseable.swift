@@ -5,7 +5,7 @@ public import Binary_Parse_Primitives
 public import Cardinal_Primitives
 public import Index_Primitives
 
-extension Array: Binary.Parseable where Element == Byte {
+extension Swift.Array: Binary.Parseable where Element == Byte {
     /// Parses a byte array by consuming all remaining bytes in the source.
     ///
     /// There is no internal length prefix in the wire format — the conformance

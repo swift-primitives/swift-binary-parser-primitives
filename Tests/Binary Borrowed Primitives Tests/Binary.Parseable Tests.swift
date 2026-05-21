@@ -100,7 +100,7 @@ struct BinaryParseableTests {
     @Test("UInt32 round-trip via raw .little encoding then .little parse")
     func uint32RoundTripLittleEndianViaParse() throws {
         let original: UInt32 = 0xDEAD_BEEF
-        var buffer: [Byte] = Array<Byte>(original.bytes(endianness: .little))
+        var buffer: [Byte] = original.bytes(endianness: .little)
         let decoded = try UInt32.parse(from: &buffer)
         #expect(decoded == original)
     }
@@ -123,7 +123,7 @@ struct BinaryParseableTests {
     @Test("Array<Byte>.parse consumes all remaining bytes")
     func arrayBytesParse() throws {
         var source: [Byte] = [0x01, 0x02, 0x03, 0x04]
-        let decoded = try [Byte].parse(from: &source)
+        let decoded = try Swift.Array<Byte>.parse(from: &source)
         #expect(decoded == [0x01, 0x02, 0x03, 0x04])
         #expect(source.isEmpty)
     }
@@ -133,7 +133,7 @@ struct BinaryParseableTests {
         var source: [Byte] = [0xAA, 0xBB, 0xCC]
         let decoded = try ContiguousArray<Byte>.parse(from: &source)
         let expected: [Byte] = [0xAA, 0xBB, 0xCC]
-        #expect(Array<Byte>(decoded) == expected)
+        #expect(Swift.Array<Byte>(decoded) == expected)
         #expect(source.isEmpty)
     }
 
@@ -142,7 +142,7 @@ struct BinaryParseableTests {
         var source: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
         let decoded = try ArraySlice<Byte>.parse(from: &source)
         let expected: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
-        #expect(Array<Byte>(decoded) == expected)
+        #expect(Swift.Array<Byte>(decoded) == expected)
         #expect(source.isEmpty)
     }
 }
