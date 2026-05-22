@@ -7,7 +7,7 @@ internal import Memory_Primitives
 import Standard_Library_Extensions
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
-public import Cursor_Primitives_Core
+public import Cursor_Primitives
 
 //
 // ## Design Note
