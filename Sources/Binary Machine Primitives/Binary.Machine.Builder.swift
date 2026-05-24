@@ -2,6 +2,7 @@
 // Builder context for constructing machine programs
 
 public import Machine_Primitives
+public import Vector_Primitives
 
 extension Binary.Machine {
     /// The capture mode used by Binary.Machine programs.
