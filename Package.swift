@@ -58,6 +58,7 @@ let package = Package(
         .package(path: "../swift-binary-primitives"),
         .package(path: "../swift-binary-leb128-primitives"),
         .package(path: "../swift-machine-primitives"),
+        .package(path: "../swift-vector-primitives"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
         .package(path: "../swift-byte-primitives"),
         .package(path: "../swift-byte-parser-primitives"),
@@ -91,6 +92,7 @@ let package = Package(
                 "Binary Input Primitives",
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
+                .product(name: "Vector Primitives", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
         ),
@@ -99,6 +101,7 @@ let package = Package(
             dependencies: [
                 "Binary Machine Primitives",
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
+                .product(name: "Vector Primitive", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
             ]
         ),

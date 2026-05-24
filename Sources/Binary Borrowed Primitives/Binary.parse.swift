@@ -2,6 +2,7 @@
 // Zero-copy borrowed parsing APIs with inlined interpreter
 
 internal import Index_Primitives
+public import Vector_Primitive
 public import Machine_Primitives
 internal import Memory_Primitives
 import Standard_Library_Extensions
