@@ -54,14 +54,14 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../swift-parser-primitives"),
-        .package(path: "../swift-binary-primitives"),
-        .package(path: "../swift-binary-leb128-primitives"),
-        .package(path: "../swift-machine-primitives"),
-        .package(path: "../swift-vector-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-binary-leb128-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-machine-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-vector-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
-        .package(path: "../swift-byte-primitives"),
-        .package(path: "../swift-byte-parser-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-byte-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git", branch: "main"),
     ],
     targets: [
         // MARK: - Core
