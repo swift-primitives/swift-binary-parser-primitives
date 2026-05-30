@@ -43,37 +43,14 @@ extension Binary.LEB128.Unsigned: Parser.`Protocol` {
     public func parse(_ input: inout Input) throws(Failure) -> T {
         var result: T = 0
         var shift: Int = 0
-
         while true {
             guard let byte = input.first else {
                 throw .unterminated
             }
             input.removeFirst()
-
-            // Extract 7-bit payload — bridge through .underlying for the
-            // generic FixedWidthInteger init; Byte itself doesn't conform
-            // to BinaryInteger.
-            let payload = T(byte.underlying & 0x7F)
-
-            // Check for overflow before shifting
-            if shift >= T.bitWidth {
-                // Any non-zero payload at this point overflows
-                if payload != 0 {
-                    throw .overflow(bitWidth: T.bitWidth)
-                }
-            } else if shift > 0 {
-                // Check if payload would overflow when shifted
-                let maxPayload = T.max >> shift
-                if payload > maxPayload {
-                    throw .overflow(bitWidth: T.bitWidth)
-                }
-            }
-
-            result |= payload << shift
-            shift += 7
-
-            // MSB=0 means final byte
-            if byte & 0x80 == 0 {
+            // Delegate to the shared decode core (Binary LEB128 Decode Primitives).
+            // Bridge Byte -> UInt8 once at this unpacking boundary per [API-BYTE-004].
+            if try Binary.LEB128.Decode.unsigned(byte: byte.underlying, into: &result, shift: &shift) {
                 return result
             }
         }
