@@ -45,42 +45,16 @@ extension Binary.LEB128.Signed: Parser.`Protocol` {
     public func parse(_ input: inout Input) throws(Failure) -> T {
         var result: T = 0
         var shift: Int = 0
-        var byte: Byte = 0
-
         while true {
-            guard let nextByte = input.first else {
+            guard let byte = input.first else {
                 throw .unterminated
             }
             input.removeFirst()
-            byte = nextByte
-
-            // Extract 7-bit payload — bridge through .underlying for the
-            // generic FixedWidthInteger init(truncatingIfNeeded:); Byte
-            // itself doesn't conform to BinaryInteger.
-            let payload = T(truncatingIfNeeded: byte.underlying & 0x7F)
-
-            // Check for overflow before shifting
-            if shift >= T.bitWidth && payload != 0 && payload != 0x7F {
-                throw .overflow(bitWidth: T.bitWidth)
-            }
-
-            if shift < T.bitWidth {
-                result |= payload << shift
-            }
-            shift += 7
-
-            // MSB=0 means final byte
-            if byte & 0x80 == 0 {
-                break
+            // Delegate to the shared decode core (Binary LEB128 Decode Primitives);
+            // the signed step self-contains two's-complement sign extension.
+            if try Binary.LEB128.Decode.signed(byte: byte.underlying, into: &result, shift: &shift) {
+                return result
             }
         }
-
-        // Sign extension: if bit 6 of final byte is set, extend sign
-        if shift < T.bitWidth && (byte & 0x40) != 0 {
-            // Fill remaining high bits with 1s
-            result |= T(-1) << shift
-        }
-
-        return result
     }
 }
