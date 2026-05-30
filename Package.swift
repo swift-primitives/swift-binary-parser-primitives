@@ -94,6 +94,7 @@ let package = Package(
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
                 .product(name: "Vector Primitives", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
+                .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
             ]
         ),
         .target(
@@ -103,6 +104,7 @@ let package = Package(
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Vector Primitive", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
+                .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
             ]
         ),
 

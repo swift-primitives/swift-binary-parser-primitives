@@ -4,6 +4,7 @@
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 internal import Index_Primitives
+internal import Binary_LEB128_Decode_Primitives
 public import Machine_Primitives
 public import Parser_Primitives
 
@@ -426,51 +427,41 @@ extension Binary.Machine {
 
                 // Variable-length integers
                 case .uleb128:
+                    // Delegate to the shared decode core; map its overflow to the
+                    // interpreter's instruction error. Behavior-preserving at UInt64.
                     var result: UInt64 = 0
-                    var shift: UInt64 = 0
-                    var overflow = false
+                    var shift: Int = 0
                     var done = false
-                    while !done {
-                        guard !input.isEmpty else {
-                            instructionError = .insufficientBytes(need: .one, have: .zero)
-                            break
+                    do {
+                        while !done {
+                            guard !input.isEmpty else {
+                                instructionError = .insufficientBytes(need: .one, have: .zero)
+                                break
+                            }
+                            let byte = try! input.advance()
+                            done = try Binary.LEB128.Decode.unsigned(byte: byte.underlying, into: &result, shift: &shift)
                         }
-                        let byte = try! input.advance()
-                        let byteValue = UInt64(byte & 0x7F)
-                        if shift >= 64 || (shift == 63 && byteValue > 1) {
-                            overflow = true
-                            break
-                        }
-                        result |= byteValue << shift
-                        if byte & 0x80 == 0 { done = true } else { shift += 7 }
+                        if done { pendingHandle = arena.allocate(Value.make(result)) }
+                    } catch {
+                        instructionError = .leb128Overflow
                     }
-                    if overflow { instructionError = .leb128Overflow } else if done { pendingHandle = arena.allocate(Value.make(result)) }
 
                 case .sleb128:
                     var result: Int64 = 0
-                    var shift: UInt64 = 0
-                    var byte: Byte = 0
-                    var overflow = false
+                    var shift: Int = 0
                     var done = false
-                    while !done {
-                        guard !input.isEmpty else {
-                            instructionError = .insufficientBytes(need: .one, have: .zero)
-                            break
+                    do {
+                        while !done {
+                            guard !input.isEmpty else {
+                                instructionError = .insufficientBytes(need: .one, have: .zero)
+                                break
+                            }
+                            let byte = try! input.advance()
+                            done = try Binary.LEB128.Decode.signed(byte: byte.underlying, into: &result, shift: &shift)
                         }
-                        byte = try! input.advance()
-                        if shift >= 64 {
-                            overflow = true
-                            break
-                        }
-                        result |= Int64(byte & 0x7F) << shift
-                        shift += 7
-                        if byte & 0x80 == 0 { done = true }
-                    }
-                    if overflow {
+                        if done { pendingHandle = arena.allocate(Value.make(result)) }
+                    } catch {
                         instructionError = .leb128Overflow
-                    } else if done {
-                        if shift < 64 && (byte & 0x40) != 0 { result |= -(1 << shift) }
-                        pendingHandle = arena.allocate(Value.make(result))
                     }
                 }
 

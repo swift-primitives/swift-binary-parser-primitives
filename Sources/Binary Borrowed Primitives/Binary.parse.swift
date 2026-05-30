@@ -2,6 +2,7 @@
 // Zero-copy borrowed parsing APIs with inlined interpreter
 
 internal import Index_Primitives
+public import Binary_LEB128_Decode_Primitives  // public: referenced from @inlinable _parsePrefix [MOD-027]
 public import Vector_Primitive
 public import Machine_Primitives
 internal import Memory_Primitives
@@ -548,52 +549,44 @@ extension Binary.Borrowed {
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
                 case .uleb128:
+                    // Delegate to the shared decode core. The core takes a value-copied
+                    // UInt8 + inout POD scalars (never the ~Escapable cursor), so it is
+                    // callable here without re-tripping the lifetime checker the design
+                    // note (above) works around. Behavior-preserving at UInt64.
                     var result: UInt64 = 0
-                    var shift: UInt64 = 0
-                    var overflow = false
+                    var shift: Int = 0
                     var done = false
-                    while !done {
-                        if consumed >= total {
-                            instructionError = .insufficientBytes(need: .one, have: .zero)
-                            break
+                    do {
+                        while !done {
+                            if consumed >= total {
+                                instructionError = .insufficientBytes(need: .one, have: .zero)
+                                break
+                            }
+                            let byte = view.consume()
+                            consumed += .one
+                            done = try Binary.LEB128.Decode.unsigned(byte: byte.underlying, into: &result, shift: &shift)
                         }
-                        let byte = view.consume()
-                        consumed += .one
-                        let byteValue = UInt64(byte & 0x7F)
-                        if shift >= 64 || (shift == 63 && byteValue > 1) {
-                            overflow = true
-                            break
-                        }
-                        result |= byteValue << shift
-                        if byte & 0x80 == 0 { done = true } else { shift += 7 }
+                        if done { pendingHandle = arena.allocate(Value.make(result)) }
+                    } catch {
+                        instructionError = .leb128Overflow
                     }
-                    if overflow { instructionError = .leb128Overflow } else if done { pendingHandle = arena.allocate(Value.make(result)) }
                 case .sleb128:
                     var result: Int64 = 0
-                    var shift: UInt64 = 0
-                    var byte: Byte = 0
-                    var overflow = false
+                    var shift: Int = 0
                     var done = false
-                    while !done {
-                        if consumed >= total {
-                            instructionError = .insufficientBytes(need: .one, have: .zero)
-                            break
+                    do {
+                        while !done {
+                            if consumed >= total {
+                                instructionError = .insufficientBytes(need: .one, have: .zero)
+                                break
+                            }
+                            let byte = view.consume()
+                            consumed += .one
+                            done = try Binary.LEB128.Decode.signed(byte: byte.underlying, into: &result, shift: &shift)
                         }
-                        byte = view.consume()
-                        consumed += .one
-                        if shift >= 64 {
-                            overflow = true
-                            break
-                        }
-                        result |= Int64(byte & 0x7F) << shift
-                        shift += 7
-                        if byte & 0x80 == 0 { done = true }
-                    }
-                    if overflow {
+                        if done { pendingHandle = arena.allocate(Value.make(result)) }
+                    } catch {
                         instructionError = .leb128Overflow
-                    } else if done {
-                        if shift < 64 && (byte & 0x40) != 0 { result |= -(1 << shift) }
-                        pendingHandle = arena.allocate(Value.make(result))
                     }
                 }
 
