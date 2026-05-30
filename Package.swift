@@ -41,10 +41,6 @@ let package = Package(
             targets: ["Binary Parse Primitives"]
         ),
         .library(
-            name: "Binary LEB128 Parser Primitives",
-            targets: ["Binary LEB128 Parser Primitives"]
-        ),
-        .library(
             name: "Binary Integer Primitives",
             targets: ["Binary Integer Primitives"]
         ),
@@ -129,14 +125,12 @@ let package = Package(
         ),
 
         // MARK: - LEB128
-
-        .target(
-            name: "Binary LEB128 Parser Primitives",
-            dependencies: [
-                "Binary Parser Primitives Core",
-                .product(name: "Binary LEB128 Primitives", package: "swift-binary-leb128-primitives"),
-            ]
-        ),
+        //
+        // The LEB128 parser bridge (Binary.LEB128.Unsigned/Signed: Parser.`Protocol`)
+        // was extracted to swift-binary-leb128-parser-primitives per [MOD-014]
+        // (integration package, recipient-then-provider [PKG-NAME-016]). The shared
+        // decode arithmetic lives in swift-binary-leb128-primitives' Binary.LEB128.Decode,
+        // which the Machine/Borrowed interpreters here delegate to directly.
 
         // MARK: - Coder
         //
@@ -152,7 +146,9 @@ let package = Package(
             name: "Binary Integer Primitives",
             dependencies: [
                 "Binary Parse Primitives",
-                "Binary LEB128 Parser Primitives",
+                // Direct dep on the LEB128 types (was transited through the now-extracted
+                // parser bridge); Integer re-exports the Binary.LEB128 namespace.
+                .product(name: "Binary LEB128 Primitives", package: "swift-binary-leb128-primitives"),
             ]
         ),
 
@@ -167,7 +163,6 @@ let package = Package(
                 "Binary Borrowed Primitives",
                 "Binary Parse Primitives",
                 "Binary Parseable Primitives",
-                "Binary LEB128 Parser Primitives",
                 "Binary Integer Primitives",
             ]
         ),
@@ -188,13 +183,6 @@ let package = Package(
         .testTarget(
             name: "Binary Input Primitives Tests",
             dependencies: ["Binary Parser Primitives Test Support"]
-        ),
-        .testTarget(
-            name: "Binary LEB128 Parser Primitives Tests",
-            dependencies: [
-                "Binary LEB128 Parser Primitives",
-                "Binary Parser Primitives Test Support",
-            ]
         ),
         .testTarget(
             name: "Binary Borrowed Primitives Tests",
