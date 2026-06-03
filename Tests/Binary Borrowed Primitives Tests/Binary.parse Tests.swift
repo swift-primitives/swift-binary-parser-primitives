@@ -114,7 +114,7 @@ extension Binary.ParseTest.Unit {
     }
 }
 
-// MARK: - Unit Tests — Binary.Borrowed.parse (borrowed)
+// MARK: - Unit Tests — borrowed byte-span parse (Binary.view / Swift.Span<Byte>)
 
 extension Binary.ParseTest.Unit {
 
@@ -131,7 +131,7 @@ extension Binary.ParseTest.Unit {
     }
 
     @Test
-    func `Binary.Borrowed.parsePrefix returns value and consumed count`() throws {
+    func `borrowed-span parsePrefix returns value and consumed count`() throws {
         let binary = Binary([0x34, 0x12, 0xAA, 0xBB] as [Byte])
         let result = try binary.view.parsePrefix(Binary.Machine.u16leParser())
         #expect(result.value == 0x1234)
@@ -139,14 +139,14 @@ extension Binary.ParseTest.Unit {
     }
 
     @Test
-    func `Binary.Borrowed.parseWhole succeeds at exact-length input`() throws {
+    func `borrowed-span parseWhole succeeds at exact-length input`() throws {
         let binary = Binary([0x12, 0x34, 0x56, 0x78] as [Byte])
         let value = try binary.view.parseWhole(Binary.Machine.u32beParser())
         #expect(value == 0x12345678)
     }
 
     @Test
-    func `Binary.Borrowed.parseWhole throws expectedEnd when bytes remain`() throws {
+    func `borrowed-span parseWhole throws expectedEnd when bytes remain`() throws {
         let binary = Binary([0x42, 0x99, 0xAA] as [Byte])
         #expect(throws: Binary.Machine.Fault.self) {
             try binary.view.parseWhole(Binary.Machine.u8Parser())
@@ -191,8 +191,9 @@ extension Binary.ParseTest.EdgeCase {
 
 // MARK: - Round-trip / Delegation Tests
 //
-// These test that `Binary.parse` delegates correctly to `Binary.Borrowed.parse`
-// via the `view` accessor (Wave 1c delegation chain).
+// These test that `Binary.parse` delegates correctly to the borrowed byte-span
+// `parse` (on `Span.Borrowed.`Protocol``) via the `view` accessor — `view` is
+// now `Swift.Span<Byte>` after the W3 prune (Wave 1c delegation chain).
 
 extension Binary.ParseTest.Roundtrip {
 
