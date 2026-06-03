@@ -2,6 +2,10 @@ import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
 import Index_Primitives
 import Testing
+// W3 PRUNE: the parse engine re-homed to `Span.Borrowed.`Protocol` where
+// Element == Byte`; calling `someByteSpan.parse(...)` needs the
+// `Swift.Span: Span.Borrowed.`Protocol`` conformance in scope.
+import Span_Protocol_Primitives
 
 @testable import Binary_Parser_Primitives
 
@@ -115,12 +119,13 @@ extension Binary.ParseTest.Unit {
 extension Binary.ParseTest.Unit {
 
     @Test
-    func `Binary.Borrowed.parse u8 returns first byte`() throws {
+    func `borrowed byte-span parse u8 returns first byte`() throws {
+        // W3 PRUNE: the borrowed view IS a Swift.Span<Byte>; parse attaches
+        // to it via the Span.Borrowed.`Protocol` byte-span seam.
         let bytes: [Byte] = [0x42, 0x99]
         let value = try bytes.withUnsafeBufferPointer { (buf: UnsafeBufferPointer<Byte>) throws(Binary.Machine.Fault) -> UInt8 in
-            let span = unsafe Span(_unsafeStart: buf.baseAddress ?? UnsafePointer<Byte>(bitPattern: 1)!, count: buf.count)
-            let view = Binary.Borrowed(span)
-            return try view.parse(Binary.Machine.u8Parser())
+            let span = unsafe Swift.Span(_unsafeStart: buf.baseAddress ?? UnsafePointer<Byte>(bitPattern: 1)!, count: buf.count)
+            return try span.parse(Binary.Machine.u8Parser())
         }
         #expect(value == 0x42)
     }

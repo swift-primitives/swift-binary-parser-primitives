@@ -51,13 +51,41 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
+        // W3 PRUNE: binary's `Binary.Borrowed` nominal is deleted and the
+        // parse engine re-homes to the `Span.Borrowed.`Protocol`` byte-span
+        // seam — path-dep binary + byte (changed) and span (the seam's home).
+        // The root byte path-dep overrides binary's transitive url→main byte
+        // (Finding 6) so Cursor<Byte> sees Byte.Borrowed == Swift.Span<Byte>.
+        .package(path: "../swift-binary-primitives"),
         .package(url: "https://github.com/swift-primitives/swift-binary-leb128-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-machine-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-vector-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-byte-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git", branch: "main"),
+        .package(path: "../swift-byte-primitives"),
+        // W3 PRUNE: byte-parser migrated (Span_Protocol_Primitives import for
+        // Cursor<Byte> ops) — path-dep the changed package.
+        .package(path: "../swift-byte-parser-primitives"),
+        .package(path: "../swift-span-primitives"),
+        // W3 PRUNE — transitive-collision overrides (Finding 7): binary-parser's
+        // closure (machine → graph → data-structure cluster) pulls these
+        // changed packages url→main, whose OLD source references memory
+        // protocols the W2 memory worktree deleted. Path-dep their
+        // canonical-basename worktrees so SwiftPM's root-local-override unifies
+        // every identity onto the W2/W3 source. Not direct deps of the changed
+        // target — purely identity-unification for a consistent closure.
+        .package(path: "../swift-memory-primitives"),
+        .package(path: "../swift-storage-primitives"),
+        .package(path: "../swift-storage-split-primitives"),
+        .package(path: "../swift-buffer-primitives"),
+        .package(path: "../swift-buffer-linear-primitives"),
+        .package(path: "../swift-buffer-slots-primitives"),
+        .package(path: "../swift-hash-table-primitives"),
+        .package(path: "../swift-memory-iterator-primitives"),
+        .package(path: "../swift-memory-cursor-primitives"),
+        .package(path: "../swift-array-primitives"),
+        .package(path: "../swift-set-ordered-primitives"),
+        .package(path: "../swift-heap-primitives"),
+        .package(path: "../swift-stack-primitives"),
     ],
     targets: [
         // MARK: - Core
@@ -101,6 +129,8 @@ let package = Package(
                 .product(name: "Vector Primitive", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
                 .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
+                // W3 PRUNE: the parse engine extends Span.Borrowed.`Protocol`.
+                .product(name: "Span Protocol Primitives", package: "swift-span-primitives"),
             ]
         ),
 

@@ -5,11 +5,14 @@ internal import Index_Primitives
 public import Binary_LEB128_Decode_Primitives  // public: referenced from @inlinable _parsePrefix [MOD-027]
 public import Vector_Primitive
 public import Machine_Primitives
-internal import Memory_Primitives
 import Standard_Library_Extensions
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 public import Cursor_Primitives
+// W3 PRUNE: the parse engine re-homes from the deleted `Binary.Borrowed`
+// nominal to `Span.Borrowed.`Protocol` where Element == Byte`. Public because
+// the protocol + its `span` member appear in the @inlinable parse signatures.
+public import Span_Protocol_Primitives
 
 //
 // ## Design Note
@@ -85,9 +88,18 @@ extension Binary {
     }
 }
 
-// MARK: - Binary.Borrowed parsing (borrowed view)
+// MARK: - Borrowed-byte-span parsing (W3 PRUNE)
+//
+// Re-homed from `extension Binary.Borrowed` (nominal deleted) to the
+// namespace-neutral byte-span seam `Span.Borrowed.`Protocol` where
+// Element == Byte`. These binary-domain parse operations now attach to ANY
+// borrowed byte span — including a bare `Swift.Span<Byte>` (the linchpin
+// conformer) — so consumers call `someByteSpan.parse(parser)` with no nominal
+// carrier. The restated `Self: ~Copyable & ~Escapable` is REQUIRED
+// (Findings 1/11): without it the extension's `Self` is implicitly
+// Escapable/Copyable and would not apply to a `~Escapable` span.
 
-extension Binary.Borrowed {
+extension Span.Borrowed.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     /// Executes a machine parser on this borrowed view of bytes.
     ///
     /// Equivalent to `parsePrefix(parser).value` — returns the parsed value
@@ -126,7 +138,10 @@ extension Binary.Borrowed {
         _ parser: Binary.Machine.Parser<Output>
     ) throws(Binary.Machine.Fault) -> Output {
         let (value, consumed) = try _parsePrefix(parser)
-        let remaining = count.subtract.saturating(consumed)
+        // W3 PRUNE: the deleted `Binary.Borrowed.count: Index<Byte>.Count`
+        // typed accessor is computed inline from the span's native count.
+        let total = Index<Byte>.Count(Cardinal(UInt(self.span.count)))
+        let remaining = total.subtract.saturating(consumed)
         guard remaining == .zero else {
             throw Binary.Machine.Fault.expectedEnd(remaining: remaining)
         }
@@ -134,9 +149,9 @@ extension Binary.Borrowed {
     }
 }
 
-// MARK: - Internal Interpreter (engine on Binary.Borrowed)
+// MARK: - Internal Interpreter (engine on the borrowed byte span)
 
-extension Binary.Borrowed {
+extension Span.Borrowed.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     /// Internal engine: runs the machine interpreter against the borrowed
     /// span and returns both the parsed value and the consumed-count.
     @inlinable
