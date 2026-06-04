@@ -65,7 +65,7 @@ let package = Package(
         // W3 PRUNE: byte-parser migrated (Span_Protocol_Primitives import for
         // Cursor<Byte> ops) — path-dep the changed package.
         .package(url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git", branch: "main"),
-        .package(path: "../swift-span-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-span-primitives.git", branch: "main"),
         // W3 PRUNE — transitive-collision overrides (Finding 7): binary-parser's
         // closure (machine → graph → data-structure cluster) pulls these
         // changed packages url→main, whose OLD source references memory
