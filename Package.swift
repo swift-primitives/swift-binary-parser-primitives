@@ -52,7 +52,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
         // W3 PRUNE: binary's `Binary.Borrowed` nominal is deleted and the
-        // parse engine re-homes to the `Span.Borrowed.`Protocol`` byte-span
+        // parse engine re-homes to the `Span.`Protocol`` byte-span
         // seam — path-dep binary + byte (changed) and span (the seam's home).
         // The root byte path-dep overrides binary's transitive url→main byte
         // (Finding 6) so Cursor<Byte> sees Byte.Borrowed == Swift.Span<Byte>.
@@ -130,7 +130,7 @@ let package = Package(
                 .product(name: "Vector Primitive", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
                 .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
-                // W3 PRUNE: the parse engine extends Span.Borrowed.`Protocol`.
+                // W3 PRUNE: the parse engine extends Span.`Protocol`.
                 .product(name: "Span Protocol Primitives", package: "swift-span-primitives"),
             ]
         ),
