@@ -77,6 +77,7 @@ let package = Package(
         .package(path: "../swift-storage-primitives"),
         .package(path: "../swift-storage-split-primitives"),
         .package(path: "../swift-buffer-primitives"),
+        .package(path: "../swift-buffer-ring-primitives"),
         .package(path: "../swift-buffer-linear-primitives"),
         .package(path: "../swift-buffer-slots-primitives"),
         .package(path: "../swift-hash-table-primitives"),
