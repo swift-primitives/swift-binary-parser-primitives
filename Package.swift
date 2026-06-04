@@ -56,15 +56,15 @@ let package = Package(
         // seam — path-dep binary + byte (changed) and span (the seam's home).
         // The root byte path-dep overrides binary's transitive url→main byte
         // (Finding 6) so Cursor<Byte> sees Byte.Borrowed == Swift.Span<Byte>.
-        .package(path: "../swift-binary-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-binary-leb128-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-machine-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-vector-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
-        .package(path: "../swift-byte-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-byte-primitives.git", branch: "main"),
         // W3 PRUNE: byte-parser migrated (Span_Protocol_Primitives import for
         // Cursor<Byte> ops) — path-dep the changed package.
-        .package(path: "../swift-byte-parser-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git", branch: "main"),
         .package(path: "../swift-span-primitives"),
         // W3 PRUNE — transitive-collision overrides (Finding 7): binary-parser's
         // closure (machine → graph → data-structure cluster) pulls these
@@ -73,20 +73,20 @@ let package = Package(
         // canonical-basename worktrees so SwiftPM's root-local-override unifies
         // every identity onto the W2/W3 source. Not direct deps of the changed
         // target — purely identity-unification for a consistent closure.
-        .package(path: "../swift-memory-primitives"),
-        .package(path: "../swift-storage-primitives"),
-        .package(path: "../swift-storage-split-primitives"),
-        .package(path: "../swift-buffer-primitives"),
-        .package(path: "../swift-buffer-ring-primitives"),
-        .package(path: "../swift-buffer-linear-primitives"),
-        .package(path: "../swift-buffer-slots-primitives"),
-        .package(path: "../swift-hash-table-primitives"),
-        .package(path: "../swift-memory-iterator-primitives"),
-        .package(path: "../swift-memory-cursor-primitives"),
-        .package(path: "../swift-array-primitives"),
-        .package(path: "../swift-set-ordered-primitives"),
-        .package(path: "../swift-heap-primitives"),
-        .package(path: "../swift-stack-primitives"),
+        .package(url: "https://github.com/swift-primitives/swift-memory-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-storage-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-storage-split-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-ring-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-buffer-slots-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-hash-table-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-memory-iterator-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-memory-cursor-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-array-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-set-ordered-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-heap-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-stack-primitives.git", branch: "main"),
     ],
     targets: [
         // MARK: - Core
