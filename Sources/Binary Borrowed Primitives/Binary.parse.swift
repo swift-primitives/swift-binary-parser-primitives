@@ -10,7 +10,7 @@ public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 public import Cursor_Primitives
 // W3 PRUNE: the parse engine re-homes from the deleted `Binary.Borrowed`
-// nominal to `Span.Borrowed.`Protocol` where Element == Byte`. Public because
+// nominal to `Span.`Protocol` where Element == Byte`. Public because
 // the protocol + its `span` member appear in the @inlinable parse signatures.
 public import Span_Protocol_Primitives
 
@@ -91,7 +91,7 @@ extension Binary {
 // MARK: - Borrowed-byte-span parsing (W3 PRUNE)
 //
 // Re-homed from `extension Binary.Borrowed` (nominal deleted) to the
-// namespace-neutral byte-span seam `Span.Borrowed.`Protocol` where
+// namespace-neutral byte-span seam `Span.`Protocol` where
 // Element == Byte`. These binary-domain parse operations now attach to ANY
 // borrowed byte span — including a bare `Swift.Span<Byte>` (the linchpin
 // conformer) — so consumers call `someByteSpan.parse(parser)` with no nominal
@@ -99,7 +99,7 @@ extension Binary {
 // (Findings 1/11): without it the extension's `Self` is implicitly
 // Escapable/Copyable and would not apply to a `~Escapable` span.
 
-extension Span.Borrowed.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
+extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     /// Executes a machine parser on this borrowed view of bytes.
     ///
     /// Equivalent to `parsePrefix(parser).value` — returns the parsed value
@@ -151,7 +151,7 @@ extension Span.Borrowed.`Protocol` where Self: ~Copyable & ~Escapable, Element =
 
 // MARK: - Internal Interpreter (engine on the borrowed byte span)
 
-extension Span.Borrowed.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
+extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     /// Internal engine: runs the machine interpreter against the borrowed
     /// span and returns both the parsed value and the consumed-count.
     @inlinable
