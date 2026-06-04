@@ -2,9 +2,9 @@ import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
 import Index_Primitives
 import Testing
-// W3 PRUNE: the parse engine re-homed to `Span.Borrowed.`Protocol` where
+// W3 PRUNE: the parse engine re-homed to `Span.`Protocol` where
 // Element == Byte`; calling `someByteSpan.parse(...)` needs the
-// `Swift.Span: Span.Borrowed.`Protocol`` conformance in scope.
+// `Swift.Span: Span.`Protocol`` conformance in scope.
 import Span_Protocol_Primitives
 
 @testable import Binary_Parser_Primitives
@@ -121,7 +121,7 @@ extension Binary.ParseTest.Unit {
     @Test
     func `borrowed byte-span parse u8 returns first byte`() throws {
         // W3 PRUNE: the borrowed view IS a Swift.Span<Byte>; parse attaches
-        // to it via the Span.Borrowed.`Protocol` byte-span seam.
+        // to it via the Span.`Protocol` byte-span seam.
         let bytes: [Byte] = [0x42, 0x99]
         let value = try bytes.withUnsafeBufferPointer { (buf: UnsafeBufferPointer<Byte>) throws(Binary.Machine.Fault) -> UInt8 in
             let span = unsafe Swift.Span(_unsafeStart: buf.baseAddress ?? UnsafePointer<Byte>(bitPattern: 1)!, count: buf.count)
@@ -192,7 +192,7 @@ extension Binary.ParseTest.EdgeCase {
 // MARK: - Round-trip / Delegation Tests
 //
 // These test that `Binary.parse` delegates correctly to the borrowed byte-span
-// `parse` (on `Span.Borrowed.`Protocol``) via the `view` accessor — `view` is
+// `parse` (on `Span.`Protocol``) via the `view` accessor — `view` is
 // now `Swift.Span<Byte>` after the W3 prune (Wave 1c delegation chain).
 
 extension Binary.ParseTest.Roundtrip {
