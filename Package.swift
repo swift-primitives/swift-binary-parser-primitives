@@ -80,6 +80,13 @@ let package = Package(
         .package(url: "https://github.com/swift-primitives/swift-buffer-ring-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-buffer-slots-primitives.git", branch: "main"),
+        // W3 Shared catch-up: Byte.Input's backing store is Shared<…> over
+        // Buffer.Linear; under MemberImportVisibility the parse engine's
+        // @inlinable bodies import these store/buffer conformance modules
+        // directly, so they are declared product deps per [MOD-038].
+        // (swift-buffer-linear-primitives above is now a direct dep too, not
+        // only an identity-unification override.)
+        .package(url: "https://github.com/swift-primitives/swift-shared-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-hash-table-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-memory-iterator-primitives.git", branch: "main"),
         .package(url: "https://github.com/swift-primitives/swift-memory-cursor-primitives.git", branch: "main"),
@@ -120,6 +127,9 @@ let package = Package(
                 .product(name: "Vector Primitives", package: "swift-vector-primitives"),
                 .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
                 .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
+                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
+                .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
+                .product(name: "Shared Primitive", package: "swift-shared-primitives"),
             ]
         ),
         .target(
@@ -141,6 +151,9 @@ let package = Package(
             name: "Binary Parse Primitives",
             dependencies: [
                 "Binary Input Primitives",
+                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
+                .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
+                .product(name: "Shared Primitive", package: "swift-shared-primitives"),
             ]
         ),
 
