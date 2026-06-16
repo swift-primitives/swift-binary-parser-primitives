@@ -14,7 +14,10 @@
 // Consumers conforming to the canonical `Parseable` (from
 // `swift-parser-primitives`) declare `static var parser: Binary.Parser<Self>`.
 
+public import Buffer_Linear_Primitive
+public import Buffer_Linear_Primitives
 public import Byte_Parser_Primitives
+public import Shared_Primitive
 
 extension Binary {
     /// A witness for binary parsing as a closure-based plain witness.
