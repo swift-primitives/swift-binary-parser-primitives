@@ -2,79 +2,89 @@ import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
 import Index_Primitives
 import Testing
-// W3 PRUNE: the parse engine re-homed to `Span.`Protocol` where
-// Element == Byte`; calling `someByteSpan.parse(...)` needs the
-// `Swift.Span: Span.`Protocol`` conformance in scope.
+// The parse engine is re-homed to `Span.`Protocol` where Element == Byte`;
+// calling `someByteSpan.parse(...)` needs the `Swift.Span: Span.`Protocol``
+// conformance in scope. A `Swift.Span<Byte>` is obtained from `[Byte].span`.
 import Span_Protocol_Primitives
 
 @testable import Binary_Parser_Primitives
 
-// MARK: - Binary.parse Tests (owned + borrowed instance-method API)
+// MARK: - Binary parse Tests (byte-span instance-method API)
+//
+// The owned `Binary` struct was dissolved (binary-primitives is now a
+// namespace); the binary-domain parse engine lives on
+// `Span.`Protocol` where Element == Byte`. These tests drive it through a
+// `Swift.Span<Byte>` obtained from `[Byte].span`.
 
 extension Binary {
     @Suite
     struct ParseTest {
         @Suite struct Unit {}
         @Suite struct EdgeCase {}
-        @Suite struct Roundtrip {}
     }
 }
 
-// MARK: - Unit Tests — Binary.parse (owned)
+// MARK: - Unit Tests — byte-span parse
 
 extension Binary.ParseTest.Unit {
 
     // MARK: parse
 
     @Test
-    func `Binary.parse u8 returns first byte`() throws {
-        let binary = Binary([0x42, 0x99] as [Byte])
-        let value = try binary.parse(Binary.Machine.u8Parser())
+    func `byte-span parse u8 returns first byte`() throws {
+        let value = try ([0x42, 0x99] as [Byte]).span.parse(Binary.Machine.u8Parser())
         #expect(value == 0x42)
     }
 
     @Test
-    func `Binary.parse u16le decodes little-endian`() throws {
-        let binary = Binary([0x34, 0x12] as [Byte])
-        let value = try binary.parse(Binary.Machine.u16leParser())
+    func `byte-span parse u16le decodes little-endian`() throws {
+        let value = try ([0x34, 0x12] as [Byte]).span.parse(Binary.Machine.u16leParser())
         #expect(value == 0x1234)
     }
 
     @Test
-    func `Binary.parse u16be decodes big-endian`() throws {
-        let binary = Binary([0x12, 0x34] as [Byte])
-        let value = try binary.parse(Binary.Machine.u16beParser())
+    func `byte-span parse u16be decodes big-endian`() throws {
+        let value = try ([0x12, 0x34] as [Byte]).span.parse(Binary.Machine.u16beParser())
         #expect(value == 0x1234)
     }
 
     @Test
-    func `Binary.parse u32le decodes little-endian`() throws {
-        let binary = Binary([0x78, 0x56, 0x34, 0x12] as [Byte])
-        let value = try binary.parse(Binary.Machine.u32leParser())
+    func `byte-span parse u32le decodes little-endian`() throws {
+        let value = try ([0x78, 0x56, 0x34, 0x12] as [Byte]).span.parse(Binary.Machine.u32leParser())
         #expect(value == 0x12345678)
     }
 
     @Test
-    func `Binary.parse u64be decodes big-endian`() throws {
-        let binary = Binary([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF] as [Byte])
-        let value = try binary.parse(Binary.Machine.u64beParser())
+    func `byte-span parse u32be decodes big-endian`() throws {
+        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parse(Binary.Machine.u32beParser())
+        #expect(value == 0x12345678)
+    }
+
+    @Test
+    func `byte-span parse u64be decodes big-endian`() throws {
+        let value = try ([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF] as [Byte]).span.parse(Binary.Machine.u64beParser())
         #expect(value == 0x0123456789ABCDEF)
     }
 
     // MARK: parsePrefix
 
     @Test
-    func `Binary.parsePrefix u8 returns value and consumed count 1`() throws {
-        let binary = Binary([0x42, 0x99] as [Byte])
-        let result = try binary.parsePrefix(Binary.Machine.u8Parser())
+    func `byte-span parsePrefix u8 returns value and consumed count 1`() throws {
+        let result = try ([0x42, 0x99] as [Byte]).span.parsePrefix(Binary.Machine.u8Parser())
         #expect(result.value == 0x42)
         #expect(result.count == Index<Byte>.Count(Cardinal(1)))
     }
 
     @Test
-    func `Binary.parsePrefix u32le returns value and consumed count 4`() throws {
-        let binary = Binary([0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB] as [Byte])
-        let result = try binary.parsePrefix(Binary.Machine.u32leParser())
+    func `byte-span parsePrefix u16le returns value and consumed count 2`() throws {
+        let result = try ([0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(Binary.Machine.u16leParser())
+        #expect(result.value == 0x1234)
+        #expect(result.count == Index<Byte>.Count(Cardinal(2)))
+    }
+
+    @Test
+    func `byte-span parsePrefix u32le returns value and consumed count 4`() throws {
+        let result = try ([0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(Binary.Machine.u32leParser())
         #expect(result.value == 0x12345678)
         #expect(result.count == Index<Byte>.Count(Cardinal(4)))
     }
@@ -82,9 +92,8 @@ extension Binary.ParseTest.Unit {
     // MARK: parsePrefixUnchecked
 
     @Test
-    func `Binary.parsePrefixUnchecked u8 returns value and consumed count 1`() throws {
-        let binary = Binary([0x42, 0x99] as [Byte])
-        let result = try binary.parsePrefixUnchecked(Binary.Machine.u8Parser())
+    func `byte-span parsePrefixUnchecked u8 returns value and consumed count 1`() throws {
+        let result = try ([0x42, 0x99] as [Byte]).span.parsePrefixUnchecked(Binary.Machine.u8Parser())
         #expect(result.value == 0x42)
         #expect(result.count == Index<Byte>.Count(Cardinal(1)))
     }
@@ -92,64 +101,33 @@ extension Binary.ParseTest.Unit {
     // MARK: parseWhole
 
     @Test
-    func `Binary.parseWhole u8 succeeds when input is exactly 1 byte`() throws {
-        let binary = Binary([0x42] as [Byte])
-        let value = try binary.parseWhole(Binary.Machine.u8Parser())
+    func `byte-span parseWhole u8 succeeds when input is exactly 1 byte`() throws {
+        let value = try ([0x42] as [Byte]).span.parseWhole(Binary.Machine.u8Parser())
         #expect(value == 0x42)
     }
 
     @Test
-    func `Binary.parseWhole u16le succeeds when input is exactly 2 bytes`() throws {
-        let binary = Binary([0x34, 0x12] as [Byte])
-        let value = try binary.parseWhole(Binary.Machine.u16leParser())
+    func `byte-span parseWhole u16le succeeds when input is exactly 2 bytes`() throws {
+        let value = try ([0x34, 0x12] as [Byte]).span.parseWhole(Binary.Machine.u16leParser())
         #expect(value == 0x1234)
     }
 
     @Test
-    func `Binary.parseWhole throws expectedEnd when bytes remain`() throws {
-        let binary = Binary([0x42, 0x99] as [Byte])
-        #expect(throws: Binary.Machine.Fault.self) {
-            try binary.parseWhole(Binary.Machine.u8Parser())
-        }
-    }
-}
-
-// MARK: - Unit Tests — borrowed byte-span parse (Binary.view / Swift.Span<Byte>)
-
-extension Binary.ParseTest.Unit {
-
-    @Test
-    func `borrowed byte-span parse u8 returns first byte`() throws {
-        // W3 PRUNE: the borrowed view IS a Swift.Span<Byte>; parse attaches
-        // to it via the Span.`Protocol` byte-span seam.
-        let bytes: [Byte] = [0x42, 0x99]
-        let value = try bytes.withUnsafeBufferPointer { (buf: UnsafeBufferPointer<Byte>) throws(Binary.Machine.Fault) -> UInt8 in
-            let span = unsafe Swift.Span(_unsafeStart: buf.baseAddress ?? UnsafePointer<Byte>(bitPattern: 1)!, count: buf.count)
-            return try span.parse(Binary.Machine.u8Parser())
-        }
-        #expect(value == 0x42)
-    }
-
-    @Test
-    func `borrowed-span parsePrefix returns value and consumed count`() throws {
-        let binary = Binary([0x34, 0x12, 0xAA, 0xBB] as [Byte])
-        let result = try binary.view.parsePrefix(Binary.Machine.u16leParser())
-        #expect(result.value == 0x1234)
-        #expect(result.count == Index<Byte>.Count(Cardinal(2)))
-    }
-
-    @Test
-    func `borrowed-span parseWhole succeeds at exact-length input`() throws {
-        let binary = Binary([0x12, 0x34, 0x56, 0x78] as [Byte])
-        let value = try binary.view.parseWhole(Binary.Machine.u32beParser())
+    func `byte-span parseWhole u32be succeeds at exact-length input`() throws {
+        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parseWhole(Binary.Machine.u32beParser())
         #expect(value == 0x12345678)
     }
 
     @Test
-    func `borrowed-span parseWhole throws expectedEnd when bytes remain`() throws {
-        let binary = Binary([0x42, 0x99, 0xAA] as [Byte])
-        #expect(throws: Binary.Machine.Fault.self) {
-            try binary.view.parseWhole(Binary.Machine.u8Parser())
+    func `byte-span parseWhole throws expectedEnd when bytes remain`() {
+        // A lifetime-dependent span cannot escape an #expect(throws:) autoclosure;
+        // assert the fault via do/catch in linear scope instead.
+        let bytes: [Byte] = [0x42, 0x99]
+        do {
+            _ = try bytes.span.parseWhole(Binary.Machine.u8Parser())
+            Issue.record("expected Binary.Machine.Fault.expectedEnd")
+        } catch {
+            // expected: a byte remains after the 1-byte parse
         }
     }
 }
@@ -159,66 +137,39 @@ extension Binary.ParseTest.Unit {
 extension Binary.ParseTest.EdgeCase {
 
     @Test
-    func `Binary.parse throws insufficientBytes when input shorter than needed`() throws {
-        let binary = Binary([0x42] as [Byte])
-        #expect(throws: Binary.Machine.Fault.self) {
-            try binary.parse(Binary.Machine.u32leParser())
+    func `byte-span parse throws insufficientBytes when input shorter than needed`() {
+        let bytes: [Byte] = [0x42]
+        do {
+            _ = try bytes.span.parse(Binary.Machine.u32leParser())
+            Issue.record("expected Binary.Machine.Fault")
+        } catch {
+            // expected: 1 byte cannot satisfy a u32 parse
         }
     }
 
     @Test
-    func `Binary.init from empty byte array is valid`() {
-        let binary = Binary([] as [Byte])
-        #expect(binary.count == Index<Byte>.Count(Cardinal(0)))
-    }
-
-    @Test
-    func `Binary.parse on empty input throws insufficientBytes`() {
-        let binary = Binary([] as [Byte])
-        #expect(throws: Binary.Machine.Fault.self) {
-            try binary.parse(Binary.Machine.u8Parser())
+    func `byte-span parse on empty input throws insufficientBytes`() {
+        let bytes: [Byte] = []
+        do {
+            _ = try bytes.span.parse(Binary.Machine.u8Parser())
+            Issue.record("expected Binary.Machine.Fault")
+        } catch {
+            // expected: empty input cannot satisfy a u8 parse
         }
     }
 
     @Test
-    func `Binary.init from single-byte array preserves the byte`() throws {
-        let binary = Binary([0xAB] as [Byte])
-        #expect(binary.count == Index<Byte>.Count(Cardinal(1)))
-        let value = try binary.parse(Binary.Machine.u8Parser())
+    func `byte-span parse of single-byte input returns the byte`() throws {
+        let value = try ([0xAB] as [Byte]).span.parse(Binary.Machine.u8Parser())
         #expect(value == 0xAB)
     }
 }
 
-// MARK: - Round-trip / Delegation Tests
-//
-// These test that `Binary.parse` delegates correctly to the borrowed byte-span
-// `parse` (on `Span.`Protocol``) via the `view` accessor — `view` is
-// now `Swift.Span<Byte>` after the W3 prune (Wave 1c delegation chain).
-
-extension Binary.ParseTest.Roundtrip {
-
-    @Test
-    func `Binary.parse and Binary.view.parse produce same result`() throws {
-        let binary = Binary([0x12, 0x34, 0x56, 0x78] as [Byte])
-        let viaOwned = try binary.parse(Binary.Machine.u32beParser())
-        let viaBorrowed = try binary.view.parse(Binary.Machine.u32beParser())
-        #expect(viaOwned == viaBorrowed)
-        #expect(viaOwned == 0x12345678)
-    }
-
-    @Test
-    func `Binary.parsePrefix and Binary.view.parsePrefix produce same value and count`() throws {
-        let binary = Binary([0x42, 0x99, 0xAA] as [Byte])
-        let viaOwned = try binary.parsePrefix(Binary.Machine.u8Parser())
-        let viaBorrowed = try binary.view.parsePrefix(Binary.Machine.u8Parser())
-        #expect(viaOwned.value == viaBorrowed.value)
-        #expect(viaOwned.count == viaBorrowed.count)
-        #expect(viaOwned.value == 0x42)
-        #expect(viaOwned.count == Index<Byte>.Count(Cardinal(1)))
-    }
-}
-
 // MARK: - Binary.withInput Tests (owned-input convenience)
+//
+// `Binary.withInput` is a static convenience on the `Binary` namespace (it
+// constructs a `Byte.Input` over the bytes and runs the closure); it survives
+// the owned-struct dissolution unchanged.
 
 extension Binary.ParseTest.Unit {
 
