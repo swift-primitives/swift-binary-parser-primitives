@@ -44,50 +44,6 @@ let _four: Index<Byte>.Count = Index<Byte>.Count(Cardinal(4))
 @usableFromInline
 let _eight: Index<Byte>.Count = Index<Byte>.Count(Cardinal(8))
 
-// MARK: - Binary parsing (owned)
-
-extension Binary {
-    /// Executes a machine parser on this binary buffer's bytes.
-    ///
-    /// Equivalent to `parsePrefix(parser).value` — returns the parsed value
-    /// and discards the consumed-count.
-    @inlinable
-    public borrowing func parse<Output>(
-        _ parser: Binary.Machine.Parser<Output>
-    ) throws(Binary.Machine.Fault) -> Output {
-        try view.parse(parser)
-    }
-
-    /// Executes a machine parser on this binary buffer's bytes, returning
-    /// the parsed value and the number of bytes consumed.
-    @inlinable
-    public borrowing func parsePrefix<Output>(
-        _ parser: Binary.Machine.Parser<Output>
-    ) throws(Binary.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
-        try view.parsePrefix(parser)
-    }
-
-    /// Executes a machine parser on this binary buffer's bytes, returning
-    /// the parsed value and the number of bytes consumed (unconstrained).
-    @inlinable
-    public borrowing func parsePrefixUnchecked<Output>(
-        _ parser: Binary.Machine.Parser<Output>
-    ) throws(Binary.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
-        try view.parsePrefixUnchecked(parser)
-    }
-
-    /// Executes a machine parser on this binary buffer's bytes, requiring
-    /// all input to be consumed.
-    ///
-    /// If any bytes remain after parsing, throws `.expectedEnd`.
-    @inlinable
-    public borrowing func parseWhole<Output>(
-        _ parser: Binary.Machine.Parser<Output>
-    ) throws(Binary.Machine.Fault) -> Output {
-        try view.parseWhole(parser)
-    }
-}
-
 // MARK: - Borrowed-byte-span parsing (W3 PRUNE)
 //
 // Re-homed from `extension Binary.Borrowed` (nominal deleted) to the
