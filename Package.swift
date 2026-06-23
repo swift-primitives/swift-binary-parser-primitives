@@ -13,10 +13,6 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Binary Parser Primitives Core",
-            targets: ["Binary Parser Primitives Core"]
-        ),
-        .library(
             name: "Binary Parser Primitives",
             targets: ["Binary Parser Primitives"]
         ),
@@ -96,16 +92,6 @@ let package = Package(
         .package(url: "https://github.com/swift-primitives/swift-stack-primitives.git", branch: "main"),
     ],
     targets: [
-        // MARK: - Core
-
-        .target(
-            name: "Binary Parser Primitives Core",
-            dependencies: [
-                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
-                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
-            ]
-        ),
-
         // MARK: - Input
 
         .target(
