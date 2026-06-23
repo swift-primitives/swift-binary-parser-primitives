@@ -111,7 +111,10 @@ let package = Package(
         .target(
             name: "Binary Input Primitives",
             dependencies: [
-                "Binary Parser Primitives Core",
+                // Core dissolved (L1 core-dissolution sweep 2026-06-23): Input
+                // imports the two funneled externals directly per [MOD-038].
+                .product(name: "Binary Primitives", package: "swift-binary-primitives"),
+                .product(name: "Parser Primitives", package: "swift-parser-primitives"),
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
             ]
         ),
@@ -201,7 +204,9 @@ let package = Package(
         .target(
             name: "Binary Parser Primitives",
             dependencies: [
-                "Binary Parser Primitives Core",
+                // Core dropped (L1 core-dissolution sweep 2026-06-23): umbrella
+                // exports.swift never imported Core; the transitional shim
+                // product survives standalone until the cleanup wave.
                 "Binary Input Primitives",
                 "Binary Machine Primitives",
                 "Binary Borrowed Primitives",
