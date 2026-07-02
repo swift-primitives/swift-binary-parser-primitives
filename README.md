@@ -90,7 +90,7 @@ Import the narrowest product you need: `Binary Parseable Primitives` for the pro
 ## Community
 
 <!-- BEGIN: discussion -->
-*Discussion thread will be created at first public flip.*
+*Discussion thread will be created at first public release.*
 <!-- END: discussion -->
 
 ## License
