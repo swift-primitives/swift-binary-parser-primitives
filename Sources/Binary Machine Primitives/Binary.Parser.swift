@@ -17,7 +17,7 @@
 public import Buffer_Linear_Primitive
 public import Buffer_Linear_Primitives
 public import Byte_Parser_Primitives
-public import Shared_Primitive
+public import Ownership_Shared_Primitive
 
 extension Binary {
     /// A witness for binary parsing as a closure-based plain witness.

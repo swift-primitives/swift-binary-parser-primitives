@@ -1,7 +1,7 @@
 public import Buffer_Linear_Primitive
 public import Buffer_Linear_Primitives
 public import Parser_Primitives
-public import Shared_Primitive
+public import Ownership_Shared_Primitive
 
 extension Binary.Parse.Access {
     /// Parse entire input. Fails if any bytes remain.

@@ -69,7 +69,7 @@ let package = Package(
         // directly, so they are declared product deps per [MOD-038].
         // (swift-buffer-linear-primitives above is now a direct dep too, not
         // only an identity-unification override.)
-        .package(url: "https://github.com/swift-primitives/swift-shared-primitives.git", branch: "main"),
+        .package(url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git", branch: "main"),
     ],
     targets: [
         // MARK: - Input
@@ -98,7 +98,7 @@ let package = Package(
                 .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
                 .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
                 .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
-                .product(name: "Shared Primitive", package: "swift-shared-primitives"),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives"),
             ]
         ),
         .target(
@@ -122,7 +122,7 @@ let package = Package(
                 "Binary Input Primitives",
                 .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
                 .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
-                .product(name: "Shared Primitive", package: "swift-shared-primitives"),
+                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives"),
             ]
         ),
 
