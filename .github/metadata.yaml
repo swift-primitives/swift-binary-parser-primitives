@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "Binary parser types for Swift."
+description: "Byte-stream deserialization via a defunctionalized parser engine that keeps borrowed byte cursors out of closures, for Swift."
 topics:
   - primitives
   - binary
