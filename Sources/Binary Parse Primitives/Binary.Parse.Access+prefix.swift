@@ -1,11 +1,11 @@
-internal import Index_Primitives
 public import Buffer_Linear_Primitive
 public import Buffer_Linear_Primitives
-public import Parser_Primitives
+internal import Index_Primitives
 public import Ownership_Shared_Primitive
+public import Parser_Primitives
 
 extension Binary.Parse.Access {
-    /// Parse prefix of input. Returns value and count of bytes consumed.
+    /// Parses a prefix of the input, returning the value and the count of bytes consumed.
     ///
     /// - Parameter bytes: The bytes to parse.
     /// - Returns: The parsed value and count of bytes consumed.

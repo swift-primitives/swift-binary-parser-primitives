@@ -12,8 +12,10 @@ extension Binary.Machine {
     /// This enables the interpreter to be inlined into `withBorrowed` without
     /// generic error type parameters that would prevent proper lifetime analysis.
     public struct Parser<Output> {
+        /// The compiled instruction program this parser executes.
         public let program: Program
 
+        /// The identifier of the program's entry node.
         public let root: Node.ID
 
         @usableFromInline

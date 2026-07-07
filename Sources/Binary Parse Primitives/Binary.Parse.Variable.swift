@@ -56,10 +56,14 @@ extension Binary.Parse {
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Variable: Parser.`Protocol` {
+    /// The input source consumed by this parser.
     public typealias Input = ArraySlice<Byte>
+    /// The value produced when parsing succeeds.
     public typealias Output = T
+    /// The error thrown when parsing fails.
     public typealias Failure = Parser.EndOfInput.Error
 
+    /// Parses a variable-width integer from `input`, consuming the bytes it reads.
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> T {
         guard input.count >= count else {

@@ -1,11 +1,11 @@
 import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
 import Index_Primitives
-import Testing
 // The parse engine is re-homed to `Span.`Protocol` where Element == Byte`;
 // calling `someByteSpan.parse(...)` needs the `Swift.Span: Span.`Protocol``
 // conformance in scope. A `Swift.Span<Byte>` is obtained from `[Byte].span`.
 import Span_Protocol_Primitives
+import Testing
 
 @testable import Binary_Parser_Primitives
 
@@ -51,19 +51,19 @@ extension Binary.ParseTest.Unit {
     @Test
     func `byte-span parse u32le decodes little-endian`() throws {
         let value = try ([0x78, 0x56, 0x34, 0x12] as [Byte]).span.parse(Binary.Machine.u32leParser())
-        #expect(value == 0x12345678)
+        #expect(value == 0x1234_5678)
     }
 
     @Test
     func `byte-span parse u32be decodes big-endian`() throws {
         let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parse(Binary.Machine.u32beParser())
-        #expect(value == 0x12345678)
+        #expect(value == 0x1234_5678)
     }
 
     @Test
     func `byte-span parse u64be decodes big-endian`() throws {
         let value = try ([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF] as [Byte]).span.parse(Binary.Machine.u64beParser())
-        #expect(value == 0x0123456789ABCDEF)
+        #expect(value == 0x0123_4567_89AB_CDEF)
     }
 
     // MARK: parsePrefix
@@ -72,7 +72,7 @@ extension Binary.ParseTest.Unit {
     func `byte-span parsePrefix u8 returns value and consumed count 1`() throws {
         let result = try ([0x42, 0x99] as [Byte]).span.parsePrefix(Binary.Machine.u8Parser())
         #expect(result.value == 0x42)
-        #expect(result.count == Index<Byte>.Count(Cardinal(1)))
+        #expect(result.count == Index<Byte>.Count(Cardinal.one))
     }
 
     @Test
@@ -85,7 +85,7 @@ extension Binary.ParseTest.Unit {
     @Test
     func `byte-span parsePrefix u32le returns value and consumed count 4`() throws {
         let result = try ([0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(Binary.Machine.u32leParser())
-        #expect(result.value == 0x12345678)
+        #expect(result.value == 0x1234_5678)
         #expect(result.count == Index<Byte>.Count(Cardinal(4)))
     }
 
@@ -95,7 +95,7 @@ extension Binary.ParseTest.Unit {
     func `byte-span parsePrefixUnchecked u8 returns value and consumed count 1`() throws {
         let result = try ([0x42, 0x99] as [Byte]).span.parsePrefixUnchecked(Binary.Machine.u8Parser())
         #expect(result.value == 0x42)
-        #expect(result.count == Index<Byte>.Count(Cardinal(1)))
+        #expect(result.count == Index<Byte>.Count(Cardinal.one))
     }
 
     // MARK: parseWhole
@@ -115,7 +115,7 @@ extension Binary.ParseTest.Unit {
     @Test
     func `byte-span parseWhole u32be succeeds at exact-length input`() throws {
         let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parseWhole(Binary.Machine.u32beParser())
-        #expect(value == 0x12345678)
+        #expect(value == 0x1234_5678)
     }
 
     @Test
@@ -176,7 +176,7 @@ extension Binary.ParseTest.Unit {
     @Test
     func `Binary.withInput from byte array constructs Byte.Input`() {
         var observedCount: Index<Byte>.Count = .zero
-        Binary.withInput([0x01, 0x02, 0x03] as [Byte]) { (input: inout Byte.Input) -> Void in
+        Binary.withInput([0x01, 0x02, 0x03] as [Byte]) { (input: inout Byte.Input) in
             observedCount = input.count
         }
         #expect(observedCount == Index<Byte>.Count(Cardinal(3)))
@@ -186,7 +186,7 @@ extension Binary.ParseTest.Unit {
     func `Binary.withInput from ArraySlice constructs Byte.Input`() {
         let bytes: [Byte] = [0x01, 0x02, 0x03, 0x04, 0x05]
         var observedCount: Index<Byte>.Count = .zero
-        Binary.withInput(bytes[1..<4]) { (input: inout Byte.Input) -> Void in
+        Binary.withInput(bytes[1..<4]) { (input: inout Byte.Input) in
             observedCount = input.count
         }
         #expect(observedCount == Index<Byte>.Count(Cardinal(3)))
@@ -195,7 +195,7 @@ extension Binary.ParseTest.Unit {
     @Test
     func `Binary.withInput from string produces input with correct UTF-8 count`() {
         var observedCount: Index<Byte>.Count = .zero
-        Binary.withInput("ABC") { (input: inout Byte.Input) -> Void in
+        Binary.withInput("ABC") { (input: inout Byte.Input) in
             observedCount = input.count
         }
         #expect(observedCount == Index<Byte>.Count(Cardinal(3)))

@@ -9,5 +9,6 @@
 // owns every member, so the namespace itself belongs here.
 
 extension Binary {
+    /// Namespace for binary parsing entry points and typed parser adapters.
     public enum Parse {}
 }

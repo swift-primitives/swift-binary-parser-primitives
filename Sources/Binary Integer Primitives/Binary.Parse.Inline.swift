@@ -33,10 +33,14 @@ extension Binary.Parse {
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Inline: Parser.`Protocol` {
+    /// The input source consumed by this parser.
     public typealias Input = ArraySlice<Byte>
+    /// The value produced when parsing succeeds.
     public typealias Output = InlineArray<Count, Element>
+    /// The error thrown when parsing fails.
     public typealias Failure = Parser.EndOfInput.Error
 
+    /// Parses the fixed-count inline array from `input`, consuming the bytes it reads.
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> Output {
         try Output(parsing: &input, endianness: endianness)

@@ -16,6 +16,7 @@
 public import Byte_Parser_Primitives
 
 extension Parseable where Self: RawRepresentable, Self.RawValue: FixedWidthInteger {
+    /// A parser that decodes the raw value's bytes and wraps them in this type.
     public static var parser: Binary.Parser<Self> {
         Binary.Parser { input throws(Binary.Machine.Fault) in
             let size = MemoryLayout<RawValue>.size

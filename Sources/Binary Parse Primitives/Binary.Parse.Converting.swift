@@ -56,10 +56,14 @@ extension Binary.Parse.Converting.Error: Sendable where Source: Sendable {}
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Converting: Parser.`Protocol` {
+    /// The input source consumed by this parser.
     public typealias Input = ArraySlice<Byte>
+    /// The value produced when parsing succeeds.
     public typealias Output = Target
+    /// The error thrown when parsing fails.
     public typealias Failure = Binary.Parse.Converting<Source, Target>.Error
 
+    /// Parses a `Source` word from `input` and converts it to `Target`, consuming the bytes it reads.
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> Target {
         let sourceSize = MemoryLayout<Source>.size
@@ -75,6 +79,7 @@ extension Binary.Parse.Converting: Parser.`Protocol` {
             for i in 0..<sourceSize {
                 sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
+
         case .big:
             for i in 0..<sourceSize {
                 sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << ((sourceSize - 1 - i) * 8)
@@ -94,10 +99,12 @@ extension Binary.Parse.Converting: Parser.`Protocol` {
 // MARK: - Error Descriptions
 
 extension Binary.Parse.Converting.Error: CustomStringConvertible {
+    /// A human-readable description of this error.
     public var description: String {
         switch self {
         case .endOfInput(let expected):
             return "End of input: expected \(expected)"
+
         case .overflow(let source):
             return "Value \(source) cannot be represented as \(Target.self)"
         }

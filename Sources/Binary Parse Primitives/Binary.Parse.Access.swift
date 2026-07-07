@@ -16,6 +16,7 @@ extension Binary.Parse {
         @usableFromInline
         internal let parser: P
 
+        /// Creates an access facade over `parser`.
         @inlinable
         public init(_ parser: P) {
             self.parser = parser

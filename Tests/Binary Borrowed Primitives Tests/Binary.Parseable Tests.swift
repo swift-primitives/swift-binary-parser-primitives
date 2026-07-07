@@ -4,7 +4,6 @@
 // Tests demonstrating the Binary.Parseable protocol for byte deserialization
 // and round-trip identity with Binary.Serializable.
 
-import Binary_Parseable_Primitives
 import Binary_Primitives_Test_Support
 import Testing
 
@@ -49,7 +48,7 @@ struct BinaryParseableTests {
         let original: UInt32 = 0x1234_5678
         let leBytes = original.bytes(endianness: .little)
         let asBE = try #require(UInt32(bytes: leBytes, endianness: .big))
-        #expect(asBE == 0x7856_3412) // byte-reversed interpretation
+        #expect(asBE == 0x7856_3412)  // byte-reversed interpretation
         #expect(asBE != original)
     }
 
@@ -123,7 +122,7 @@ struct BinaryParseableTests {
     @Test("Array<Byte>.parse consumes all remaining bytes")
     func arrayBytesParse() throws {
         var source: [Byte] = [0x01, 0x02, 0x03, 0x04]
-        let decoded = try Swift.Array<Byte>.parse(from: &source)
+        let decoded = try [Byte].parse(from: &source)
         #expect(decoded == [0x01, 0x02, 0x03, 0x04])
         #expect(source.isEmpty)
     }
@@ -133,7 +132,7 @@ struct BinaryParseableTests {
         var source: [Byte] = [0xAA, 0xBB, 0xCC]
         let decoded = try ContiguousArray<Byte>.parse(from: &source)
         let expected: [Byte] = [0xAA, 0xBB, 0xCC]
-        #expect(Swift.Array<Byte>(decoded) == expected)
+        #expect([Byte](decoded) == expected)
         #expect(source.isEmpty)
     }
 
@@ -142,7 +141,7 @@ struct BinaryParseableTests {
         var source: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
         let decoded = try ArraySlice<Byte>.parse(from: &source)
         let expected: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
-        #expect(Swift.Array<Byte>(decoded) == expected)
+        #expect([Byte](decoded) == expected)
         #expect(source.isEmpty)
     }
 }

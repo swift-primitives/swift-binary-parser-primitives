@@ -5,6 +5,9 @@ public import Byte_Primitives
 import Machine_Primitives
 
 extension Binary.Machine {
+    // SAFETY: Safe by construction — backing storage uses only stdlib
+    // SAFETY: safe types; `@safe` documents that this type performs no
+    // SAFETY: unsafe operations.
     /// A byte parsing instruction that operates on `Input.View`.
     ///
     /// ## Closed World Design
@@ -17,9 +20,6 @@ extension Binary.Machine {
     ///
     /// - **Predicates on `Byte`**: Predicates receive a single byte, not the view
     /// - **Transforms on outputs**: Via `map`/`tryMap` on `Value`
-    // SAFETY: Safe by construction — backing storage uses only stdlib
-    // SAFETY: safe types; `@safe` documents that this type performs no
-    // SAFETY: unsafe operations.
     @safe
     public enum Instruction {
         // MARK: - Cursor Operations

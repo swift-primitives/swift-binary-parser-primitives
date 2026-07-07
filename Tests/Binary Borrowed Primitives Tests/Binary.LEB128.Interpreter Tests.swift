@@ -14,17 +14,17 @@
 
 import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
-import Testing
 // The parse engine attaches to `Span.\`Protocol\` where Element == Byte`; calling
 // `someByteSpan.parse(...)` needs the `Swift.Span: Span.\`Protocol\`` conformance.
 import Span_Protocol_Primitives
+import Testing
 
 @testable import Binary_Parser_Primitives
 
 @Suite("Binary.LEB128 Interpreter")
 struct BinaryLEB128InterpreterTests {
     @Suite struct Prefix {}  // via byte-span parse (prefix)
-    @Suite struct Whole {}   // via byte-span parseWhole (exact-length)
+    @Suite struct Whole {}  // via byte-span parseWhole (exact-length)
 }
 
 // MARK: - via byte-span parse (prefix)

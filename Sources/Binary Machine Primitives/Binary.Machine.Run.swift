@@ -1,10 +1,18 @@
 // Binary.Machine.Run.swift
 // Owned executor for Machine programs
 
+// Every `try! input.advance()` below sits in the `else` branch of a preceding
+// `remaining < need` bounds check inside this hot interpreter loop, so the
+// advance is provably in-bounds and cannot throw at those sites. The force-try
+// is deliberate — it keeps the parse fast path free of redundant error plumbing.
+// swift-format-ignore-file: NeverUseForceTry
+// (SwiftLint's force_try is disabled package-wide in .swiftlint.yml for the
+// same reason — all force-trys in this package live in this one interpreter.)
+
+internal import Binary_LEB128_Decode_Primitives
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 internal import Index_Primitives
-internal import Binary_LEB128_Decode_Primitives
 public import Machine_Primitives
 public import Parser_Primitives
 
@@ -22,6 +30,7 @@ extension Binary.Machine {
     ///   - program: The program to execute.
     ///   - root: The root node ID.
     ///   - input: The input cursor (any Input_Primitives.Input.`Protocol` with Byte elements).
+    ///   - outputType: The metatype of the value to decode from the program.
     /// - Returns: The parsed output.
     /// - Throws: `Fault` on parsing failure.
     @usableFromInline
@@ -127,7 +136,6 @@ extension Binary.Machine {
                         frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
                         current = alternatives[index]
                         recovered = true
-                        break
 
                     case .many(_, let savedCheckpoint, let resultHandles, let finalize):
                         input.seek(to: savedCheckpoint)
@@ -262,12 +270,11 @@ extension Binary.Machine {
                     while !input.isEmpty {
                         let cp = input.checkpoint
                         let byte = try! input.advance()
-                        if predicate(byte) {
-                            bytes.append(byte)
-                        } else {
+                        guard predicate(byte) else {
                             input.seek(to: cp)
                             break
                         }
+                        bytes.append(byte)
                     }
                     pendingHandle = arena.allocate(Value.make(bytes))
 

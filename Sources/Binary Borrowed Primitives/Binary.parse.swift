@@ -1,18 +1,24 @@
 // Binary.parse.swift
 // Zero-copy borrowed parsing APIs with inlined interpreter
 
-internal import Index_Primitives
+// Each `view.peek()!` / `view.peek(at:)!` below is guarded by a preceding
+// `remaining`/`consumed < total` bounds check, so the peek is provably in-bounds
+// and cannot be nil at those sites. The force-unwrap is deliberate — it keeps the
+// inlined parse fast path free of redundant optional plumbing.
+// swift-format-ignore-file: NeverForceUnwrap
+
 public import Binary_LEB128_Decode_Primitives  // public: referenced from @inlinable _parsePrefix [MOD-027]
-public import Vector_Primitive
-public import Machine_Primitives
-import Standard_Library_Extensions
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 public import Cursor_Primitives
+internal import Index_Primitives
+public import Machine_Primitives
 // W3 PRUNE: the parse engine re-homes from the deleted `Binary.Borrowed`
 // nominal to `Span.`Protocol` where Element == Byte`. Public because
 // the protocol + its `span` member appear in the @inlinable parse signatures.
 public import Span_Protocol_Primitives
+import Standard_Library_Extensions
+public import Vector_Primitive
 
 //
 // ## Design Note
@@ -36,6 +42,7 @@ public import Span_Protocol_Primitives
 // MARK: - Typed Count Constants
 
 /// Typed count constants for common byte widths.
+///
 /// These avoid repeated construction of Index<Byte>.Count values.
 @usableFromInline
 let _two: Index<Byte>.Count = Index<Byte>.Count(Cardinal(2))
@@ -215,6 +222,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             current = alternatives[index]
                             recovered = true
                         }
+
                     case .many(_, let savedCheckpoint, let resultHandles, let finalize):
                         view.seek(to: savedCheckpoint)
                         consumed = savedCheckpoint
@@ -223,18 +231,22 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         for h in resultHandles { results.append(arena.release(h)) }
                         pendingHandle = arena.allocate(finalize.finalize(using: program.captures, results))
                         recovered = true
+
                     case .fold(_, let savedCheckpoint, let accHandle, _):
                         view.seek(to: savedCheckpoint)
                         consumed = savedCheckpoint
                         pendingHandle = accHandle
                         recovered = true
+
                     case .optional(let savedCheckpoint, _, let noneHandle):
                         view.seek(to: savedCheckpoint)
                         consumed = savedCheckpoint
                         pendingHandle = noneHandle
                         recovered = true
+
                     case .recursiveExit:
                         depth -= 1
+
                     case .map, .tryMap, .flatMap, .sequence, .extra:
                         continue
                     }
@@ -259,6 +271,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(b))
                     }
+
                 case .take(let n):
                     let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
@@ -272,6 +285,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         }
                         pendingHandle = arena.allocate(Value.make(bytes))
                     }
+
                 case .skip(let n):
                     let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining < need {
@@ -281,9 +295,11 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += need
                         pendingHandle = arena.allocate(Value.make(()))
                     }
+
                 case .peek:
                     let byte: Byte? = remaining > .zero ? view.peek()! : nil
                     pendingHandle = arena.allocate(Value.make(byte))
+
                 case .byte(let expected):
                     if remaining < .one {
                         instructionError = .unexpectedByte(expected: expected, found: nil)
@@ -297,6 +313,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             instructionError = .unexpectedByte(expected: expected, found: found)
                         }
                     }
+
                 case .bytes(let expected):
                     let expectedCount = Index<Byte>.Count(Cardinal(UInt(expected.count)))
                     if remaining < expectedCount {
@@ -326,6 +343,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             pendingHandle = arena.allocate(Value.make(expected))
                         }
                     }
+
                 case .satisfy(let predicate):
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
@@ -339,35 +357,33 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             instructionError = .predicateFailed(byte: byte)
                         }
                     }
+
                 case .takeWhile(let predicate):
                     var bytes: [Byte] = []
                     while consumed < total {
                         let byte = view.peek()!
-                        if predicate(byte) {
-                            bytes.append(view.consume())
-                            consumed += .one
-                        } else {
-                            break
-                        }
+                        guard predicate(byte) else { break }
+                        bytes.append(view.consume())
+                        consumed += .one
                     }
                     pendingHandle = arena.allocate(Value.make(bytes))
+
                 case .skipWhile(let predicate):
                     while consumed < total {
                         let byte = view.peek()!
-                        if predicate(byte) {
-                            _ = view.consume()
-                            consumed += .one
-                        } else {
-                            break
-                        }
+                        guard predicate(byte) else { break }
+                        _ = view.consume()
+                        consumed += .one
                     }
                     pendingHandle = arena.allocate(Value.make(()))
+
                 case .end:
                     if remaining == .zero {
                         pendingHandle = arena.allocate(Value.make(()))
                     } else {
                         instructionError = .expectedEnd(remaining: remaining)
                     }
+
                 case .require(let n):
                     let need = Index<Byte>.Count(Cardinal(UInt(n)))
                     if remaining >= need {
@@ -375,6 +391,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                     } else {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     }
+
                 case .u8:
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
@@ -383,6 +400,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(b))
                     }
+
                 case .u16le:
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
@@ -392,6 +410,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8)))
                     }
+
                 case .u16be:
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
@@ -401,6 +420,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make((b0 << 8) | b1))
                     }
+
                 case .u32le:
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
@@ -412,6 +432,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
                     }
+
                 case .u32be:
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
@@ -423,6 +444,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
                     }
+
                 case .u64le:
                     if remaining < _eight {
                         instructionError = .insufficientBytes(need: _eight, have: remaining)
@@ -436,6 +458,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(result))
                     }
+
                 case .u64be:
                     if remaining < _eight {
                         instructionError = .insufficientBytes(need: _eight, have: remaining)
@@ -447,6 +470,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(result))
                     }
+
                 case .i8:
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
@@ -455,6 +479,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += .one
                         pendingHandle = arena.allocate(Value.make(Int8(bitPattern: b)))
                     }
+
                 case .i16le:
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
@@ -464,6 +489,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(Int16(bitPattern: b0 | (b1 << 8))))
                     }
+
                 case .i16be:
                     if remaining < _two {
                         instructionError = .insufficientBytes(need: _two, have: remaining)
@@ -473,6 +499,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _two
                         pendingHandle = arena.allocate(Value.make(Int16(bitPattern: (b0 << 8) | b1)))
                     }
+
                 case .i32le:
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
@@ -484,6 +511,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))))
                     }
+
                 case .i32be:
                     if remaining < _four {
                         instructionError = .insufficientBytes(need: _four, have: remaining)
@@ -495,6 +523,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _four
                         pendingHandle = arena.allocate(Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3)))
                     }
+
                 case .i64le:
                     if remaining < _eight {
                         instructionError = .insufficientBytes(need: _eight, have: remaining)
@@ -508,6 +537,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
+
                 case .i64be:
                     if remaining < _eight {
                         instructionError = .insufficientBytes(need: _eight, have: remaining)
@@ -519,6 +549,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         consumed += _eight
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
+
                 case .uleb128:
                     // Delegate to the shared decode core. The core takes a value-copied
                     // UInt8 + inout POD scalars (never the ~Escapable cursor), so it is
@@ -541,6 +572,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                     } catch {
                         instructionError = .leb128Overflow
                     }
+
                 case .sleb128:
                     var result: Int64 = 0
                     var shift: Int = 0

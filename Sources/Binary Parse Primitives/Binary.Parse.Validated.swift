@@ -60,10 +60,14 @@ extension Binary.Parse.Validated.Error: Sendable where T.RawValue: Sendable {}
 // MARK: - Parser.Parser
 
 extension Binary.Parse.Validated: Parser.`Protocol` {
+    /// The input source consumed by this parser.
     public typealias Input = ArraySlice<Byte>
+    /// The value produced when parsing succeeds.
     public typealias Output = T
+    /// The error thrown when parsing fails.
     public typealias Failure = Binary.Parse.Validated<T>.Error
 
+    /// Parses a raw value from `input` and validates it into `T`, consuming the bytes it reads.
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> T {
         let rawSize = MemoryLayout<T.RawValue>.size
@@ -79,6 +83,7 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
             for i in 0..<rawSize {
                 rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
+
         case .big:
             for i in 0..<rawSize {
                 rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << ((rawSize - 1 - i) * 8)
@@ -98,10 +103,12 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
 // MARK: - Error Descriptions
 
 extension Binary.Parse.Validated.Error: CustomStringConvertible {
+    /// A human-readable description of this error.
     public var description: String {
         switch self {
         case .endOfInput(let expected):
             return "End of input: expected \(expected)"
+
         case .invalid(let rawValue):
             return "Invalid raw value \(rawValue) for \(T.self)"
         }
