@@ -118,7 +118,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     /// Internal engine: runs the machine interpreter against the borrowed
     /// span and returns both the parsed value and the consumed-count.
     @inlinable
-    internal func _parsePrefix<Output>(
+    package func _parsePrefix<Output>(
         _ parser: Binary.Machine.Parser<Output>
     ) throws(Binary.Machine.Fault) -> (value: Output, count: Index<Byte>.Count) {
         let sourceBytes = self.span
