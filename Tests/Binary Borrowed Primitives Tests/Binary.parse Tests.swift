@@ -123,7 +123,7 @@ extension Binary.ParseTest.Unit {
         // A lifetime-dependent span cannot escape an #expect(throws:) autoclosure;
         // assert the fault via do/catch in linear scope instead.
         let bytes: [Byte] = [0x42, 0x99]
-        do {
+        do throws(Binary.Machine.Fault) {
             _ = try bytes.span.parseWhole(Binary.Machine.u8Parser())
             Issue.record("expected Binary.Machine.Fault.expectedEnd")
         } catch {
@@ -139,7 +139,7 @@ extension Binary.ParseTest.EdgeCase {
     @Test
     func `byte-span parse throws insufficientBytes when input shorter than needed`() {
         let bytes: [Byte] = [0x42]
-        do {
+        do throws(Binary.Machine.Fault) {
             _ = try bytes.span.parse(Binary.Machine.u32leParser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
@@ -150,7 +150,7 @@ extension Binary.ParseTest.EdgeCase {
     @Test
     func `byte-span parse on empty input throws insufficientBytes`() {
         let bytes: [Byte] = []
-        do {
+        do throws(Binary.Machine.Fault) {
             _ = try bytes.span.parse(Binary.Machine.u8Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {

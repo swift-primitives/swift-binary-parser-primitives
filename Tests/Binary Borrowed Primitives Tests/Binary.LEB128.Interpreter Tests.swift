@@ -64,7 +64,7 @@ extension BinaryLEB128InterpreterTests.Prefix {
     func `uleb128 over-long encoding faults`() {
         // 11-byte uleb (a byte past bit 64) is over-long under the strict core.
         let overLong = [Byte](repeating: 0x80, count: 10) + [0x01]
-        do {
+        do throws(Binary.Machine.Fault) {
             _ = try overLong.span.parse(Binary.Machine.uleb128Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
@@ -75,7 +75,7 @@ extension BinaryLEB128InterpreterTests.Prefix {
     @Test
     func `uleb128 unterminated faults`() {
         let bytes: [Byte] = [0x80, 0x80]
-        do {
+        do throws(Binary.Machine.Fault) {
             _ = try bytes.span.parse(Binary.Machine.uleb128Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {

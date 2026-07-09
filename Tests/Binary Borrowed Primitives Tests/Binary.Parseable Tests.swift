@@ -14,8 +14,8 @@ struct BinaryParseableTests {
 
     // MARK: - Round-trip identity
 
-    @Test("UInt32 round-trip preserves value (little-endian)")
-    func uint32RoundTripLittleEndian() throws {
+    @Test
+    func `UInt32 round-trip preserves value (little-endian)`() throws {
         let original: UInt32 = 0x1234_5678
         let bytes = original.bytes(endianness: .little)
         #expect(bytes == [0x78, 0x56, 0x34, 0x12])
@@ -23,8 +23,8 @@ struct BinaryParseableTests {
         #expect(decoded == original)
     }
 
-    @Test("UInt32 round-trip preserves value (big-endian)")
-    func uint32RoundTripBigEndian() throws {
+    @Test
+    func `UInt32 round-trip preserves value (big-endian)`() throws {
         let original: UInt32 = 0x1234_5678
         let bytes = original.bytes(endianness: .big)
         #expect(bytes == [0x12, 0x34, 0x56, 0x78])
@@ -34,8 +34,8 @@ struct BinaryParseableTests {
 
     // MARK: - Endianness asymmetry
 
-    @Test("UInt32 little- and big-endian byte arrays differ")
-    func uint32EndiannessDiffers() {
+    @Test
+    func `UInt32 little- and big-endian byte arrays differ`() {
         let v: UInt32 = 0x1234_5678
         let le = v.bytes(endianness: .little)
         let be = v.bytes(endianness: .big)
@@ -43,8 +43,8 @@ struct BinaryParseableTests {
         #expect(le.reversed() == be)
     }
 
-    @Test("Decoding with wrong endianness yields wrong value")
-    func uint32WrongEndianness() throws {
+    @Test
+    func `Decoding with wrong endianness yields wrong value`() throws {
         let original: UInt32 = 0x1234_5678
         let leBytes = original.bytes(endianness: .little)
         let asBE = try #require(UInt32(bytes: leBytes, endianness: .big))
@@ -52,32 +52,32 @@ struct BinaryParseableTests {
         #expect(asBE != original)
     }
 
-    @Test("UInt32 init returns nil on wrong byte count")
-    func uint32WrongLength() {
+    @Test
+    func `UInt32 init returns nil on wrong byte count`() {
         let tooFew: [Byte] = [0x12, 0x34]
         #expect(UInt32(bytes: tooFew, endianness: .big) == nil)
     }
 
     // MARK: - parse(from:) cursor semantics
 
-    @Test("UInt32.parse(from:) decodes little-endian and consumes 4 bytes")
-    func uint32ParseFromLittleEndian() throws {
+    @Test
+    func `UInt32.parse(from:) decodes little-endian and consumes 4 bytes`() throws {
         var bytes: [Byte] = [0x78, 0x56, 0x34, 0x12]
         let value = try UInt32.parse(from: &bytes)
         #expect(value == 0x1234_5678)
         #expect(bytes.isEmpty)
     }
 
-    @Test("UInt32.parse(from:) advances cursor past consumed bytes")
-    func uint32ParseFromAdvancesCursor() throws {
+    @Test
+    func `UInt32.parse(from:) advances cursor past consumed bytes`() throws {
         var bytes: [Byte] = [0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB]
         let value = try UInt32.parse(from: &bytes)
         #expect(value == 0x1234_5678)
         #expect(bytes == [0xAA, 0xBB])
     }
 
-    @Test("UInt32.parse(from:) throws .insufficient when source is short")
-    func uint32ParseFromInsufficient() {
+    @Test
+    func `UInt32.parse(from:) throws .insufficient when source is short`() {
         var bytes: [Byte] = [0x12, 0x34]
         #expect(throws: Binary.Parse.Failure.insufficient(needed: 4)) {
             _ = try UInt32.parse(from: &bytes)
@@ -86,8 +86,8 @@ struct BinaryParseableTests {
 
     // MARK: - Round-trip via Serializable + Parseable
 
-    @Test("UInt32 round-trip Serializable → Parseable (little-endian)")
-    func uint32RoundTripSerializeParseLittle() throws {
+    @Test
+    func `UInt32 round-trip Serializable → Parseable (little-endian)`() throws {
         let original: UInt32 = 0x1234_5678
         var buffer: [Byte] = []
         buffer.append(contentsOf: original.bytes(endianness: .little))
@@ -96,16 +96,16 @@ struct BinaryParseableTests {
         #expect(buffer.isEmpty)
     }
 
-    @Test("UInt32 round-trip via raw .little encoding then .little parse")
-    func uint32RoundTripLittleEndianViaParse() throws {
+    @Test
+    func `UInt32 round-trip via raw .little encoding then .little parse`() throws {
         let original: UInt32 = 0xDEAD_BEEF
         var buffer: [Byte] = original.bytes(endianness: .little)
         let decoded = try UInt32.parse(from: &buffer)
         #expect(decoded == original)
     }
 
-    @Test("UInt32 round-trip via raw .big encoding then explicit .big parse")
-    func uint32RoundTripBigEndianViaInit() throws {
+    @Test
+    func `UInt32 round-trip via raw .big encoding then explicit .big parse`() throws {
         let original: UInt32 = 0xDEAD_BEEF
         let bytes = original.bytes(endianness: .big)
         let decoded = try #require(UInt32(bytes: bytes, endianness: .big))
@@ -119,16 +119,16 @@ struct BinaryParseableTests {
 
     // MARK: - Byte-collection conformances
 
-    @Test("Array<Byte>.parse consumes all remaining bytes")
-    func arrayBytesParse() throws {
+    @Test
+    func `Array<Byte>.parse consumes all remaining bytes`() throws {
         var source: [Byte] = [0x01, 0x02, 0x03, 0x04]
         let decoded = try [Byte].parse(from: &source)
         #expect(decoded == [0x01, 0x02, 0x03, 0x04])
         #expect(source.isEmpty)
     }
 
-    @Test("ContiguousArray<Byte>.parse consumes all remaining bytes")
-    func contiguousArrayBytesParse() throws {
+    @Test
+    func `ContiguousArray<Byte>.parse consumes all remaining bytes`() throws {
         var source: [Byte] = [0xAA, 0xBB, 0xCC]
         let decoded = try ContiguousArray<Byte>.parse(from: &source)
         let expected: [Byte] = [0xAA, 0xBB, 0xCC]
@@ -136,8 +136,8 @@ struct BinaryParseableTests {
         #expect(source.isEmpty)
     }
 
-    @Test("ArraySlice<Byte>.parse consumes all remaining bytes")
-    func arraySliceBytesParse() throws {
+    @Test
+    func `ArraySlice<Byte>.parse consumes all remaining bytes`() throws {
         var source: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
         let decoded = try ArraySlice<Byte>.parse(from: &source)
         let expected: [Byte] = [0xDE, 0xAD, 0xBE, 0xEF]
