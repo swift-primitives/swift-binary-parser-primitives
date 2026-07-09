@@ -9,8 +9,8 @@ import Testing
 
 @testable import Binary_Parseable_Primitives
 
-@Suite("Binary.Parseable")
-struct BinaryParseableTests {
+@Suite
+struct `Binary.Parseable Tests` {
 
     // MARK: - Round-trip identity
 

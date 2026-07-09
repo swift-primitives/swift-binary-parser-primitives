@@ -18,15 +18,15 @@ import Testing
 
 extension Binary {
     @Suite
-    struct ParseTest {
+    struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
     }
 }
 
 // MARK: - Unit Tests — byte-span parse
 
-extension Binary.ParseTest.Unit {
+extension Binary.Test.Unit {
 
     // MARK: parse
 
@@ -134,7 +134,7 @@ extension Binary.ParseTest.Unit {
 
 // MARK: - Edge Cases
 
-extension Binary.ParseTest.EdgeCase {
+extension Binary.Test.`Edge Case` {
 
     @Test
     func `byte-span parse throws insufficientBytes when input shorter than needed`() {
@@ -171,7 +171,7 @@ extension Binary.ParseTest.EdgeCase {
 // constructs a `Byte.Input` over the bytes and runs the closure); it survives
 // the owned-struct dissolution unchanged.
 
-extension Binary.ParseTest.Unit {
+extension Binary.Test.Unit {
 
     @Test
     func `Binary.withInput from byte array constructs Byte.Input`() {

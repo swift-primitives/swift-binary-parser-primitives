@@ -15,8 +15,8 @@ private struct Word: RawRepresentable, Binary.Parseable {
     init(_ raw: UInt32) { self.rawValue = raw }
 }
 
-@Suite("Binary.Parseable init?(bytes:endianness:)")
-struct BinaryParseableInitBytesTests {
+@Suite
+struct `Binary.Parseable Init Bytes Tests` {
 
     @Test
     func `init?(bytes: [Byte], endianness:) decodes little-endian`() throws {

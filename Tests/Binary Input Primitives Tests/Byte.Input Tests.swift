@@ -10,7 +10,7 @@ extension Byte.Input {
     @Suite
     struct Test {
         @Suite struct Unit {}
-        @Suite struct EdgeCase {}
+        @Suite struct `Edge Case` {}
         @Suite struct Integration {}
         @Suite(.serialized) struct Performance {}
     }
@@ -237,7 +237,7 @@ extension Byte.Input.Test.Unit {
 
 // MARK: - Edge Case Tests
 
-extension Byte.Input.Test.EdgeCase {
+extension Byte.Input.Test.`Edge Case` {
 
     @Test
     func `advance on empty input throws`() {
