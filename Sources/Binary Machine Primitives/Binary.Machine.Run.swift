@@ -72,9 +72,9 @@ extension Binary.Machine {
                     pendingHandle = arena.allocate(transform.apply(using: program.captures, value))
 
                 case .tryMap(let transform):
-                    do {
+                    do throws(Fault) {
                         pendingHandle = arena.allocate(try transform.apply(using: program.captures, value))
-                    } catch let error {
+                    } catch {
                         instructionError = error
                     }
 
@@ -439,7 +439,7 @@ extension Binary.Machine {
                     var result: UInt64 = 0
                     var shift: Int = 0
                     var done = false
-                    do {
+                    do throws(Binary.LEB128.Error) {
                         while !done {
                             guard !input.isEmpty else {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
@@ -457,7 +457,7 @@ extension Binary.Machine {
                     var result: Int64 = 0
                     var shift: Int = 0
                     var done = false
-                    do {
+                    do throws(Binary.LEB128.Error) {
                         while !done {
                             guard !input.isEmpty else {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)

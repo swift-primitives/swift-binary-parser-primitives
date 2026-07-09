@@ -16,7 +16,7 @@ extension Binary.Parse.Access {
     where Bytes.Element == Byte {
         var input = Byte.Input(bytes)
         let value: P.Output
-        do {
+        do throws(P.Failure) {
             value = try parser.parse(&input)
         } catch {
             throw .left(error)

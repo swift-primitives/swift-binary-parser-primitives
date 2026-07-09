@@ -558,7 +558,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                     var result: UInt64 = 0
                     var shift: Int = 0
                     var done = false
-                    do {
+                    do throws(Binary.LEB128.Error) {
                         while !done {
                             if consumed >= total {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
@@ -577,7 +577,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                     var result: Int64 = 0
                     var shift: Int = 0
                     var done = false
-                    do {
+                    do throws(Binary.LEB128.Error) {
                         while !done {
                             if consumed >= total {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
