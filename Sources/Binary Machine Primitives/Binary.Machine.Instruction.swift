@@ -24,7 +24,9 @@ extension Binary.Machine {
     public enum Instruction {
         // MARK: - Cursor Operations
 
-        /// Consume and return one byte. Fails if input is empty.
+        /// Consume and return one byte.
+        ///
+        /// Fails if input is empty.
         case take1
 
         /// Consume exactly `n` bytes and return as `[Byte]`.
@@ -33,15 +35,21 @@ extension Binary.Machine {
         /// Consume and discard `n` bytes.
         case skip(Int)
 
-        /// Return the next byte without consuming. Returns `nil` if empty.
+        /// Return the next byte without consuming.
+        ///
+        /// Returns `nil` if empty.
         case peek
 
         // MARK: - Matching Operations
 
-        /// Match a specific byte. Fails if mismatch or empty.
+        /// Match a specific byte.
+        ///
+        /// Fails if mismatch or empty.
         case byte(Byte)
 
-        /// Match an exact byte sequence. Fails if mismatch or insufficient bytes.
+        /// Match an exact byte sequence.
+        ///
+        /// Fails if mismatch or insufficient bytes.
         case bytes([Byte])
 
         /// Consume one byte if it satisfies the predicate.
@@ -55,10 +63,14 @@ extension Binary.Machine {
 
         // MARK: - Control Operations
 
-        /// Succeed only if at end of input. Returns `Void`.
+        /// Succeed only if at end of input.
+        ///
+        /// Returns `Void`.
         case end
 
-        /// Require at least `n` bytes remaining. Returns `Void`.
+        /// Require at least `n` bytes remaining.
+        ///
+        /// Returns `Void`.
         case require(Int)
 
         // MARK: - Integer Decoding (Unsigned)
