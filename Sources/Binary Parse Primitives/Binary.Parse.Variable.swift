@@ -76,7 +76,7 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
         switch endianness {
         case .little:
             // Little-endian: first byte is least significant
-            for i in 0..<count {
+            (0..<count).forEach { i in
                 result |= T(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
             // Sign extension for signed types
@@ -100,7 +100,7 @@ extension Binary.Parse.Variable: Parser.`Protocol` {
 
         case .big:
             // Big-endian: first byte is most significant
-            for i in 0..<count {
+            (0..<count).forEach { i in
                 // reason: Big-endian shift amount for byte i of count-byte
                 // integer: byte i contributes to bits at positions
                 // (count − 1 − i) × 8. `count: Int` is a stdlib struct property,

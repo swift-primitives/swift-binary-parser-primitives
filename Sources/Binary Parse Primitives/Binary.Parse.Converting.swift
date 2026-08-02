@@ -76,12 +76,12 @@ extension Binary.Parse.Converting: Parser.`Protocol` {
 
         switch endianness {
         case .little:
-            for i in 0..<sourceSize {
+            (0..<sourceSize).forEach { i in
                 sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
 
         case .big:
-            for i in 0..<sourceSize {
+            (0..<sourceSize).forEach { i in
                 sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << ((sourceSize - 1 - i) * 8)
             }
         }

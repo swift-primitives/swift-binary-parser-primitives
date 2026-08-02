@@ -80,12 +80,12 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
 
         switch endianness {
         case .little:
-            for i in 0..<rawSize {
+            (0..<rawSize).forEach { i in
                 rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << (i * 8)
             }
 
         case .big:
-            for i in 0..<rawSize {
+            (0..<rawSize).forEach { i in
                 rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << ((rawSize - 1 - i) * 8)
             }
         }

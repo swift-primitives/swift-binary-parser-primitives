@@ -39,12 +39,12 @@ extension InlineArray where Element: FixedWidthInteger {
 
             switch endianness {
             case .little:
-                for j in 0..<elementSize {
+                (0..<elementSize).forEach { j in
                     value |= Element(truncatingIfNeeded: input[base + j].underlying) << (j * 8)
                 }
 
             case .big:
-                for j in 0..<elementSize {
+                (0..<elementSize).forEach { j in
                     value |= Element(truncatingIfNeeded: input[base + j].underlying) << ((elementSize - 1 - j) * 8)
                 }
             }
