@@ -83,7 +83,9 @@ extension Binary.Machine.Builder {
     /// }
     /// ```
     @inlinable
-    public mutating func embed<Output>(_ parser: Binary.Machine.Parser<Output>) -> Binary.Machine.Expression<Output> {
+    public mutating func embed<Output>(
+        _ parser: Binary.Machine.Parser<Output>
+    ) -> Binary.Machine.Expression<Output> {
         let offset = inner.count
         for node in parser.program.graph.nodes {
             _ = inner.allocate(parser.program.graph[node])

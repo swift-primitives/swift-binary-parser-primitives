@@ -159,32 +159,52 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
 
                 case .tryMap(let transform):
                     do throws(Fault) {
-                        pendingHandle = arena.allocate(try transform.apply(using: program.captures, value))
+                        pendingHandle = arena.allocate(
+                            try transform.apply(using: program.captures, value)
+                        )
                     } catch {
                         instructionError = error
                     }
 
                 case .sequence(.second(let b, let combine)):
-                    frames.append(.sequence(.combine(firstHandle: arena.allocate(value), combine: combine)))
+                    frames.append(
+                        .sequence(.combine(firstHandle: arena.allocate(value), combine: combine))
+                    )
                     current = b
                     continue interpreterLoop
 
                 case .sequence(.combine(let firstHandle, let combine)):
-                    pendingHandle = arena.allocate(combine.combine(using: program.captures, arena.release(firstHandle), value))
+                    pendingHandle = arena.allocate(
+                        combine.combine(using: program.captures, arena.release(firstHandle), value)
+                    )
 
                 case .oneOf:
                     pendingHandle = arena.allocate(value)
 
                 case .many(let child, _, var resultHandles, let finalize):
                     resultHandles.append(arena.allocate(value))
-                    frames.append(.many(child: child, savedCheckpoint: consumed, resultHandles: resultHandles, finalize: finalize))
+                    frames.append(
+                        .many(
+                            child: child,
+                            savedCheckpoint: consumed,
+                            resultHandles: resultHandles,
+                            finalize: finalize
+                        )
+                    )
                     current = child
                     continue interpreterLoop
 
                 case .fold(let child, _, let accHandle, let combine):
                     let acc = arena.release(accHandle)
                     let newAcc = combine.combine(using: program.captures, acc, value)
-                    frames.append(.fold(child: child, savedCheckpoint: consumed, accumulatorHandle: arena.allocate(newAcc), combine: combine))
+                    frames.append(
+                        .fold(
+                            child: child,
+                            savedCheckpoint: consumed,
+                            accumulatorHandle: arena.allocate(newAcc),
+                            combine: combine
+                        )
+                    )
                     current = child
                     continue interpreterLoop
 
@@ -218,7 +238,13 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         if index < alternatives.count {
                             view.seek(to: savedCheckpoint)
                             consumed = savedCheckpoint
-                            frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
+                            frames.append(
+                                .oneOf(
+                                    alternatives: alternatives,
+                                    index: index + 1,
+                                    savedCheckpoint: savedCheckpoint
+                                )
+                            )
                             current = alternatives[index]
                             recovered = true
                         }
@@ -229,7 +255,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         var results: [Value] = []
                         results.reserveCapacity(resultHandles.count)
                         for h in resultHandles { results.append(arena.release(h)) }
-                        pendingHandle = arena.allocate(finalize.finalize(using: program.captures, results))
+                        pendingHandle = arena.allocate(
+                            finalize.finalize(using: program.captures, results)
+                        )
                         recovered = true
 
                     case .fold(_, let savedCheckpoint, let accHandle, _):
@@ -331,7 +359,10 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                                 (.zero..<expectedCount).forEach { j in
                                     found.append(view.peek(at: j.map { Cardinal($0) })!)
                                 }
-                                instructionError = .unexpectedBytes(expected: expected, found: found)
+                                instructionError = .unexpectedBytes(
+                                    expected: expected,
+                                    found: found
+                                )
                                 mismatch = true
                                 break
                             }
@@ -430,7 +461,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b2 = UInt32(view.consume())
                         let b3 = UInt32(view.consume())
                         consumed += _four
-                        pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
+                        pendingHandle = arena.allocate(
+                            Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))
+                        )
                     }
 
                 case .u32be:
@@ -442,7 +475,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b2 = UInt32(view.consume())
                         let b3 = UInt32(view.consume())
                         consumed += _four
-                        pendingHandle = arena.allocate(Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
+                        pendingHandle = arena.allocate(
+                            Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3)
+                        )
                     }
 
                 case .u64le:
@@ -487,7 +522,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b0 = UInt16(view.consume())
                         let b1 = UInt16(view.consume())
                         consumed += _two
-                        pendingHandle = arena.allocate(Value.make(Int16(bitPattern: b0 | (b1 << 8))))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int16(bitPattern: b0 | (b1 << 8)))
+                        )
                     }
 
                 case .i16be:
@@ -497,7 +534,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b0 = UInt16(view.consume())
                         let b1 = UInt16(view.consume())
                         consumed += _two
-                        pendingHandle = arena.allocate(Value.make(Int16(bitPattern: (b0 << 8) | b1)))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int16(bitPattern: (b0 << 8) | b1))
+                        )
                     }
 
                 case .i32le:
@@ -509,7 +548,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b2 = UInt32(view.consume())
                         let b3 = UInt32(view.consume())
                         consumed += _four
-                        pendingHandle = arena.allocate(Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
+                        )
                     }
 
                 case .i32be:
@@ -521,7 +562,9 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                         let b2 = UInt32(view.consume())
                         let b3 = UInt32(view.consume())
                         consumed += _four
-                        pendingHandle = arena.allocate(Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3)))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
+                        )
                     }
 
                 case .i64le:
@@ -566,7 +609,11 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             }
                             let byte = view.consume()
                             consumed += .one
-                            done = try Binary.LEB128.Decode.unsigned(byte: byte.underlying, into: &result, shift: &shift)
+                            done = try Binary.LEB128.Decode.unsigned(
+                                byte: byte.underlying,
+                                into: &result,
+                                shift: &shift
+                            )
                         }
                         if done { pendingHandle = arena.allocate(Value.make(result)) }
                     } catch {
@@ -585,7 +632,11 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                             }
                             let byte = view.consume()
                             consumed += .one
-                            done = try Binary.LEB128.Decode.signed(byte: byte.underlying, into: &result, shift: &shift)
+                            done = try Binary.LEB128.Decode.signed(
+                                byte: byte.underlying,
+                                into: &result,
+                                shift: &shift
+                            )
                         }
                         if done { pendingHandle = arena.allocate(Value.make(result)) }
                     } catch {
@@ -615,20 +666,42 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
             case .oneOf(let alternatives):
                 guard !alternatives.isEmpty else { fatalError("Empty oneOf") }
                 if alternatives.count > 1 {
-                    frames.append(.oneOf(alternatives: alternatives, index: 1, savedCheckpoint: consumed))
+                    frames.append(
+                        .oneOf(alternatives: alternatives, index: 1, savedCheckpoint: consumed)
+                    )
                 }
                 current = alternatives[0]
 
             case .many(let child, let finalize):
-                frames.append(.many(child: child, savedCheckpoint: consumed, resultHandles: [], finalize: finalize))
+                frames.append(
+                    .many(
+                        child: child,
+                        savedCheckpoint: consumed,
+                        resultHandles: [],
+                        finalize: finalize
+                    )
+                )
                 current = child
 
             case .fold(let child, let initial, let combine):
-                frames.append(.fold(child: child, savedCheckpoint: consumed, accumulatorHandle: arena.allocate(initial), combine: combine))
+                frames.append(
+                    .fold(
+                        child: child,
+                        savedCheckpoint: consumed,
+                        accumulatorHandle: arena.allocate(initial),
+                        combine: combine
+                    )
+                )
                 current = child
 
             case .optional(let child, let wrapSome, let noneValue):
-                frames.append(.optional(savedCheckpoint: consumed, wrapSome: wrapSome, noneHandle: arena.allocate(noneValue)))
+                frames.append(
+                    .optional(
+                        savedCheckpoint: consumed,
+                        wrapSome: wrapSome,
+                        noneHandle: arena.allocate(noneValue)
+                    )
+                )
                 current = child
 
             case .ref(let target):

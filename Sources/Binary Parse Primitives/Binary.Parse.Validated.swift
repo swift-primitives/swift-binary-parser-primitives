@@ -86,7 +86,9 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
 
         case .big:
             (0..<rawSize).forEach { i in
-                rawValue |= T.RawValue(truncatingIfNeeded: input[base + i].underlying) << ((rawSize - 1 - i) * 8)
+                rawValue |=
+                    T.RawValue(truncatingIfNeeded: input[base + i].underlying)
+                    << ((rawSize - 1 - i) * 8)
             }
         }
 

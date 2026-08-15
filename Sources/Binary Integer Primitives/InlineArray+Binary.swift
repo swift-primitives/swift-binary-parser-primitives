@@ -45,7 +45,9 @@ extension InlineArray where Element: FixedWidthInteger {
 
             case .big:
                 (0..<elementSize).forEach { j in
-                    value |= Element(truncatingIfNeeded: input[base + j].underlying) << ((elementSize - 1 - j) * 8)
+                    value |=
+                        Element(truncatingIfNeeded: input[base + j].underlying)
+                        << ((elementSize - 1 - j) * 8)
                 }
             }
 
