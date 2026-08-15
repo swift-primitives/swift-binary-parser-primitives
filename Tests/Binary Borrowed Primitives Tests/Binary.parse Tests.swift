@@ -50,19 +50,25 @@ extension Binary.Test.Unit {
 
     @Test
     func `byte-span parse u32le decodes little-endian`() throws {
-        let value = try ([0x78, 0x56, 0x34, 0x12] as [Byte]).span.parse(Binary.Machine.u32leParser())
+        let value = try ([0x78, 0x56, 0x34, 0x12] as [Byte]).span.parse(
+            Binary.Machine.u32leParser()
+        )
         #expect(value == 0x1234_5678)
     }
 
     @Test
     func `byte-span parse u32be decodes big-endian`() throws {
-        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parse(Binary.Machine.u32beParser())
+        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parse(
+            Binary.Machine.u32beParser()
+        )
         #expect(value == 0x1234_5678)
     }
 
     @Test
     func `byte-span parse u64be decodes big-endian`() throws {
-        let value = try ([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF] as [Byte]).span.parse(Binary.Machine.u64beParser())
+        let value = try ([0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF] as [Byte]).span.parse(
+            Binary.Machine.u64beParser()
+        )
         #expect(value == 0x0123_4567_89AB_CDEF)
     }
 
@@ -77,14 +83,18 @@ extension Binary.Test.Unit {
 
     @Test
     func `byte-span parsePrefix u16le returns value and consumed count 2`() throws {
-        let result = try ([0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(Binary.Machine.u16leParser())
+        let result = try ([0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(
+            Binary.Machine.u16leParser()
+        )
         #expect(result.value == 0x1234)
         #expect(result.count == Index<Byte>.Count(Cardinal(2)))
     }
 
     @Test
     func `byte-span parsePrefix u32le returns value and consumed count 4`() throws {
-        let result = try ([0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(Binary.Machine.u32leParser())
+        let result = try ([0x78, 0x56, 0x34, 0x12, 0xAA, 0xBB] as [Byte]).span.parsePrefix(
+            Binary.Machine.u32leParser()
+        )
         #expect(result.value == 0x1234_5678)
         #expect(result.count == Index<Byte>.Count(Cardinal(4)))
     }
@@ -93,7 +103,9 @@ extension Binary.Test.Unit {
 
     @Test
     func `byte-span parsePrefixUnchecked u8 returns value and consumed count 1`() throws {
-        let result = try ([0x42, 0x99] as [Byte]).span.parsePrefixUnchecked(Binary.Machine.u8Parser())
+        let result = try ([0x42, 0x99] as [Byte]).span.parsePrefixUnchecked(
+            Binary.Machine.u8Parser()
+        )
         #expect(result.value == 0x42)
         #expect(result.count == Index<Byte>.Count(Cardinal.one))
     }
@@ -114,7 +126,9 @@ extension Binary.Test.Unit {
 
     @Test
     func `byte-span parseWhole u32be succeeds at exact-length input`() throws {
-        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parseWhole(Binary.Machine.u32beParser())
+        let value = try ([0x12, 0x34, 0x56, 0x78] as [Byte]).span.parseWhole(
+            Binary.Machine.u32beParser()
+        )
         #expect(value == 0x1234_5678)
     }
 

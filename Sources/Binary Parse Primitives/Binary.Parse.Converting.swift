@@ -82,7 +82,9 @@ extension Binary.Parse.Converting: Parser.`Protocol` {
 
         case .big:
             (0..<sourceSize).forEach { i in
-                sourceValue |= Source(truncatingIfNeeded: input[base + i].underlying) << ((sourceSize - 1 - i) * 8)
+                sourceValue |=
+                    Source(truncatingIfNeeded: input[base + i].underlying)
+                    << ((sourceSize - 1 - i) * 8)
             }
         }
 

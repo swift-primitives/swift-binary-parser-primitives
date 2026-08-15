@@ -36,7 +36,9 @@ extension BinaryLEB128InterpreterTests.Prefix {
         #expect(try ([0x00] as [Byte]).span.parse(Binary.Machine.uleb128Parser()) == 0)
         #expect(try ([0x7F] as [Byte]).span.parse(Binary.Machine.uleb128Parser()) == 127)
         #expect(try ([0x80, 0x01] as [Byte]).span.parse(Binary.Machine.uleb128Parser()) == 128)
-        #expect(try ([0xE5, 0x8E, 0x26] as [Byte]).span.parse(Binary.Machine.uleb128Parser()) == 624485)
+        #expect(
+            try ([0xE5, 0x8E, 0x26] as [Byte]).span.parse(Binary.Machine.uleb128Parser()) == 624485
+        )
     }
 
     @Test
@@ -90,12 +92,17 @@ extension BinaryLEB128InterpreterTests.Whole {
 
     @Test
     func `uleb128 decodes via parseWhole`() throws {
-        #expect(try ([0xE5, 0x8E, 0x26] as [Byte]).span.parseWhole(Binary.Machine.uleb128Parser()) == 624485)
+        #expect(
+            try ([0xE5, 0x8E, 0x26] as [Byte]).span.parseWhole(Binary.Machine.uleb128Parser())
+                == 624485
+        )
     }
 
     @Test
     func `sleb128 decodes via parseWhole`() throws {
-        #expect(try ([0x80, 0x7F] as [Byte]).span.parseWhole(Binary.Machine.sleb128Parser()) == -128)
+        #expect(
+            try ([0x80, 0x7F] as [Byte]).span.parseWhole(Binary.Machine.sleb128Parser()) == -128
+        )
     }
 
     @Test

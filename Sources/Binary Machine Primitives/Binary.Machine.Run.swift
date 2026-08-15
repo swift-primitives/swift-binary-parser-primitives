@@ -1,13 +1,11 @@
 // Binary.Machine.Run.swift
 // Owned executor for Machine programs
 
-// Every `try! input.advance()` below sits in the `else` branch of a preceding
-// `remaining < need` bounds check inside this hot interpreter loop, so the
-// advance is provably in-bounds and cannot throw at those sites. The force-try
-// is deliberate — it keeps the parse fast path free of redundant error plumbing.
-// swift-format-ignore-file: NeverUseForceTry
-// (SwiftLint's force_try is disabled package-wide in .swiftlint.yml for the
-// same reason — all force-trys in this package live in this one interpreter.)
+// Every `advanceProvenInBounds(&input)` call below sits in the `else` branch
+// of a preceding `remaining < need` bounds check inside this hot interpreter
+// loop, so the advance is provably in-bounds and cannot throw at those sites.
+// The helper traps if that invariant is ever violated, rather than scattering
+// unchecked `try!` through the parse fast path.
 
 internal import Binary_LEB128_Decode_Primitives
 public import Byte_Primitives
@@ -15,6 +13,22 @@ public import Byte_Primitives_Standard_Library_Integration
 internal import Index_Primitives
 public import Machine_Primitives
 public import Parser_Primitives
+
+/// Advances `input` by one element, asserting the interpreter's own bounds
+/// check already proved this cannot fail. Every call site in this file sits
+/// in the `else` branch of a preceding `remaining < need` check, so
+/// `advance()` cannot throw here — this traps instead of leaving an
+/// unchecked `try!` scattered through the hot path.
+@inline(__always)
+private func advanceProvenInBounds<Input: Input_Primitives.Input.`Protocol`>(
+    _ input: inout Input
+) -> Input.Element where Input.Element == Byte, Input.Checkpoint == Index<Byte> {
+    do {
+        return try input.advance()
+    } catch {
+        preconditionFailure("advance() threw after a bounds check proved it could not: \(error)")
+    }
+}
 
 extension Binary.Machine {
     /// Executes a Machine program on any byte-oriented Input_Primitives.Input.`Protocol`.
@@ -73,7 +87,9 @@ extension Binary.Machine {
 
                 case .tryMap(let transform):
                     do throws(Fault) {
-                        pendingHandle = arena.allocate(try transform.apply(using: program.captures, value))
+                        pendingHandle = arena.allocate(
+                            try transform.apply(using: program.captures, value)
+                        )
                     } catch {
                         instructionError = error
                     }
@@ -83,26 +99,44 @@ extension Binary.Machine {
                     continue interpreterLoop
 
                 case .sequence(.second(let b, let combine)):
-                    frames.append(.sequence(.combine(firstHandle: arena.allocate(value), combine: combine)))
+                    frames.append(
+                        .sequence(.combine(firstHandle: arena.allocate(value), combine: combine))
+                    )
                     current = b
                     continue interpreterLoop
 
                 case .sequence(.combine(let firstHandle, let combine)):
-                    pendingHandle = arena.allocate(combine.combine(using: program.captures, arena.release(firstHandle), value))
+                    pendingHandle = arena.allocate(
+                        combine.combine(using: program.captures, arena.release(firstHandle), value)
+                    )
 
                 case .oneOf:
                     pendingHandle = arena.allocate(value)
 
                 case .many(let child, _, var resultHandles, let finalize):
                     resultHandles.append(arena.allocate(value))
-                    frames.append(.many(child: child, savedCheckpoint: input.checkpoint, resultHandles: resultHandles, finalize: finalize))
+                    frames.append(
+                        .many(
+                            child: child,
+                            savedCheckpoint: input.checkpoint,
+                            resultHandles: resultHandles,
+                            finalize: finalize
+                        )
+                    )
                     current = child
                     continue interpreterLoop
 
                 case .fold(let child, _, let accHandle, let combine):
                     let acc = arena.release(accHandle)
                     let newAcc = combine.combine(using: program.captures, acc, value)
-                    frames.append(.fold(child: child, savedCheckpoint: input.checkpoint, accumulatorHandle: arena.allocate(newAcc), combine: combine))
+                    frames.append(
+                        .fold(
+                            child: child,
+                            savedCheckpoint: input.checkpoint,
+                            accumulatorHandle: arena.allocate(newAcc),
+                            combine: combine
+                        )
+                    )
                     current = child
                     continue interpreterLoop
 
@@ -133,7 +167,13 @@ extension Binary.Machine {
                     case .oneOf(let alternatives, let index, let savedCheckpoint):
                         guard index < alternatives.count else { break }
                         input.seek(to: savedCheckpoint)
-                        frames.append(.oneOf(alternatives: alternatives, index: index + 1, savedCheckpoint: savedCheckpoint))
+                        frames.append(
+                            .oneOf(
+                                alternatives: alternatives,
+                                index: index + 1,
+                                savedCheckpoint: savedCheckpoint
+                            )
+                        )
                         current = alternatives[index]
                         recovered = true
 
@@ -142,7 +182,9 @@ extension Binary.Machine {
                         var results: [Value] = []
                         results.reserveCapacity(resultHandles.count)
                         for h in resultHandles { results.append(arena.release(h)) }
-                        pendingHandle = arena.allocate(finalize.finalize(using: program.captures, results))
+                        pendingHandle = arena.allocate(
+                            finalize.finalize(using: program.captures, results)
+                        )
                         recovered = true
 
                     case .fold(_, let savedCheckpoint, let accHandle, _):
@@ -176,7 +218,11 @@ extension Binary.Machine {
 
                 switch instruction {
                 case .take1:
-                    if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance())) }
+                    if remaining < .one {
+                        instructionError = .insufficientBytes(need: .one, have: remaining)
+                    } else {
+                        pendingHandle = arena.allocate(Value.make(advanceProvenInBounds(&input)))
+                    }
 
                 case .take(let n):
                     let need = Index<Byte>.Count(Cardinal(UInt(n)))
@@ -185,7 +231,7 @@ extension Binary.Machine {
                     } else {
                         var bytes: [Byte] = []
                         bytes.reserveCapacity(n)
-                        for _ in 0..<n { bytes.append(try! input.advance()) }
+                        for _ in 0..<n { bytes.append(advanceProvenInBounds(&input)) }
                         pendingHandle = arena.allocate(Value.make(bytes))
                     }
 
@@ -203,7 +249,7 @@ extension Binary.Machine {
                         pendingHandle = arena.allocate(Value.make(Byte?.none))
                     } else {
                         let cp = input.checkpoint
-                        let byte = try! input.advance()
+                        let byte = advanceProvenInBounds(&input)
                         input.seek(to: cp)
                         pendingHandle = arena.allocate(Value.make(Byte?(byte)))
                     }
@@ -213,7 +259,7 @@ extension Binary.Machine {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
                         let cp = input.checkpoint
-                        let byte = try! input.advance()
+                        let byte = advanceProvenInBounds(&input)
                         if byte != expected {
                             input.seek(to: cp)
                             instructionError = .unexpectedByte(expected: expected, found: byte)
@@ -236,7 +282,7 @@ extension Binary.Machine {
 
                         // Consume and compare byte by byte
                         for expectedByte in expected {
-                            let actual = try! input.advance()
+                            let actual = advanceProvenInBounds(&input)
                             found.append(actual)
                             if actual != expectedByte { mismatch = true }
                         }
@@ -256,7 +302,7 @@ extension Binary.Machine {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
                         let cp = input.checkpoint
-                        let byte = try! input.advance()
+                        let byte = advanceProvenInBounds(&input)
                         if predicate(byte) {
                             pendingHandle = arena.allocate(Value.make(byte))
                         } else {
@@ -269,7 +315,7 @@ extension Binary.Machine {
                     var bytes: [Byte] = []
                     while !input.isEmpty {
                         let cp = input.checkpoint
-                        let byte = try! input.advance()
+                        let byte = advanceProvenInBounds(&input)
                         guard predicate(byte) else {
                             input.seek(to: cp)
                             break
@@ -281,7 +327,7 @@ extension Binary.Machine {
                 case .skipWhile(let predicate):
                     while !input.isEmpty {
                         let cp = input.checkpoint
-                        let byte = try! input.advance()
+                        let byte = advanceProvenInBounds(&input)
                         if !predicate(byte) {
                             input.seek(to: cp)
                             break
@@ -290,74 +336,109 @@ extension Binary.Machine {
                     pendingHandle = arena.allocate(Value.make(()))
 
                 case .end:
-                    if !input.isEmpty { instructionError = .expectedEnd(remaining: remaining) } else { pendingHandle = arena.allocate(Value.make(())) }
+                    if !input.isEmpty {
+                        instructionError = .expectedEnd(remaining: remaining)
+                    } else {
+                        pendingHandle = arena.allocate(Value.make(()))
+                    }
 
                 case .require(let n):
                     let need = Index<Byte>.Count(Cardinal(UInt(n)))
-                    if remaining < need { instructionError = .insufficientBytes(need: need, have: remaining) } else { pendingHandle = arena.allocate(Value.make(())) }
+                    if remaining < need {
+                        instructionError = .insufficientBytes(need: need, have: remaining)
+                    } else {
+                        pendingHandle = arena.allocate(Value.make(()))
+                    }
 
                 // Integer decoding (unsigned)
                 case .u8:
-                    if remaining < .one { instructionError = .insufficientBytes(need: .one, have: remaining) } else { pendingHandle = arena.allocate(Value.make(try! input.advance().underlying)) }
+                    if remaining < .one {
+                        instructionError = .insufficientBytes(need: .one, have: remaining)
+                    } else {
+                        let byte = advanceProvenInBounds(&input)
+                        pendingHandle = arena.allocate(Value.make(byte.underlying))
+                    }
 
                 case .u16le:
                     if remaining < Index<Byte>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(2)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt16(try! input.advance())
-                        let b1 = UInt16(try! input.advance())
+                        let b0 = UInt16(advanceProvenInBounds(&input))
+                        let b1 = UInt16(advanceProvenInBounds(&input))
                         pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8)))
                     }
 
                 case .u16be:
                     if remaining < Index<Byte>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(2)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt16(try! input.advance())
-                        let b1 = UInt16(try! input.advance())
+                        let b0 = UInt16(advanceProvenInBounds(&input))
+                        let b1 = UInt16(advanceProvenInBounds(&input))
                         pendingHandle = arena.allocate(Value.make((b0 << 8) | b1))
                     }
 
                 case .u32le:
                     if remaining < Index<Byte>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(4)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt32(try! input.advance())
-                        let b1 = UInt32(try! input.advance())
-                        let b2 = UInt32(try! input.advance())
-                        let b3 = UInt32(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
+                        let b0 = UInt32(advanceProvenInBounds(&input))
+                        let b1 = UInt32(advanceProvenInBounds(&input))
+                        let b2 = UInt32(advanceProvenInBounds(&input))
+                        let b3 = UInt32(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make(b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))
+                        )
                     }
 
                 case .u32be:
                     if remaining < Index<Byte>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(4)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt32(try! input.advance())
-                        let b1 = UInt32(try! input.advance())
-                        let b2 = UInt32(try! input.advance())
-                        let b3 = UInt32(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
+                        let b0 = UInt32(advanceProvenInBounds(&input))
+                        let b1 = UInt32(advanceProvenInBounds(&input))
+                        let b2 = UInt32(advanceProvenInBounds(&input))
+                        let b3 = UInt32(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make((b0 << 24) | (b1 << 16) | (b2 << 8) | b3)
+                        )
                     }
 
                 case .u64le:
                     if remaining < Index<Byte>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(8)),
+                            have: remaining
+                        )
                     } else {
                         var result: UInt64 = 0
                         for i in 0..<8 {
-                            result |= UInt64(try! input.advance()) << (i * 8)
+                            result |= UInt64(advanceProvenInBounds(&input)) << (i * 8)
                         }
                         pendingHandle = arena.allocate(Value.make(result))
                     }
 
                 case .u64be:
                     if remaining < Index<Byte>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(8)),
+                            have: remaining
+                        )
                     } else {
                         var result: UInt64 = 0
                         for _ in 0..<8 {
-                            result = (result << 8) | UInt64(try! input.advance())
+                            result = (result << 8) | UInt64(advanceProvenInBounds(&input))
                         }
                         pendingHandle = arena.allocate(Value.make(result))
                     }
@@ -367,67 +448,95 @@ extension Binary.Machine {
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
                     } else {
-                        pendingHandle = arena.allocate(Value.make(Int8(bitPattern: try! input.advance())))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int8(bitPattern: advanceProvenInBounds(&input)))
+                        )
                     }
 
                 case .i16le:
                     if remaining < Index<Byte>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(2)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt16(try! input.advance())
-                        let b1 = UInt16(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make(Int16(bitPattern: b0 | (b1 << 8))))
+                        let b0 = UInt16(advanceProvenInBounds(&input))
+                        let b1 = UInt16(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int16(bitPattern: b0 | (b1 << 8)))
+                        )
                     }
 
                 case .i16be:
                     if remaining < Index<Byte>.Count(Cardinal(2)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(2)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(2)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt16(try! input.advance())
-                        let b1 = UInt16(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make(Int16(bitPattern: (b0 << 8) | b1)))
+                        let b0 = UInt16(advanceProvenInBounds(&input))
+                        let b1 = UInt16(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int16(bitPattern: (b0 << 8) | b1))
+                        )
                     }
 
                 case .i32le:
                     if remaining < Index<Byte>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(4)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt32(try! input.advance())
-                        let b1 = UInt32(try! input.advance())
-                        let b2 = UInt32(try! input.advance())
-                        let b3 = UInt32(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24))))
+                        let b0 = UInt32(advanceProvenInBounds(&input))
+                        let b1 = UInt32(advanceProvenInBounds(&input))
+                        let b2 = UInt32(advanceProvenInBounds(&input))
+                        let b3 = UInt32(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int32(bitPattern: b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)))
+                        )
                     }
 
                 case .i32be:
                     if remaining < Index<Byte>.Count(Cardinal(4)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(4)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(4)),
+                            have: remaining
+                        )
                     } else {
-                        let b0 = UInt32(try! input.advance())
-                        let b1 = UInt32(try! input.advance())
-                        let b2 = UInt32(try! input.advance())
-                        let b3 = UInt32(try! input.advance())
-                        pendingHandle = arena.allocate(Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3)))
+                        let b0 = UInt32(advanceProvenInBounds(&input))
+                        let b1 = UInt32(advanceProvenInBounds(&input))
+                        let b2 = UInt32(advanceProvenInBounds(&input))
+                        let b3 = UInt32(advanceProvenInBounds(&input))
+                        pendingHandle = arena.allocate(
+                            Value.make(Int32(bitPattern: (b0 << 24) | (b1 << 16) | (b2 << 8) | b3))
+                        )
                     }
 
                 case .i64le:
                     if remaining < Index<Byte>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(8)),
+                            have: remaining
+                        )
                     } else {
                         var result: UInt64 = 0
                         for i in 0..<8 {
-                            result |= UInt64(try! input.advance()) << (i * 8)
+                            result |= UInt64(advanceProvenInBounds(&input)) << (i * 8)
                         }
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
 
                 case .i64be:
                     if remaining < Index<Byte>.Count(Cardinal(8)) {
-                        instructionError = .insufficientBytes(need: Index<Byte>.Count(Cardinal(8)), have: remaining)
+                        instructionError = .insufficientBytes(
+                            need: Index<Byte>.Count(Cardinal(8)),
+                            have: remaining
+                        )
                     } else {
                         var result: UInt64 = 0
                         for _ in 0..<8 {
-                            result = (result << 8) | UInt64(try! input.advance())
+                            result = (result << 8) | UInt64(advanceProvenInBounds(&input))
                         }
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
@@ -445,8 +554,12 @@ extension Binary.Machine {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
                                 break
                             }
-                            let byte = try! input.advance()
-                            done = try Binary.LEB128.Decode.unsigned(byte: byte.underlying, into: &result, shift: &shift)
+                            let byte = advanceProvenInBounds(&input)
+                            done = try Binary.LEB128.Decode.unsigned(
+                                byte: byte.underlying,
+                                into: &result,
+                                shift: &shift
+                            )
                         }
                         if done { pendingHandle = arena.allocate(Value.make(result)) }
                     } catch {
@@ -463,8 +576,12 @@ extension Binary.Machine {
                                 instructionError = .insufficientBytes(need: .one, have: .zero)
                                 break
                             }
-                            let byte = try! input.advance()
-                            done = try Binary.LEB128.Decode.signed(byte: byte.underlying, into: &result, shift: &shift)
+                            let byte = advanceProvenInBounds(&input)
+                            done = try Binary.LEB128.Decode.signed(
+                                byte: byte.underlying,
+                                into: &result,
+                                shift: &shift
+                            )
                         }
                         if done { pendingHandle = arena.allocate(Value.make(result)) }
                     } catch {
@@ -494,20 +611,46 @@ extension Binary.Machine {
             case .oneOf(let alternatives):
                 guard !alternatives.isEmpty else { fatalError("Empty oneOf") }
                 if alternatives.count > 1 {
-                    frames.append(.oneOf(alternatives: alternatives, index: 1, savedCheckpoint: input.checkpoint))
+                    frames.append(
+                        .oneOf(
+                            alternatives: alternatives,
+                            index: 1,
+                            savedCheckpoint: input.checkpoint
+                        )
+                    )
                 }
                 current = alternatives[0]
 
             case .many(let child, let finalize):
-                frames.append(.many(child: child, savedCheckpoint: input.checkpoint, resultHandles: [], finalize: finalize))
+                frames.append(
+                    .many(
+                        child: child,
+                        savedCheckpoint: input.checkpoint,
+                        resultHandles: [],
+                        finalize: finalize
+                    )
+                )
                 current = child
 
             case .fold(let child, let initial, let combine):
-                frames.append(.fold(child: child, savedCheckpoint: input.checkpoint, accumulatorHandle: arena.allocate(initial), combine: combine))
+                frames.append(
+                    .fold(
+                        child: child,
+                        savedCheckpoint: input.checkpoint,
+                        accumulatorHandle: arena.allocate(initial),
+                        combine: combine
+                    )
+                )
                 current = child
 
             case .optional(let child, let wrapSome, let noneValue):
-                frames.append(.optional(savedCheckpoint: input.checkpoint, wrapSome: wrapSome, noneHandle: arena.allocate(noneValue)))
+                frames.append(
+                    .optional(
+                        savedCheckpoint: input.checkpoint,
+                        wrapSome: wrapSome,
+                        noneHandle: arena.allocate(noneValue)
+                    )
+                )
                 current = child
 
             case .ref(let target):
