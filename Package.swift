@@ -1,15 +1,15 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
 let package = Package(
     name: "swift-binary-parser-primitives",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(
@@ -46,30 +46,63 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-parser-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-parser-primitives.git",
+            branch: "main"
+        ),
         // W3 PRUNE: binary's `Binary.Borrowed` nominal is deleted and the
         // parse engine re-homes to the `Span.`Protocol`` byte-span
         // seam — path-dep binary + byte (changed) and span (the seam's home).
         // The root byte path-dep overrides binary's transitive url→main byte
         // (Finding 6) so Cursor<Byte> sees Byte.Borrowed == Swift.Span<Byte>.
-        .package(url: "https://github.com/swift-primitives/swift-binary-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-binary-leb128-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-machine-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-vector-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-index-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-byte-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-binary-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-binary-leb128-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-machine-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-vector-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-index-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-byte-primitives.git",
+            branch: "main"
+        ),
         // W3 PRUNE: byte-parser migrated (Span_Protocol_Primitives import for
         // Cursor<Byte> ops) — path-dep the changed package.
-        .package(url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-span-primitives.git", branch: "main"),
-        .package(url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-span-primitives.git",
+            branch: "main"
+        ),
+        .package(
+            url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git",
+            branch: "main"
+        ),
         // W3 Shared catch-up: Byte.Input's backing store is Shared<…> over
         // Buffer.Linear; under MemberImportVisibility the parse engine's
         // @inlinable bodies import these store/buffer conformance modules
         // directly, so they are declared product deps per [MOD-038].
         // (swift-buffer-linear-primitives above is now a direct dep too, not
         // only an identity-unification override.)
-        .package(url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git",
+            branch: "main"
+        ),
     ],
     targets: [
         // MARK: - Input
@@ -94,11 +127,26 @@ let package = Package(
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Machine Primitives", package: "swift-machine-primitives"),
                 .product(name: "Vector Primitives", package: "swift-vector-primitives"),
-                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
-                .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
-                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
-                .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
-                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives"),
+                .product(
+                    name: "Byte Primitives Standard Library Integration",
+                    package: "swift-byte-primitives"
+                ),
+                .product(
+                    name: "Binary LEB128 Decode Primitives",
+                    package: "swift-binary-leb128-primitives"
+                ),
+                .product(
+                    name: "Buffer Linear Primitive",
+                    package: "swift-buffer-linear-primitives"
+                ),
+                .product(
+                    name: "Buffer Linear Primitives",
+                    package: "swift-buffer-linear-primitives"
+                ),
+                .product(
+                    name: "Ownership Shared Primitive",
+                    package: "swift-ownership-shared-primitives"
+                ),
             ]
         ),
         .target(
@@ -107,8 +155,14 @@ let package = Package(
                 "Binary Machine Primitives",
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
                 .product(name: "Vector Primitive", package: "swift-vector-primitives"),
-                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
-                .product(name: "Binary LEB128 Decode Primitives", package: "swift-binary-leb128-primitives"),
+                .product(
+                    name: "Byte Primitives Standard Library Integration",
+                    package: "swift-byte-primitives"
+                ),
+                .product(
+                    name: "Binary LEB128 Decode Primitives",
+                    package: "swift-binary-leb128-primitives"
+                ),
                 // W3 PRUNE: the parse engine extends Span.`Protocol`.
                 .product(name: "Span Protocol Primitives", package: "swift-span-primitives"),
             ]
@@ -120,9 +174,18 @@ let package = Package(
             name: "Binary Parse Primitives",
             dependencies: [
                 "Binary Input Primitives",
-                .product(name: "Buffer Linear Primitive", package: "swift-buffer-linear-primitives"),
-                .product(name: "Buffer Linear Primitives", package: "swift-buffer-linear-primitives"),
-                .product(name: "Ownership Shared Primitive", package: "swift-ownership-shared-primitives"),
+                .product(
+                    name: "Buffer Linear Primitive",
+                    package: "swift-buffer-linear-primitives"
+                ),
+                .product(
+                    name: "Buffer Linear Primitives",
+                    package: "swift-buffer-linear-primitives"
+                ),
+                .product(
+                    name: "Ownership Shared Primitive",
+                    package: "swift-ownership-shared-primitives"
+                ),
             ]
         ),
 
@@ -133,7 +196,10 @@ let package = Package(
                 "Binary Parse Primitives",
                 .product(name: "Binary Primitives", package: "swift-binary-primitives"),
                 .product(name: "Byte Primitives", package: "swift-byte-primitives"),
-                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
+                .product(
+                    name: "Byte Primitives Standard Library Integration",
+                    package: "swift-byte-primitives"
+                ),
             ]
         ),
 
@@ -161,7 +227,10 @@ let package = Package(
                 "Binary Parse Primitives",
                 // Direct dep on the LEB128 types (was transited through the now-extracted
                 // parser bridge); Integer re-exports the Binary.LEB128 namespace.
-                .product(name: "Binary LEB128 Primitives", package: "swift-binary-leb128-primitives"),
+                .product(
+                    name: "Binary LEB128 Primitives",
+                    package: "swift-binary-leb128-primitives"
+                ),
             ]
         ),
 
@@ -189,8 +258,14 @@ let package = Package(
             dependencies: [
                 "Binary Parser Primitives",
                 "Binary Parseable Primitives",
-                .product(name: "Binary Primitives Test Support", package: "swift-binary-primitives"),
-                .product(name: "Byte Primitives Standard Library Integration", package: "swift-byte-primitives"),
+                .product(
+                    name: "Binary Primitives Test Support",
+                    package: "swift-binary-primitives"
+                ),
+                .product(
+                    name: "Byte Primitives Standard Library Integration",
+                    package: "swift-byte-primitives"
+                ),
                 .product(name: "Index Primitives Test Support", package: "swift-index-primitives"),
             ],
             path: "Tests/Support"
