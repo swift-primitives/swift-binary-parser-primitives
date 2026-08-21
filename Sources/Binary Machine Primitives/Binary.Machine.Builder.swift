@@ -1,21 +1,10 @@
-// Binary.Machine.Builder.swift
-// Builder context for constructing machine programs
-
 public import Machine_Primitives
 public import Vector_Primitives
 
 extension Binary.Machine {
-    /// The capture mode used by Binary.Machine programs.
-    ///
-    /// Uses `Mode.Unchecked` per [MEM-SEND-013] Pattern B (terminal direction):
-    /// combinator factories accept non-Sendable predicate/transform closures,
-    /// and the resulting `Parser<Output>` is itself non-Sendable. Consumers
-    /// transport assembled parsers across isolation domains via `sending` at
-    /// the program-transport boundary — not via a structural Sendable
-    /// conformance on the assembled value.
+
     public typealias Mode = Machine_Primitives.Machine.Capture.Mode.Unchecked
 
-    /// A builder context for constructing machine programs.
     public struct Builder: ~Copyable {
         @usableFromInline
         var inner: Machine_Primitives.Machine.Builder<Instruction, Fault, Mode>
@@ -26,7 +15,6 @@ extension Binary.Machine {
         }
     }
 
-    /// An expression in the machine program, representing a parser that produces Output.
     public struct Expression<Output> {
         @usableFromInline
         let node: Node.ID
@@ -37,7 +25,6 @@ extension Binary.Machine {
         }
     }
 
-    /// A reference to a node in the program, used for recursive grammar definitions.
     public struct Reference<Output> {
         @usableFromInline
         let node: Node.ID
@@ -55,33 +42,17 @@ extension Binary.Machine.Builder {
         inner.allocate(node)
     }
 
-    /// Access to the capture store for registering closures.
     @usableFromInline
     var captures: Machine_Primitives.Machine.Capture.Store<Binary.Machine.Mode> {
         get { inner.captures }
         _modify { yield &inner.captures }
     }
 
-    /// Builds the final immutable program.
     @usableFromInline
     consuming func build() -> Binary.Machine.Program {
         inner.build()
     }
 
-    /// Embeds an existing parser's program into this builder.
-    ///
-    /// Copies all nodes from the source parser, adjusting IDs to fit
-    /// in this builder's program. Returns an expression pointing to
-    /// the copied root node.
-    ///
-    /// Use this to compose existing parsers into new ones:
-    /// ```swift
-    /// let combined = Machine.build { builder in
-    ///     let inner = builder.embed(existingParser)
-    ///     let end = Combinators.end(in: &builder)
-    ///     return Combinators.sequence(inner, end, combine: { v, _ in v }, in: &builder)
-    /// }
-    /// ```
     @inlinable
     public mutating func embed<Output>(
         _ parser: Binary.Machine.Parser<Output>

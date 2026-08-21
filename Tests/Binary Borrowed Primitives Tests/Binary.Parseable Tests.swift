@@ -1,9 +1,3 @@
-// Binary.Parseable Tests.swift
-// swift-binary-primitives
-//
-// Tests demonstrating the Binary.Parseable protocol for byte deserialization
-// and round-trip identity with Binary.Serializable.
-
 import Binary_Primitives_Test_Support
 import Testing
 
@@ -11,8 +5,6 @@ import Testing
 
 @Suite
 struct `Binary.Parseable Tests` {
-
-    // MARK: - Round-trip identity
 
     @Test
     func `UInt32 round-trip preserves value (little-endian)`() throws {
@@ -32,8 +24,6 @@ struct `Binary.Parseable Tests` {
         #expect(decoded == original)
     }
 
-    // MARK: - Endianness asymmetry
-
     @Test
     func `UInt32 little- and big-endian byte arrays differ`() {
         let v: UInt32 = 0x1234_5678
@@ -48,7 +38,7 @@ struct `Binary.Parseable Tests` {
         let original: UInt32 = 0x1234_5678
         let leBytes = original.bytes(endianness: .little)
         let asBE = try #require(UInt32(bytes: leBytes, endianness: .big))
-        #expect(asBE == 0x7856_3412)  // byte-reversed interpretation
+        #expect(asBE == 0x7856_3412)
         #expect(asBE != original)
     }
 
@@ -57,8 +47,6 @@ struct `Binary.Parseable Tests` {
         let tooFew: [Byte] = [0x12, 0x34]
         #expect(UInt32(bytes: tooFew, endianness: .big) == nil)
     }
-
-    // MARK: - parse(from:) cursor semantics
 
     @Test
     func `UInt32.parse(from:) decodes little-endian and consumes 4 bytes`() throws {
@@ -83,8 +71,6 @@ struct `Binary.Parseable Tests` {
             _ = try UInt32.parse(from: &bytes)
         }
     }
-
-    // MARK: - Round-trip via Serializable + Parseable
 
     @Test
     func `UInt32 round-trip Serializable → Parseable (little-endian)`() throws {
@@ -111,13 +97,6 @@ struct `Binary.Parseable Tests` {
         let decoded = try #require(UInt32(bytes: bytes, endianness: .big))
         #expect(decoded == original)
     }
-
-    // Dual-conformance witness test (DualWord: Binary.Serializable + Binary.Parseable)
-    // moved to swift-binary-serializer-primitives Tests when Binary Serializable
-    // Primitives relocated. Single-conformance Binary.Parseable witnessing on
-    // UInt32 continues in this file's other tests.
-
-    // MARK: - Byte-collection conformances
 
     @Test
     func `Array<Byte>.parse consumes all remaining bytes`() throws {

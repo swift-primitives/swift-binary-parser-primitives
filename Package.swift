@@ -50,11 +50,7 @@ let package = Package(
             url: "https://github.com/swift-primitives/swift-parser-primitives.git",
             branch: "main"
         ),
-        // W3 PRUNE: binary's `Binary.Borrowed` nominal is deleted and the
-        // parse engine re-homes to the `Span.`Protocol`` byte-span
-        // seam — path-dep binary + byte (changed) and span (the seam's home).
-        // The root byte path-dep overrides binary's transitive url→main byte
-        // (Finding 6) so Cursor<Byte> sees Byte.Borrowed == Swift.Span<Byte>.
+
         .package(
             url: "https://github.com/swift-primitives/swift-binary-primitives.git",
             branch: "main"
@@ -79,8 +75,7 @@ let package = Package(
             url: "https://github.com/swift-primitives/swift-byte-primitives.git",
             branch: "main"
         ),
-        // W3 PRUNE: byte-parser migrated (Span_Protocol_Primitives import for
-        // Cursor<Byte> ops) — path-dep the changed package.
+
         .package(
             url: "https://github.com/swift-primitives/swift-byte-parser-primitives.git",
             branch: "main"
@@ -93,32 +88,23 @@ let package = Package(
             url: "https://github.com/swift-primitives/swift-buffer-linear-primitives.git",
             branch: "main"
         ),
-        // W3 Shared catch-up: Byte.Input's backing store is Shared<…> over
-        // Buffer.Linear; under MemberImportVisibility the parse engine's
-        // @inlinable bodies import these store/buffer conformance modules
-        // directly, so they are declared product deps per [MOD-038].
-        // (swift-buffer-linear-primitives above is now a direct dep too, not
-        // only an identity-unification override.)
+
         .package(
             url: "https://github.com/swift-primitives/swift-ownership-shared-primitives.git",
             branch: "main"
         ),
     ],
     targets: [
-        // MARK: - Input
 
         .target(
             name: "Binary Input Primitives",
             dependencies: [
-                // Core dissolved (L1 core-dissolution sweep 2026-06-23): Input
-                // imports the two funneled externals directly per [MOD-038].
+
                 .product(name: "Binary Primitives", package: "swift-binary-primitives"),
                 .product(name: "Parser Primitives", package: "swift-parser-primitives"),
                 .product(name: "Byte Parser Primitives", package: "swift-byte-parser-primitives"),
             ]
         ),
-
-        // MARK: - Machine
 
         .target(
             name: "Binary Machine Primitives",
@@ -163,12 +149,10 @@ let package = Package(
                     name: "Binary LEB128 Decode Primitives",
                     package: "swift-binary-leb128-primitives"
                 ),
-                // W3 PRUNE: the parse engine extends Span.`Protocol`.
+
                 .product(name: "Span Protocol Primitives", package: "swift-span-primitives"),
             ]
         ),
-
-        // MARK: - Parse Access
 
         .target(
             name: "Binary Parse Primitives",
@@ -189,7 +173,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Sibling Protocol (relocated from swift-binary-primitives)
         .target(
             name: "Binary Parseable Primitives",
             dependencies: [
@@ -203,30 +186,11 @@ let package = Package(
             ]
         ),
 
-        // MARK: - LEB128
-        //
-        // The LEB128 parser bridge (Binary.LEB128.Unsigned/Signed: Parser.`Protocol`)
-        // was extracted to swift-binary-leb128-parser-primitives per [MOD-014]
-        // (integration package, recipient-then-provider [PKG-NAME-016]). The shared
-        // decode arithmetic lives in swift-binary-leb128-primitives' Binary.LEB128.Decode,
-        // which the Machine/Borrowed interpreters here delegate to directly.
-
-        // MARK: - Coder
-        //
-        // Binary.Coder lives in swift-binary-coder-primitives per [MOD-DOMAIN]
-        // — Coder is a different transformation domain from Parser. The
-        // integer-specific coder methods (UInt8.coder, Int32.coder, ...) live
-        // there too in "Binary Integer Coder Primitives". See
-        // swift-institute/Research/transformation-domain-architecture.md v3.3.0.
-
-        // MARK: - Integer Parsers
-
         .target(
             name: "Binary Integer Primitives",
             dependencies: [
                 "Binary Parse Primitives",
-                // Direct dep on the LEB128 types (was transited through the now-extracted
-                // parser bridge); Integer re-exports the Binary.LEB128 namespace.
+
                 .product(
                     name: "Binary LEB128 Primitives",
                     package: "swift-binary-leb128-primitives"
@@ -234,14 +198,10 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Umbrella
-
         .target(
             name: "Binary Parser Primitives",
             dependencies: [
-                // Core dropped (L1 core-dissolution sweep 2026-06-23): umbrella
-                // exports.swift never imported Core; the transitional shim
-                // product survives standalone until the cleanup wave.
+
                 "Binary Input Primitives",
                 "Binary Machine Primitives",
                 "Binary Borrowed Primitives",
@@ -250,8 +210,6 @@ let package = Package(
                 "Binary Integer Primitives",
             ]
         ),
-
-        // MARK: - Tests
 
         .target(
             name: "Binary Parser Primitives Test Support",

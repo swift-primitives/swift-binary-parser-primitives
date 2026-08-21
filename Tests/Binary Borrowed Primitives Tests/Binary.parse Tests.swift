@@ -1,20 +1,10 @@
 import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
 import Index_Primitives
-// The parse engine is re-homed to `Span.`Protocol` where Element == Byte`;
-// calling `someByteSpan.parse(...)` needs the `Swift.Span: Span.`Protocol``
-// conformance in scope. A `Swift.Span<Byte>` is obtained from `[Byte].span`.
 import Span_Protocol_Primitives
 import Testing
 
 @testable import Binary_Parser_Primitives
-
-// MARK: - Binary parse Tests (byte-span instance-method API)
-//
-// The owned `Binary` struct was dissolved (binary-primitives is now a
-// namespace); the binary-domain parse engine lives on
-// `Span.`Protocol` where Element == Byte`. These tests drive it through a
-// `Swift.Span<Byte>` obtained from `[Byte].span`.
 
 extension Binary {
     @Suite
@@ -24,11 +14,7 @@ extension Binary {
     }
 }
 
-// MARK: - Unit Tests — byte-span parse
-
 extension Binary.Test.Unit {
-
-    // MARK: parse
 
     @Test
     func `byte-span parse u8 returns first byte`() throws {
@@ -72,8 +58,6 @@ extension Binary.Test.Unit {
         #expect(value == 0x0123_4567_89AB_CDEF)
     }
 
-    // MARK: parsePrefix
-
     @Test
     func `byte-span parsePrefix u8 returns value and consumed count 1`() throws {
         let result = try ([0x42, 0x99] as [Byte]).span.parsePrefix(Binary.Machine.u8Parser())
@@ -99,8 +83,6 @@ extension Binary.Test.Unit {
         #expect(result.count == Index<Byte>.Count(Cardinal(4)))
     }
 
-    // MARK: parsePrefixUnchecked
-
     @Test
     func `byte-span parsePrefixUnchecked u8 returns value and consumed count 1`() throws {
         let result = try ([0x42, 0x99] as [Byte]).span.parsePrefixUnchecked(
@@ -109,8 +91,6 @@ extension Binary.Test.Unit {
         #expect(result.value == 0x42)
         #expect(result.count == Index<Byte>.Count(Cardinal.one))
     }
-
-    // MARK: parseWhole
 
     @Test
     func `byte-span parseWhole u8 succeeds when input is exactly 1 byte`() throws {
@@ -134,19 +114,16 @@ extension Binary.Test.Unit {
 
     @Test
     func `byte-span parseWhole throws expectedEnd when bytes remain`() {
-        // A lifetime-dependent span cannot escape an #expect(throws:) autoclosure;
-        // assert the fault via do/catch in linear scope instead.
+
         let bytes: [Byte] = [0x42, 0x99]
         do throws(Binary.Machine.Fault) {
             _ = try bytes.span.parseWhole(Binary.Machine.u8Parser())
             Issue.record("expected Binary.Machine.Fault.expectedEnd")
         } catch {
-            // expected: a byte remains after the 1-byte parse
+
         }
     }
 }
-
-// MARK: - Edge Cases
 
 extension Binary.Test.`Edge Case` {
 
@@ -157,7 +134,7 @@ extension Binary.Test.`Edge Case` {
             _ = try bytes.span.parse(Binary.Machine.u32leParser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
-            // expected: 1 byte cannot satisfy a u32 parse
+
         }
     }
 
@@ -168,7 +145,7 @@ extension Binary.Test.`Edge Case` {
             _ = try bytes.span.parse(Binary.Machine.u8Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
-            // expected: empty input cannot satisfy a u8 parse
+
         }
     }
 
@@ -178,12 +155,6 @@ extension Binary.Test.`Edge Case` {
         #expect(value == 0xAB)
     }
 }
-
-// MARK: - Binary.withInput Tests (owned-input convenience)
-//
-// `Binary.withInput` is a static convenience on the `Binary` namespace (it
-// constructs a `Byte.Input` over the bytes and runs the closure); it survives
-// the owned-struct dissolution unchanged.
 
 extension Binary.Test.Unit {
 

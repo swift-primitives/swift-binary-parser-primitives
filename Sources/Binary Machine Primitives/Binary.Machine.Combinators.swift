@@ -1,13 +1,8 @@
-// Binary.Machine.Combinators.swift
-// Combinator API for building machine programs
-
 public import Byte_Primitives
 public import Machine_Primitives
 
-// MARK: - Instruction Expressions
-
 extension Binary.Machine {
-    /// Creates an expression for the take1 instruction.
+
     @inlinable
     public static func take1(
         in builder: inout Builder
@@ -17,7 +12,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for taking n bytes.
     @inlinable
     public static func take(
         _ n: Int,
@@ -28,7 +22,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for skipping n bytes.
     @inlinable
     public static func skip(
         _ n: Int,
@@ -39,7 +32,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for matching a specific byte.
     @inlinable
     public static func byte(
         _ expected: Byte,
@@ -50,7 +42,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for matching a byte sequence.
     @inlinable
     public static func bytes(
         _ expected: [Byte],
@@ -61,7 +52,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for matching end of input.
     @inlinable
     public static func end(
         in builder: inout Builder
@@ -71,9 +61,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    // MARK: - Unsigned Integer Expressions
-
-    /// Creates an expression for u8.
     @inlinable
     public static func u8(
         in builder: inout Builder
@@ -83,7 +70,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u16 little-endian.
     @inlinable
     public static func u16le(
         in builder: inout Builder
@@ -93,7 +79,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u16 big-endian.
     @inlinable
     public static func u16be(
         in builder: inout Builder
@@ -103,7 +88,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u32 little-endian.
     @inlinable
     public static func u32le(
         in builder: inout Builder
@@ -113,7 +97,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u32 big-endian.
     @inlinable
     public static func u32be(
         in builder: inout Builder
@@ -123,7 +106,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u64 little-endian.
     @inlinable
     public static func u64le(
         in builder: inout Builder
@@ -133,7 +115,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for u64 big-endian.
     @inlinable
     public static func u64be(
         in builder: inout Builder
@@ -143,9 +124,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    // MARK: - Signed Integer Expressions
-
-    /// Creates an expression for i8.
     @inlinable
     public static func i8(
         in builder: inout Builder
@@ -155,7 +133,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i16 little-endian.
     @inlinable
     public static func i16le(
         in builder: inout Builder
@@ -165,7 +142,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i16 big-endian.
     @inlinable
     public static func i16be(
         in builder: inout Builder
@@ -175,7 +151,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i32 little-endian.
     @inlinable
     public static func i32le(
         in builder: inout Builder
@@ -185,7 +160,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i32 big-endian.
     @inlinable
     public static func i32be(
         in builder: inout Builder
@@ -195,7 +169,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i64 little-endian.
     @inlinable
     public static func i64le(
         in builder: inout Builder
@@ -205,7 +178,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for i64 big-endian.
     @inlinable
     public static func i64be(
         in builder: inout Builder
@@ -215,9 +187,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    // MARK: - Variable-Length Integer Expressions
-
-    /// Creates an expression for unsigned LEB128.
     @inlinable
     public static func uleb128(
         in builder: inout Builder
@@ -227,7 +196,6 @@ extension Binary.Machine {
         return Expression(node: nodeID)
     }
 
-    /// Creates an expression for signed LEB128.
     @inlinable
     public static func sleb128(
         in builder: inout Builder
@@ -238,10 +206,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Pure
-
 extension Binary.Machine {
-    /// Creates a pure expression that always succeeds with the given value.
+
     @inlinable
     public static func pure<Output>(
         _ value: Output,
@@ -253,10 +219,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Map
-
 extension Binary.Machine.Expression {
-    /// Transforms the output of this expression.
+
     @inlinable
     public func map<T>(
         _ transform: @escaping (Output) -> T,
@@ -271,7 +235,6 @@ extension Binary.Machine.Expression {
         return Binary.Machine.Expression(node: nodeID)
     }
 
-    /// Transforms the output with a throwing function.
     @inlinable
     public func tryMap<T>(
         _ transform: @escaping (Output) throws(Binary.Machine.Fault) -> T,
@@ -287,10 +250,8 @@ extension Binary.Machine.Expression {
     }
 }
 
-// MARK: - Sequence
-
 extension Binary.Machine {
-    /// Sequences two expressions and combines their outputs.
+
     @inlinable
     public static func sequence<A, B, C>(
         _ a: Expression<A>,
@@ -309,10 +270,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - OneOf
-
 extension Binary.Machine {
-    /// Creates an expression that tries alternatives in order until one succeeds.
+
     @inlinable
     public static func oneOf<Output>(
         _ alternatives: [Expression<Output>],
@@ -325,10 +284,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Many
-
 extension Binary.Machine {
-    /// Creates an expression that parses zero or more occurrences.
+
     @inlinable
     public static func many<T>(
         _ expr: Expression<T>,
@@ -343,28 +300,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Fold
-
 extension Binary.Machine {
-    /// Creates an expression that folds zero or more occurrences without allocation.
-    ///
-    /// Unlike `many` which collects into an array, `fold` accumulates incrementally:
-    /// 1. Start with `initial` as accumulator
-    /// 2. Try to parse `child`
-    /// 3. If success: `accumulator = combine(accumulator, childResult)`, repeat
-    /// 4. If failure: return accumulator
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// // Parse decimal digits and fold into integer
-    /// let digit = take1(in: &builder).tryMap({ byte in
-    ///     guard byte >= 0x30 && byte <= 0x39 else { throw .predicateFailed(byte: byte) }
-    ///     return Int(byte - 0x30)
-    /// }, in: &builder)
-    ///
-    /// let number = fold(digit, initial: 0, combine: { acc, d in acc * 10 + d }, in: &builder)
-    /// ```
+
     @inlinable
     public static func fold<T, Acc>(
         _ expr: Expression<T>,
@@ -383,10 +320,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Optional
-
 extension Binary.Machine {
-    /// Creates an expression that optionally parses its child.
+
     @inlinable
     public static func optional<T>(
         _ expr: Expression<T>,

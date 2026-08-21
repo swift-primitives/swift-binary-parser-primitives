@@ -1,12 +1,3 @@
-// Binary.Machine.Run.swift
-// Owned executor for Machine programs
-
-// Every `advanceProvenInBounds(&input)` call below sits in the `else` branch
-// of a preceding `remaining < need` bounds check inside this hot interpreter
-// loop, so the advance is provably in-bounds and cannot throw at those sites.
-// The helper traps if that invariant is ever violated, rather than scattering
-// unchecked `try!` through the parse fast path.
-
 internal import Binary_LEB128_Decode_Primitives
 public import Byte_Primitives
 import Byte_Primitives_Standard_Library_Integration
@@ -14,11 +5,6 @@ internal import Index_Primitives
 public import Machine_Primitives
 import Parser_Primitives
 
-/// Advances `input` by one element, asserting the interpreter's own bounds
-/// check already proved this cannot fail. Every call site in this file sits
-/// in the `else` branch of a preceding `remaining < need` check, so
-/// `advance()` cannot throw here — this traps instead of leaving an
-/// unchecked `try!` scattered through the hot path.
 @inline(__always)
 private func advanceProvenInBounds<Input: Input_Primitives.Input.`Protocol`>(
     _ input: inout Input
@@ -31,22 +17,7 @@ private func advanceProvenInBounds<Input: Input_Primitives.Input.`Protocol`>(
 }
 
 extension Binary.Machine {
-    /// Executes a Machine program on any byte-oriented Input_Primitives.Input.`Protocol`.
-    ///
-    /// This is the owned-path executor, complementing the borrowed-path `withBorrowed`.
-    /// Both execute the same IR (Machine.Program); this one operates on any `Input_Primitives.Input.`Protocol``
-    /// where `Element == UInt8` and `Checkpoint == Int`.
-    ///
-    /// This generalization allows zero-copy parsing on both `Byte.Input` and
-    /// `ArraySlice<UInt8>` without conversion overhead.
-    ///
-    /// - Parameters:
-    ///   - program: The program to execute.
-    ///   - root: The root node ID.
-    ///   - input: The input cursor (any Input_Primitives.Input.`Protocol` with Byte elements).
-    ///   - outputType: The metatype of the value to decode from the program.
-    /// - Returns: The parsed output.
-    /// - Throws: `Fault` on parsing failure.
+
     @usableFromInline
     static func run<Input: Input_Primitives.Input.`Protocol`, Output>(
         program: Program,
@@ -58,7 +29,6 @@ extension Binary.Machine {
         typealias Value = Binary.Machine.Value
         typealias Node = Binary.Machine.Node
 
-        // Use same stack sizing policy as Parsing
         let stackCapacity = (program.maxDepth ?? 10_000) * 4
         var frames: [Frame] = []
         frames.reserveCapacity(stackCapacity)
@@ -70,7 +40,7 @@ extension Binary.Machine {
         var instructionError: Fault? = nil
 
         interpreterLoop: while true {
-            // Handle pending value from previous iteration
+
             if let handle = pendingHandle {
                 pendingHandle = nil
                 let value = arena.release(handle)
@@ -141,7 +111,7 @@ extension Binary.Machine {
                     continue interpreterLoop
 
                 case .optional(_, let wrapSome, let noneHandle):
-                    // Discard none-handle on success to avoid arena leak
+
                     _ = arena.release(noneHandle)
                     pendingHandle = arena.allocate(wrapSome.apply(using: program.captures, value))
 
@@ -158,7 +128,6 @@ extension Binary.Machine {
                 }
             }
 
-            // Handle error recovery
             if let error = instructionError {
                 instructionError = nil
                 var recovered = false
@@ -209,7 +178,6 @@ extension Binary.Machine {
                 continue interpreterLoop
             }
 
-            // Execute current node
             let node = program[current]
 
             switch node {
@@ -274,13 +242,12 @@ extension Binary.Machine {
                     if remaining < need {
                         instructionError = .insufficientBytes(need: need, have: remaining)
                     } else {
-                        // Save checkpoint before consuming
+
                         let cp = input.checkpoint
                         var found: [Byte] = []
                         found.reserveCapacity(n)
                         var mismatch = false
 
-                        // Consume and compare byte by byte
                         for expectedByte in expected {
                             let actual = advanceProvenInBounds(&input)
                             found.append(actual)
@@ -288,11 +255,11 @@ extension Binary.Machine {
                         }
 
                         if mismatch {
-                            // Restore to checkpoint on mismatch
+
                             input.seek(to: cp)
                             instructionError = .unexpectedBytes(expected: expected, found: found)
                         } else {
-                            // Input already advanced past expected bytes
+
                             pendingHandle = arena.allocate(Value.make(expected))
                         }
                     }
@@ -350,7 +317,6 @@ extension Binary.Machine {
                         pendingHandle = arena.allocate(Value.make(()))
                     }
 
-                // Integer decoding (unsigned)
                 case .u8:
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
@@ -443,7 +409,6 @@ extension Binary.Machine {
                         pendingHandle = arena.allocate(Value.make(result))
                     }
 
-                // Integer decoding (signed)
                 case .i8:
                     if remaining < .one {
                         instructionError = .insufficientBytes(need: .one, have: remaining)
@@ -541,10 +506,8 @@ extension Binary.Machine {
                         pendingHandle = arena.allocate(Value.make(Int64(bitPattern: result)))
                     }
 
-                // Variable-length integers
                 case .uleb128:
-                    // Delegate to the shared decode core; map its overflow to the
-                    // interpreter's instruction error. Behavior-preserving at UInt64.
+
                     var result: UInt64 = 0
                     var shift: Int = 0
                     var done = false
@@ -669,17 +632,8 @@ extension Binary.Machine {
     }
 }
 
-// MARK: - Parser Extension
-
 extension Binary.Machine.Parser {
-    /// Executes this parser on any byte-oriented Input_Primitives.Input.`Protocol`.
-    ///
-    /// This generic overload allows zero-copy parsing on both `Byte.Input` and
-    /// `ArraySlice<UInt8>` without conversion overhead.
-    ///
-    /// - Parameter input: Any Input_Primitives.Input.`Protocol` with Byte elements and Index<Byte> checkpoint.
-    /// - Returns: The parsed output.
-    /// - Throws: `Fault` on parsing failure.
+
     @inlinable
     public func parse<Input: Input_Primitives.Input.`Protocol`>(
         _ input: inout Input

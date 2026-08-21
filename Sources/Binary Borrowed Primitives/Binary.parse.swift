@@ -1,49 +1,13 @@
-// Binary.parse.swift
-// Zero-copy borrowed parsing APIs with inlined interpreter
-
-// Each `view.peek()!` / `view.peek(at:)!` below is guarded by a preceding
-// `remaining`/`consumed < total` bounds check, so the peek is provably in-bounds
-// and cannot be nil at those sites. The force-unwrap is deliberate — it keeps the
-// inlined parse fast path free of redundant optional plumbing.
-// swift-format-ignore-file: NeverForceUnwrap
-
-public import Binary_LEB128_Decode_Primitives  // public: referenced from @inlinable _parsePrefix [MOD-027]
+public import Binary_LEB128_Decode_Primitives
 public import Byte_Primitives
 public import Byte_Primitives_Standard_Library_Integration
 public import Cursor_Primitives
 internal import Index_Primitives
 public import Machine_Primitives
-// W3 PRUNE: the parse engine re-homes from the deleted `Binary.Borrowed`
-// nominal to `Span.`Protocol` where Element == Byte`. Public because
-// the protocol + its `span` member appear in the @inlinable parse signatures.
 public import Span_Protocol_Primitives
 import Standard_Library_Extensions
 public import Vector_Primitive
 
-//
-// ## Design Note
-//
-// The interpreter is LITERALLY inlined into the engine on Binary.Borrowed.
-// This is required because Swift 6.x's lifetime checker sees ANY function
-// call with `inout Cursor<Byte>` as a potential escape.
-//
-// CRITICAL: NO COMPUTED PROPERTY READS on Cursor<Byte> inside the interpreter.
-// The lifetime checker cannot reason through computed property accessors in
-// complex control flow. Track position externally via local counters.
-//
-// Allowed operations on view:
-// - removeFirst() / removeFirst(n) - mutating consumption
-// - subscript(offset:) - peek without consuming
-// - position = x - write for backtracking (writes appear to be okay)
-//
-// Forbidden operations on view inside interpreter:
-// - consumed, count, isEmpty, first (computed properties)
-
-// MARK: - Typed Count Constants
-
-/// Typed count constants for common byte widths.
-///
-/// These avoid repeated construction of Index<Byte>.Count values.
 @usableFromInline
 let _two: Index<Byte>.Count = Index<Byte>.Count(Cardinal(2))
 @usableFromInline
@@ -51,22 +15,8 @@ let _four: Index<Byte>.Count = Index<Byte>.Count(Cardinal(4))
 @usableFromInline
 let _eight: Index<Byte>.Count = Index<Byte>.Count(Cardinal(8))
 
-// MARK: - Borrowed-byte-span parsing (W3 PRUNE)
-//
-// Re-homed from `extension Binary.Borrowed` (nominal deleted) to the
-// namespace-neutral byte-span seam `Span.`Protocol` where
-// Element == Byte`. These binary-domain parse operations now attach to ANY
-// borrowed byte span — including a bare `Swift.Span<Byte>` (the linchpin
-// conformer) — so consumers call `someByteSpan.parse(parser)` with no nominal
-// carrier. The restated `Self: ~Copyable & ~Escapable` is REQUIRED
-// (Findings 1/11): without it the extension's `Self` is implicitly
-// Escapable/Copyable and would not apply to a `~Escapable` span.
-
 extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
-    /// Executes a machine parser on this borrowed view of bytes.
-    ///
-    /// Equivalent to `parsePrefix(parser).value` — returns the parsed value
-    /// and discards the consumed-count.
+
     @inlinable
     public func parse<Output>(
         _ parser: Binary.Machine.Parser<Output>
@@ -74,8 +24,6 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
         try _parsePrefix(parser).value
     }
 
-    /// Executes a machine parser on this borrowed view of bytes, returning
-    /// the parsed value and the number of bytes consumed.
     @inlinable
     public func parsePrefix<Output>(
         _ parser: Binary.Machine.Parser<Output>
@@ -83,8 +31,6 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
         try _parsePrefix(parser)
     }
 
-    /// Executes a machine parser on this borrowed view of bytes, returning
-    /// the parsed value and the number of bytes consumed (unconstrained).
     @inlinable
     public func parsePrefixUnchecked<Output>(
         _ parser: Binary.Machine.Parser<Output>
@@ -92,17 +38,12 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
         try _parsePrefix(parser)
     }
 
-    /// Executes a machine parser on this borrowed view of bytes, requiring
-    /// all input to be consumed.
-    ///
-    /// If any bytes remain after parsing, throws `.expectedEnd`.
     @inlinable
     public func parseWhole<Output>(
         _ parser: Binary.Machine.Parser<Output>
     ) throws(Binary.Machine.Fault) -> Output {
         let (value, consumed) = try _parsePrefix(parser)
-        // W3 PRUNE: the deleted `Binary.Borrowed.count: Index<Byte>.Count`
-        // typed accessor is computed inline from the span's native count.
+
         let total = Index<Byte>.Count(Cardinal(UInt(self.span.count)))
         let remaining = total.subtract.saturating(consumed)
         guard remaining == .zero else {
@@ -112,11 +53,8 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     }
 }
 
-// MARK: - Internal Interpreter (engine on the borrowed byte span)
-
 extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
-    /// Internal engine: runs the machine interpreter against the borrowed
-    /// span and returns both the parsed value and the consumed-count.
+
     @inlinable
     package func _parsePrefix<Output>(
         _ parser: Binary.Machine.Parser<Output>
@@ -594,10 +532,7 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
                     }
 
                 case .uleb128:
-                    // Delegate to the shared decode core. The core takes a value-copied
-                    // UInt8 + inout POD scalars (never the ~Escapable cursor), so it is
-                    // callable here without re-tripping the lifetime checker the design
-                    // note (above) works around. Behavior-preserving at UInt64.
+
                     var result: UInt64 = 0
                     var shift: Int = 0
                     var done = false
@@ -720,13 +655,8 @@ extension Span.`Protocol` where Self: ~Copyable & ~Escapable, Element == Byte {
     }
 }
 
-// MARK: - Owned-Input Convenience Constructors
-
 extension Binary {
-    /// Constructs a `Byte.Input` over `bytes` and runs `body` against it.
-    ///
-    /// The input is consumed within the closure's scope and not exposed
-    /// to callers.
+
     @inlinable
     public static func withInput<T, E: Swift.Error>(
         _ bytes: [Byte],
@@ -736,7 +666,6 @@ extension Binary {
         return try body(&input)
     }
 
-    /// Constructs a `Byte.Input` by copying `bytes` and runs `body` against it.
     @inlinable
     public static func withInput<Bytes, T, E: Swift.Error>(
         _ bytes: Bytes,
@@ -746,7 +675,6 @@ extension Binary {
         return try body(&input)
     }
 
-    /// Constructs a `Byte.Input` from a string's UTF-8 bytes and runs `body`.
     @inlinable
     public static func withInput<T, E: Swift.Error>(
         _ string: some StringProtocol,

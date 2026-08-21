@@ -5,11 +5,7 @@ public import Ownership_Shared_Primitive
 public import Parser_Primitives
 
 extension Binary.Parse.Access {
-    /// Parses a prefix of the input, returning the value and the count of bytes consumed.
-    ///
-    /// - Parameter bytes: The bytes to parse.
-    /// - Returns: The parsed value and count of bytes consumed.
-    /// - Throws: `P.Failure` if parsing fails.
+
     @inlinable
     public func prefix<Bytes: Swift.Collection>(
         _ bytes: Bytes

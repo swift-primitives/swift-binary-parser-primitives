@@ -1,40 +1,10 @@
-// Binary.Parse.Validated.swift
-// swift-binary-primitives
-//
-// Parser for RawRepresentable types with validation.
-
 extension Binary.Parse {
-    /// Parser for `RawRepresentable` types backed by `FixedWidthInteger`.
-    ///
-    /// Parses the raw value and validates that it maps to a valid case.
-    /// Commonly used for parsing enums from binary data.
-    ///
-    /// ## Example
-    ///
-    /// ```swift
-    /// enum Status: UInt8 {
-    ///     case inactive = 0
-    ///     case active = 1
-    ///     case pending = 2
-    /// }
-    ///
-    /// let parser = Binary.Parse.Validated<Status>(endianness: .big)
-    /// var input: ArraySlice<Byte> = [0x01][...]
-    /// let status = try parser.parse(&input)
-    /// // status == .active
-    ///
-    /// var badInput: ArraySlice<Byte> = [0xFF][...]
-    /// _ = try parser.parse(&badInput)
-    /// // throws Error.invalid(rawValue: 255)
-    /// ```
+
     public struct Validated<T>: Sendable
     where T: RawRepresentable, T.RawValue: FixedWidthInteger {
-        /// Byte order for parsing the raw value.
+
         public let endianness: Binary.Endianness
 
-        /// Creates a validated parser.
-        ///
-        /// - Parameter endianness: Byte order for parsing
         @inlinable
         public init(endianness: Binary.Endianness) {
             self.endianness = endianness
@@ -42,32 +12,26 @@ extension Binary.Parse {
     }
 }
 
-// MARK: - Error
-
 extension Binary.Parse.Validated {
-    /// Errors from validated RawRepresentable parsing.
+
     public enum Error: Swift.Error {
-        /// Input ended before required bytes were available.
+
         case endOfInput(expected: String)
 
-        /// Parsed raw value does not map to a valid case.
         case invalid(rawValue: T.RawValue)
     }
 }
 
 extension Binary.Parse.Validated.Error: Sendable where T.RawValue: Sendable {}
 
-// MARK: - Parser.Parser
-
 extension Binary.Parse.Validated: Parser.`Protocol` {
-    /// The input source consumed by this parser.
+
     public typealias Input = ArraySlice<Byte>
-    /// The value produced when parsing succeeds.
+
     public typealias Output = T
-    /// The error thrown when parsing fails.
+
     public typealias Failure = Binary.Parse.Validated<T>.Error
 
-    /// Parses a raw value from `input` and validates it into `T`, consuming the bytes it reads.
     @inlinable
     public func parse(_ input: inout Input) throws(Failure) -> T {
         let rawSize = MemoryLayout<T.RawValue>.size
@@ -102,10 +66,8 @@ extension Binary.Parse.Validated: Parser.`Protocol` {
     }
 }
 
-// MARK: - Error Descriptions
-
 extension Binary.Parse.Validated.Error: CustomStringConvertible {
-    /// A human-readable description of this error.
+
     public var description: String {
         switch self {
         case .endOfInput(let expected):
@@ -116,7 +78,5 @@ extension Binary.Parse.Validated.Error: CustomStringConvertible {
         }
     }
 }
-
-// MARK: - Equatable
 
 extension Binary.Parse.Validated.Error: Equatable where T.RawValue: Equatable {}

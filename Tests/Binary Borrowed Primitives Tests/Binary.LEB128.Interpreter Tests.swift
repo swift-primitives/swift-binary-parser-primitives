@@ -1,21 +1,5 @@
-// Binary.LEB128.Interpreter Tests.swift
-// swift-binary-parser-primitives
-//
-// Regression tests for the binary Machine `.uleb128`/`.sleb128` instructions,
-// exercised through the borrowed byte-span interpreter — the parse* family on
-// `Span.\`Protocol\` where Element == Byte` (a `Swift.Span<Byte>` obtained from
-// `[Byte].span`). These instruction paths route through the shared
-// Binary.LEB128.Decode core, so these tests pin that the re-point is
-// behavior-preserving and that the core's overflow maps to Binary.Machine.Fault.
-//
-// The owned executor (Binary.Machine.Run) carries the byte-identical re-pointed
-// logic over a different byte source and is compile-verified; it delegates to
-// the same core, which is independently unit-tested in swift-binary-leb128-primitives.
-
 import Binary_Parser_Primitives_Test_Support
 import Byte_Primitives
-// The parse engine attaches to `Span.\`Protocol\` where Element == Byte`; calling
-// `someByteSpan.parse(...)` needs the `Swift.Span: Span.\`Protocol\`` conformance.
 import Span_Protocol_Primitives
 import Testing
 
@@ -23,11 +7,9 @@ import Testing
 
 @Suite("Binary.LEB128 Interpreter")
 struct BinaryLEB128InterpreterTests {
-    @Suite struct Prefix {}  // via byte-span parse (prefix)
-    @Suite struct Whole {}  // via byte-span parseWhole (exact-length)
+    @Suite struct Prefix {}
+    @Suite struct Whole {}
 }
-
-// MARK: - via byte-span parse (prefix)
 
 extension BinaryLEB128InterpreterTests.Prefix {
 
@@ -64,13 +46,13 @@ extension BinaryLEB128InterpreterTests.Prefix {
 
     @Test
     func `uleb128 over-long encoding faults`() {
-        // 11-byte uleb (a byte past bit 64) is over-long under the strict core.
+
         let overLong = [Byte](repeating: 0x80, count: 10) + [0x01]
         do throws(Binary.Machine.Fault) {
             _ = try overLong.span.parse(Binary.Machine.uleb128Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
-            // expected: over-long uleb faults under the strict core
+
         }
     }
 
@@ -81,12 +63,10 @@ extension BinaryLEB128InterpreterTests.Prefix {
             _ = try bytes.span.parse(Binary.Machine.uleb128Parser())
             Issue.record("expected Binary.Machine.Fault")
         } catch {
-            // expected: unterminated uleb faults
+
         }
     }
 }
-
-// MARK: - via byte-span parseWhole (exact-length)
 
 extension BinaryLEB128InterpreterTests.Whole {
 

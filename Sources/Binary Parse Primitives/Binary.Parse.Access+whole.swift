@@ -4,11 +4,7 @@ public import Ownership_Shared_Primitive
 public import Parser_Primitives
 
 extension Binary.Parse.Access {
-    /// Parses the entire input, requiring every byte to be consumed.
-    ///
-    /// - Parameter bytes: The bytes to parse.
-    /// - Returns: The parsed value.
-    /// - Throws: `Either<P.Failure, Binary.Parse.Error>` if parsing fails or bytes remain.
+
     @inlinable
     public func whole<Bytes: Swift.Collection>(
         _ bytes: Bytes

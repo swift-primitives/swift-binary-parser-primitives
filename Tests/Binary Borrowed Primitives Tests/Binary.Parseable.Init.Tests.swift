@@ -1,11 +1,3 @@
-// Binary.Parseable.UInt8.Tests.swift
-//
-// Tests for the endianness-aware init?(bytes:endianness:) on
-// Binary.Parseable conformers with FixedWidthInteger RawValue. The init is
-// byte-domain ([Byte]) only post-W2 byte cascade; the prior @_disfavoredOverload
-// UInt8 forwarder was deleted as redundant migration-debt baggage. Callers
-// holding `[UInt8]` bridge via `Array<Byte>(uint8s)` at the call site.
-
 import Binary_Parseable_Primitives
 import Testing
 

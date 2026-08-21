@@ -4,8 +4,6 @@ import Testing
 
 @testable import Binary_Parser_Primitives
 
-// MARK: - Byte.Input Tests
-
 extension Byte.Input {
     @Suite
     struct Test {
@@ -16,11 +14,7 @@ extension Byte.Input {
     }
 }
 
-// MARK: - Unit Tests
-
 extension Byte.Input.Test.Unit {
-
-    // MARK: Initialization
 
     @Test
     func `init from Array creates input with correct count`() {
@@ -56,8 +50,6 @@ extension Byte.Input.Test.Unit {
         #expect(input.count == 0)
         #expect(input.first == nil)
     }
-
-    // MARK: Properties
 
     @Test
     func `isEmpty returns true for empty input`() {
@@ -100,8 +92,6 @@ extension Byte.Input.Test.Unit {
 
         #expect(input.consumed == 0)
     }
-
-    // MARK: Advance
 
     @Test
     func `advance removes and returns first byte`() throws {
@@ -157,8 +147,6 @@ extension Byte.Input.Test.Unit {
         #expect(input.consumed == 3)
     }
 
-    // MARK: Subscript
-
     @Test
     func `subscript accesses byte at offset`() {
         let input = Byte.Input([0x10, 0x20, 0x30, 0x40])
@@ -178,8 +166,6 @@ extension Byte.Input.Test.Unit {
         #expect(input[offset: 0] == 0x20)
         #expect(input[offset: 1] == 0x30)
     }
-
-    // MARK: Starts With
 
     @Test
     func `starts with returns true for matching prefix`() {
@@ -226,16 +212,12 @@ extension Byte.Input.Test.Unit {
         #expect(!input.starts(with: [0x01, 0x02]))
     }
 
-    // MARK: Sendable
-
     @Test
     func `Input conforms to Sendable`() {
         let input = Byte.Input([0x01, 0x02, 0x03])
         let _: any Sendable = input
     }
 }
-
-// MARK: - Edge Case Tests
 
 extension Byte.Input.Test.`Edge Case` {
 
@@ -274,15 +256,12 @@ extension Byte.Input.Test.`Edge Case` {
     }
 }
 
-// MARK: - Integration Tests
-
 extension Byte.Input.Test.Integration {
 
     @Test
     func `consumed enables prefix result calculation`() throws {
         var input = Byte.Input([0x31, 0x32, 0x33, 0x41, 0x42])
 
-        // Parse ASCII digits manually
         var value = 0
         while let byte = input.first, byte >= 0x30 && byte <= 0x39 {
             value = value * 10 + Int(byte.underlying - 0x30)
