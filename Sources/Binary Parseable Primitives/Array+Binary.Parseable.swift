@@ -2,8 +2,8 @@
 // Binary.Parseable conformance for Array<Byte>.
 
 public import Binary_Parse_Primitives
-public import Cardinal_Primitives
-public import Index_Primitives
+import Cardinal_Primitives
+import Index_Primitives
 
 extension Swift.Array: Binary.Parseable where Element == Byte {
     /// Parses a byte array by consuming all remaining bytes in the source.

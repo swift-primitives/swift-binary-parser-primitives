@@ -9,10 +9,10 @@
 
 internal import Binary_LEB128_Decode_Primitives
 public import Byte_Primitives
-public import Byte_Primitives_Standard_Library_Integration
+import Byte_Primitives_Standard_Library_Integration
 internal import Index_Primitives
 public import Machine_Primitives
-public import Parser_Primitives
+import Parser_Primitives
 
 /// Advances `input` by one element, asserting the interpreter's own bounds
 /// check already proved this cannot fail. Every call site in this file sits
